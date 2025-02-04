@@ -1,0 +1,99 @@
+* Paper notes : Estimating the environmental impacts of AI inference deployments
+*** Djoser SIMEU M2 MOSIG DSAI / DATAMOVE
+** 1° paper : Trends in AI inference energy consumption: Beyond the performance-vs-parameter laws of deep learning (https://www.sciencedirect.com/science/article/pii/S2210537923000124?ref=pdf_download&fr=RR-2&rr=90c1945e6bdfbb5c)
+*** Authors : Radosvet Desislavov, Fernando Martínez-Plumed, José Hernández-Orallo
+*** Key words :
+inference costs , energy consumption, computer vision, natural language processing, carbon footprint, FLOPs,
+*** Citations:
++ "At first look it seems that training cost is higher. However, for deployed systems, inference costs exceed training costs, because of the multiplicative factor of using the system many times."
++ "We focus our analysis on inference FLOPs (Floating Point Operations) required to process one input item (image or text fragment)."
+*** SOTA :
++ "AI efficiency" : D. Hernandez, T.B. Brown, Measuring the algorithmic efficiency of neural networks, 2020, arXiv:2005.04305.
+  " This study shows that 44 times less compute
+was required in 2020 to train a network with the same performancevAlexNet achieved seven years before."
++ "D. Amodei, D. Hernandez, Ai and compute, 2018, https://openai.com/blog/aiand-compute/."
+  "As a result, it has been estimated that AI models have doubled the computational power they use every 3.4 months since 2012 "
++ "For instance, new algorithms and architectures such as EfficientNet [26] and EfficientNetV2 [27] have aimed at this reduction in compute"
+*** Observations :
++ The number of parameters and FLOPs: "Note that recent transformer models [45] do not follow the growth relation presented above. However, the correlation between the number of parameters and FLOPs for CNNs is 0.772 and the correlation for transformers is 0.994 (Fig. 1)."
+***** TODO :: How do they compute FLOPs for transformer models
++ "From the FLOPS and power consumption we calculate the efficiency, dividing FLOPS by Watts."
+  #+begin_center
+  [[file:images/Energy_Efficiency_comp.png]]
+  #+end_center
++ "For NLP, the trends are similar but the best models are growing much faster, as we see in Fig. 14, while the regular models may even decrease. "
+  #+begin_center
+[[file:images/NLP_Task_Joules.png]]
+[[file:images/NLP_Task_GLUE.png]]
+#+end_center
+** 2° paper : Estimating the environmental impact of Generative-AI services using an LCA-based methodology (https://www.sciencedirect.com/science/article/pii/S2212827124001173)
+*** Authors : Adrien Berthelot,  Eddy Caron, Mathilde Jay,  Laurent Lefevre
+*** Key words :
+ LCA-based methodology,  environmental impact of generative AI services, Stable Diffusion
+*** Citations :
++ "In the context of environmental challenges and considering the footprint of the digital sector, which in the EU already accounts for 9.3% of electricity consumption and over 4% of greenhouse gas emissions, many studies have addressed the question of the environmental cost of AI. "
+  + (Bordage, F., de Montenay, L., Benqassem, S., Delmas-Orgelet, J., Domon, F., Prunel, D., Vateau, C. et Lees Perasso, E. Digital technologies in europe: an environmental life cycle approach.)
+*** SOTA :
++ Emma Strubell, Ananya Ganesh, and Andrew McCallum. Energy and Policy Considerations for Deep Learning in NLP. arXiv:1906.02243 [cs], June 2019. arXiv: 1906.02243
+  + "Interest in the energy consumption of AI started in 2019 with the work of Strubell et al."
++ Alexandra Sasha Luccioni, Sylvain Viguier, and Anne-Laure Ligozat. Estimating the carbon footprint of BLOOM, a 176b parameter language model. Journal of Machine Learning Research, 24(253):1–15, 2023.
+  + "However, they solely focus on training. A more recent study of the BLOOM model [4] reports the energy consumed by the training, an estimation of the global cost of inference, and an estimation of the manufacturing cost based on LCA."
+*** Observations :
++ "AI as a service"
+  #+begin_center
+  [[file:images/AIaaS.png]]
+  #+end_center
++ "The impact is observed through 3 criteria, selected for their availability, quality, and relevance, considering the main impact categories known for digital services [2]."
+  + Abiotic Depletion Potential (ADP)  for minerals and metals : " It represents the decrease in available resources that have limited reserves."
+  + Global Warming Potential (GWP) : evaluates the contribution to climate change.
+  + Primary Energy (PE): expresses the total energy footprint.
+**** TODO :: Regarding the impacts formula defines on this paper, depending on the deployments contexts that we want to study, which part of the life cycle of the AI system can we consider ?
++ for a large scale computing deployment context it will be the quiet the same approach observed in this study.
++ Now, regarding an edge computing deployment :
+  + How can we consider the network impact?
+  + Do we need to consider the web hosting cost?
+  + How can we introduce the notion of memory usage for the storage of the model if the inference process is done locally?
++ Nowday, lot of models use Reinforcement Learining based on Human Feedback (RLHF) to improve the model with the feedback of the user. Can we incorporate that in our study?
+*** Results :
+#+begin_center
+[[file:images/Results_StableD.png]]
+#+end_center
+**** TODO :: The paper say that they used the Sirius cluster from Grid5000 for the "part of " training and inference process.
++ Did the study reproduces exactly the computation context of FU1 and FU2? If not, what is the appriximation done to observe the results table 2 and figure 2?
++ How did the study to take into account the amount of energy needed to perform the cooling process? Does the hardware power meter used take into account this measure?
+** 3° paper : Estimating the carbon footprint of BLOOM, a 176B parameter language model (https://arxiv.org/pdf/2211.02001)
+*** Key words :
+Large language models
+*** SOTA :
++ STRUBELL, E., GANESH, A., AND MCCALLUM, A. Energy and policy considerations for deep learning in nlp. arXiv preprint arXiv:1906.02243 (2019).
+  + "Starting with the seminal work of Strubell et al., who looked at the carbon footprint of training a Transformer model"
+*** Observations :
++ BigScience Large Open-science Open-access Multilingual Language Model (BLOOM)
++ Model architechture and trainning process :
+  #+begin_center
+  [[file:images/Bloom_param.png]]
+  #+end_center
++ LCA Methodology
+  #+begin_center
+[[file:images/Bloom_LCA.png]]
+#+end_center
++ "For instance, methane has a 100-year GWP 25 times that of CO2– this means that it is equal to 25 CO2eq. "
++ Data used in the paper : https://github.com/bigscience-workshop/carbon-footprint/
++ embodied emissions : "embodied emissions are those emissions associated with the materials and processes involved in producing a given product, such as the computing equipment needed to train and deploy ML models."
++ "While Nvidia does not currently disclose the carbon footprint of its GPUs, recent estimates put the lower bound of this amount at approximately 150 kg of CO2eq [9], which is the number we will use for our embodied emissions estimates."
+  + DAVY, B. Building an aws ec2 carbon emissions dataset. https://medium.com/teads-engineering/ building-an-aws-ec2-carbon-emissions-dataset-3f0fd76c98ac, 2021.
++ Embodied emissions  "11.2 tonnes of CO2eq to its carbon footprint"
++ thermal design power (TDP) :"le TDP est la quantité maximale de chaleur générée par le composant quand il est utilisé au maximum de sa puissance."
++ Dynamic power consumption : "24.69 tonnes of CO2eq"
++ idle power consumption : "However, it is important to keep in mind that the broader infrastructure that maintains and connects this hardware also requires large amounts of energy to power it – this is referred to as idle consumption."
+  + "This can be reflected in part by factoring in the PUE (Power Usage Effectiveness) of the data centers used for training these models, which is the approach adopted by Patterson et al. for estimating the carbon emissions of ML models such as T5 and GPT-3 [28]."(PATTERSON, D., GONZALEZ, J., LE, Q., LIANG, C., MUNGUIA, L.-M., ROTHCHILD, D., SO, D., TEXIER, M., AND DEAN, J. Carbon emissions and large neural network training. arXiv preprint arXiv:2104.10350 (2021))
+  + 14.6 tonnes of CO2eq
+**** Results :
+#+begin_center
+[[file:images/Bloom_Results.png]]
+#+end_center
++ Comparison with other LLMs :
+  #+begin_center
+  [[file:images/LLM_Comp.png]]
+  #+end_center
+  + "A few recent LLM papers reported the carbon footprint of model training, including notable models such as OPT175B [37], GPT-3 [28] and Gopher [29]."
