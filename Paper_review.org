@@ -97,3 +97,79 @@ Large language models
   [[file:images/LLM_Comp.png]]
   #+end_center
   + "A few recent LLM papers reported the carbon footprint of model training, including notable models such as OPT175B [37], GPT-3 [28] and Gopher [29]."
+** 4° paper : Green My LLM: Studying the key factors affecting the energy consumption of code assistants (https://arxiv.org/pdf/2411.11892)
+*** Key words :
+Large language models (LLM), Integrated Development Environments (IDE), GitHub Copilot, code assistants, power consumption.
+*** Citations :
++ "Code assistants offer auto-completion suggestions that developers can either accept or reject."
+*** SOTA :
++ R. Schwartz, J. Dodge, N. A. Smith, O. Etzioni, Green AI, Communications of the ACM 63 (12) (2020) 54–63. doi:10.1145/3381831.
+  + "Green AI has been defined by Schwartz et al. [1] as research that yields novel results while considering the computational cost, making practitioners ideally reduce resources spent."
++ S. Samsi, D. Zhao, J. McDonald, B. Li, A. Michaleas, M. Jones, W. Bergeron, J. Kepner, D. Tiwari, V. Gadepally, From Words to Watts: Benchmarking the Energy Costs of Large Language Model Inference, in: 2023 IEEE High Performance Extreme Computing Conference (HPEC), 2023, pp. 1–9. doi:10.1109/HPEC58863.2023.10363447.
+  + "For instance, Samsi et al. benchmarked the energy consumption of LLM inference and were able to estimate the energy of a single response from an LLM [2]."
+*** Observations :
++ Why GitHub Copilot ?
+  + "it is the most used code assistant according to the 2023 StackOverflow developer survey"
+  + "We are aware of the existence of these mechanisms thanks to the Copilot Explorer project"
++ "We designed an experiment with participants using GitHub Copilot to gather a dataset of development traces, enabling us to simulate developers using a code assistant on an inference server under our control. "
++ "All of the participants were proficient in Java programming."
++ "GitHub Copilot’s telemetry includes a plethora of different messages that enable us to retrace the history of a generation, from the moment GitHub Copilot decides to send a generation request to the moment of its acceptance from the user."
++ "The dataset is available at https://doi.org/10.5281/zenodo.11503612."
++ "All the artifacts of this study, including our results, code, and datasets, are available in the following public repository: https://doi.org/10.5281/ zenodo.13167546."
++ https://github.com/huggingface/text-generation-inference
++ Studied factors :
+  + Number of concurrent developers :  1, 2, 5, 10, 20, 30, 50, 75, 100, 150, 200, 300, 400, 500.
+  + Streaming the requests
+  + Manually triggering the code assistant
+  + Code assistant model :  StarCoder (15.5B parameters) [8], StarCoder2-7b and StarCoder2-15b [9] ( decoder-only transformers)
+  + Quantization method : We studied multiple quantization methods for running the models on the inference server: EETQ [10], BitsAndBytes-NF4, BitsAndBytes-FP4 [11] and no quantization at all.
+  + Maximum number of concurrent requests
+  + number of GPUs
++ " In total, we performed 829 simulations with 314 unique configurations."
++ "We measured the energy consumption of the inference server’s CPU and GPU using perf and nvidia-smi utilities, respectively."
++ "To estimate the carbon emissions related to the energy consumption measured during our experiments, we considered France’s 2023 carbon intensity, equivalent to 56 g of CO2 per kWh [12]"
+*** Results :
++ Energy consumption :
+  #+begin_center
+  [[file:images/Copilot_energy.png]]
+  #+end_center
+  + Using LLMs with fewer parameters reduces energy consumption and latency :
+    + "For instance, switching from StarCoder2-15B to StarCoder2-7B reduces energy consumption by 15.6% and latency by 10.0%."
+  + Increasing the number of GPU increase the energy consumption (2 -> 4 ~ 51.8%)
+    + "Downsizing the number of GPUs can be a viable option for saving energy if the number of concurrent developers is low enough."
++ Latency :
+  #+begin_center
+  [[file:images/Copilot_latency.png]]
+  #+end_center
+  + Using more GPUs can decrease the latency
+  + The maximum number of concurrent requests affect a lot the latency (128 -> 1000 ~ 597%)
+  + Quantization increase latency
+  + The model architecture play an important role in term of latency :
+    + " For example, while StarCoder (15.5B) and StarCoder2-15B exhibit a similar number of parameters and power consumption, using the latter over the former increases the latency by 149% on average."
++ Cross picture :
+  #+begin_center
+  [[file:images/Copilot_cross_pic.png]]
+  #+end_center
+  + energy consumption per devlopper decrease when we add more users
+  + latency increase a lot when adsding more users
+**** How much does a developer using a code assistant such as GitHub Copilot cost in energy?
+3 diferents scenarios :
++ Small team: 5 developers concurrently requesting a single dedicated server machine.
++ Medium team: 20 developers concurrently requesting a single dedicated server machine.
++ Distributed service (e.g., GitHub Copilot): A large number of developers (sharing) requesting many server machines. The aim is to maximize the number of developers per machine while not saturating the servers. We report on the impact of a single machine in this scenario.
+2 differents objective (for the model defined by the parameter choosen for the inference server(s) ):
++ Performance : minimize the latency
++ Frugality : minimize the energy
+#+begin_center
+[[file:images/Copilot_obj_scenario.png]]
+#+end_center
++ We can observe differents results for each scenario and objective:
+****** Objective observations :
+As we can imagine :
++ The global and the per user amount of energy needed is higher for the performance objective
++ The average latency is always higher for the frugal objective
+****** Scenario observations :
+Its more tricky here :
++ If we look at the amount of energy needed by user, we can observe : Small > Medium > Distributed
++ But if we consider the global energy used by the inference servers in each scenario we can see : Distributed > Medium > Small
+*** TODO :: Have a deep understanding on quantization
