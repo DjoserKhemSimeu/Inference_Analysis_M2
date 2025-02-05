@@ -128,6 +128,10 @@ Large language models (LLM), Integrated Development Environments (IDE), GitHub C
 + " In total, we performed 829 simulations with 314 unique configurations."
 + "We measured the energy consumption of the inference server’s CPU and GPU using perf and nvidia-smi utilities, respectively."
 + "To estimate the carbon emissions related to the energy consumption measured during our experiments, we considered France’s 2023 carbon intensity, equivalent to 56 g of CO2 per kWh [12]"
+**** Hardware used :
+One server run on :
++ 1 AMD EPYC 7513 (CPU) (https://www.amd.com/fr/products/processors/server/epyc/7003-series/amd-epyc-7513.html) TDP = 200W
++ 4 Nvidia A100-SXM4-40GB (GPUs) (https://www.techpowerup.com/gpu-specs/a100-sxm4-40-gb.c3506) TDP = 800W (Jetson ~ 30W)
 *** Results :
 + Energy consumption :
   #+begin_center
