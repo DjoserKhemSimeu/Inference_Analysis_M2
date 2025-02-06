@@ -177,6 +177,8 @@ Its more tricky here :
 + But if we consider the global energy used by the inference servers in each scenario we can see : Distributed > Medium > Small
 *** TODO :: Have a deep understanding on quantization
 ** 5° paper (survey) : Edge Intelligence: The Confluence of Edge Computing and Artificial Intelligence (https://arxiv.org/pdf/1909.00560)
+*** Authors :
+Shuiguang Deng, Hailiang Zhao, Weijia Fang, Jianwei Yin, Schahram Dustdar and Albert Y. Zomaya
 *** Keywords :
 Edge computing, AI for edge / AI on edge, Edge Intelligence
 *** Citations :
@@ -282,7 +284,7 @@ Model adaptation methods :
   + The survey provide us a huge ammount of method to reduce the size and decrease the computation's requirement of AI models to handle the constraints of edges devices for their deployments (a low energy consumption and a lack of memory space).
 *** What to do next :
 **** TODO :: Find technical documentation about edges devices to represent the computational constraints of edge devicies by values
-+ Nvidia Jetson
++ Nvidia Jetson AGX Xavier
 + STMicro hardware with low consumption
 **** TODO :: Read the documentation about the model what we want to study to define what modification of them must be done to statisfy the computational constraints of edge devices
 + Starcoder
@@ -290,3 +292,60 @@ Model adaptation methods :
 + Deepseek
 + Mistral
 + ...
+** 6° paper : Characterizing the Performance of Accelerated Jetson Edge Devices for Training Deep Learning Models (https://eprints.iisc.ac.in/80120/1/ori_ACM_mea_6-3_2022.pdf)
+*** Authors :
+PRASHANTHI S.K, SAI ANUROOP KESANAPALLI, and YOGESH SIMMHAN
+*** Keywords :
+DNNs, edge computing devices, Nvidia Jetson
+*** SOTA :
++ Hazem A. Abdelhafez, Hassan Halawa, Karthik Pattabiraman, and Matei Ripeanu. 2021. Snowflakes at the Edge: A Study of Variability among NVIDIA Jetson AGX Xavier Boards. In ACM EdgeSys Workshop.
+  + " Snowflakes [1] reports a detailed study on the latency and power variability observed across Jetson AGX Xaviers for inferencing. "
+*** Citations :
++ "NVIDIA Jetson AGX Xavier kit has a 512-core Volta GPU, an 8-core ARM CPU and 32𝐺𝐵 of LPDDR4x memory, that operates within 65𝑊 of power"
+ #+begin_center
+ [[file:images/Jetson_hard_table.png]]
+ #+end_center
++ Nvidia Jetson microarchitecture ~ workstation/server GPU microarchitecture (with less cores)
++ "Jetson devices are available as accelerator modules with CPU, GPU and memory"
++ what is TOPS performance measure?
++ "The RAM is shared between the CPU and GPU" -> increase the amount of memory available for the GPU -> but make slower the communication with the memory.
+  + ". Also, the LPDDR RAM used in these devices is slower and low-powered, as opposed to GDDR that is used in regular GPUs."
++ differents power modes -> differents cores / CPU frequency / GPU frequency (power/performance trade off)
++ support a wide variety of storage media (eMMC, Micro SD card, NVME Solid State Drive (SSD), Hard Disk Drive (HDD)...) not the same costs/perfs.
+*** DNN Trainning :
+#+begin_center
+[[file:images/Edge_DNN_Training.png]]
+#+end_center
++ In each iteration (epoch) :
+  + fetch a "mini-batch" from disk memory
+  + pre-process the mini batch (CPU)
+  + CPU launches kernel on GPU (forward/backward pass)
+  + repeat to consume the input sample
+*** Method :
++ "The default power mode is the highest rated for all devices: MAXN for the AGX and Nano, and 15𝑊 for NX"
+  #+begin_center
+  [[file:images/Table_pm.png]]
+  #+end_center
++ " The fan speed is set to maximum to avoid resource throttling due to overheating. "
+*** Perdformance Metrics :
++ "average and instantaneous power are measured using the jtop Python module, which internally uses the tegrastats [41] utility from NVIDIA, at ≈ 1 𝑠 sampling."
++ "The power measurements are from on-board sensors in the Jetsons, which capture the power load from the module but not the carrier board and peripherals"
++ "However, the bulk of the variation in the energy usage during training is from the module load."
++ "So the total energy for training
+in a duration 𝑇 is calculated as a sum of the instantaneous power (𝑝𝑡𝑖
+in watts) measured at time 𝑡𝑖, weighted by the duration between successive samples (𝑡𝑖 −𝑡𝑖−1), given as:
+        sum{𝑡𝑖 ∈𝑇} (𝑝𝑡𝑖 · (𝑡𝑖 −𝑡𝑖−1)"
+*** Results :
++  The scripts and logs for these are available at https://github.com/dream-lab/edge-train-bench/tree/sigmetrics-2023
++ Number of Fetch/Pre-process Workers : With 𝑤 > 1, multiple workers perform the fetch and pre-process in parallel to get batches ready for a separate GPU compute process.
+  #+begin_center
+  [[file:images/Jetson_workers.png]]
+  #+end_center
+*** Reunion preparation 21/02 14h30
++ synthèse du travail d'analyse
++ question de recherche
+  + First idea : Which conditions allow edge computing deployments to be more efficient than large-scale deployments for inference?
+  + Efficiency : In our context we can consider efficiency with a QoE approach where the cost refer to the environemental impact + latencty.
++ hypothèses
++ designer la methodologie pour répondre au question de recherche
+  + est ce qu'on a tout ce qu'il faut?
