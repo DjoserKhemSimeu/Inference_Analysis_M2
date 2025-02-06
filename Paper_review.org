@@ -102,7 +102,7 @@ Large language models (LLM), Integrated Development Environments (IDE), GitHub C
 *** Citations :
 + "Code assistants offer auto-completion suggestions that developers can either accept or reject."
 *** SOTA :
-+ R. Schwartz, J. Dodge, N. A. Smith, O. Etzioni, Green AI, Communications of the ACM 63 (12) (2020) 54–63. Doi:10.1145/3381831.
++ R. Schwartz, J. Dodge, N. A. Smith, O. Etzioni, Green AI, Communications of the ACM 63 (12) (2020) 54–63. doi:10.1145/3381831.
  + "Green AI has been defined by Schwartz et al. [1] as research that yields novel results while considering the computational cost, making practitioners ideally reduce resources spent."
 + S. Samsi, D. Zhao, J. McDonald, B. Li, A. Michaleas, M. Jones, W. Bergeron, J. Kepner, D. Tiwari, V. Gadepally, From Words to Watts: Benchmarking the Energy Costs of Large Language Model Inference, in: 2023 IEEE High Performance Extreme Computing Conference (HPEC), 2023, pp. 1–9. doi:10.1109/HPEC58863.2023.10363447.
   + "For instance, Samsi et al. benchmarked the energy consumption of LLM inference and were able to estimate the energy of a single response from an LLM [2]."
@@ -182,7 +182,7 @@ Edge computing, AI for edge / AI on edge, Edge Intelligence
 *** Citations :
 + "Offloading such huge data from the edge to cloud is intractable because it can lead to excessive network congestion. Therefore, a more applicable way is to handle user demands at the edge directly, which leads to the birth of a brand-new computation paradigm, (Mobile → Multi-access) Edge Computing."
 + "The principle of Edge Computing is to push the computation and communication resources from cloud to edge of networks to provide services and perform computations, avoiding unnecessary communication latency and enabling faster responses for end users. "
-+ " Application-specific accelerators are designed for further improvement in throughput and energèy efficiency"
++ "Application-specific accelerators are designed for further improvement in throughput and energèy efficiency"
 + AI for edge : is a research direction focusing on providing a better solution to constrained optimization problems in Edge Computing with the help of effective AI technologies. Here, AI is used to endow edge with more intelligence and optimality. Therefore, it can be understood as Intelligence-enabled Edge Computing (IEC).
 + AI on edge : studies how to run AI models on edge. It is a framework for running training and inference of AI models with device-edge-cloud synergy, which aims at extracting insights from massive and distributed edge data with the satisfaction of algorithm performance, cost, privacy, reliability, efficiency, etc. Therefore, it can be interpreted as Artificial Intelligence on Edge (AIE).
 + "Edge Computing faces resource allocation problems in different layers, such as CPU cycle frequency, access jurisdiction, radio-frequency, bandwidth, and so on"
@@ -213,29 +213,30 @@ Model splitting :
 + "After that, a global model is optimized by averaging the trained gradients of each client."
 + "In this process, trade-offs between model performance and communication overhead has to be considered."
 ***** IDEA :: Model Inference :
-+" Model splitting/partitioning can be viewed as a framework for model inference."
++ "Model splitting/partitioning can be viewed as a framework for model inference."
 + "A typical example on model inference on edge is [32], where a DNN is split into two parts and carried out collaboratively. The computation-intensive part is running on the edge server while the other is running on the mobile device. "
 **** Model Adaptation :
 Model Adaptation makes appropriate improvements based on existing training and inference
 frameworks to make them more applicable to the edge.
 ***** Federated learning
-***** TODO :: Model Compression :
-Model compression exploits the inherent sparsity structure of gradients and weights.
-+ Quantization :
-+ Dimension reduction :
-+ Prunning :
-+ Precision downgrading :
-+ Component Sharing :
-+ Cutoff :
-+ ...
+***** Model Compression :
+Model compression exploits the inherent sparsity structure of gradients and weights to reduce the memory and channel occupation as much as possible.
++ Quantization : such as Binnarized Neural Networks (BNNs): binary weights and activations to replace regular DNNs. This is a typical exploration of quantization.
++ Dimension reduction : (Examples for federated learning)
+  + structured updates : the local update is learnt from a restricted lower-dimensional space.
+  + sketched updates : the uploading model is compressed before sending to the central server.
++ Prunning : suggests that DNNs are typically over-parameterized and their weights have significant redundancy.  Meanwhile, pruning compensates for the loss in performance.
++ Precision downgrading
++ Component Sharing
++ Cutoff
++ "Model Compression is suitable for both Model Training and Model Inference."
 "Those approaches can be realized by methods such as Singular Value Decomposition (SVD), Huffman Coding, Principal Component Analysis (PCA) and several others."
-***** TODO :: Conditional Computation :
+***** Conditional Computation :
 Conditional computation is an alternative way to reduce the amount of calculation by selectively turning off some unimportant calculations of DNNs. It can be viewed as block wise dropout.
-+ Components Shutoff :
-+ Input Filtering :
-+ Early exit :
-+ Results caching :
-+ ...
++ Components Shutoff : It selects the most valuable participators in Federated Learning for model updates.
++ Input Filtering
++ Early exit : early stop if the confident threshold is achieved.
++ Results caching
 ***** Algorithm Asynchronization :
 Aggregating local models in an asynchronous way.y. It is designed for overcoming the inefficient and lengthy synchronous steps of model updates in Federated Learning.
 ***** Thorough Decentralization :
@@ -250,6 +251,42 @@ Model adaptation methods :
 #+begin_center
 [[file:images/EI_adapt.png]]
 #+end_center
-+" Model Compression is suitable for both Model Training and Model Inference."
-+ Binnarized Neural Networks (BNNs): binary weights and activations to replace regular DNNs. This is a typical exploration of quantization.
 + "Thakker et al. study a compressed RNN cell implementation called Hybrid Matrix Decomposition (HMD) for model inference [57]."
+** Thursday 6 february
+*** What has been done :
++ Review of an anlysis over the energy consumption of the inference process for NLP/CV models.
++ Review of the LCA based methodology to estimate the environmental impact of GenAI model (Stable diffussion).
++ Review of a paper which measure the enrgy consumption of the trainning of BLOOM language model.
++ Review of a methodology to evaluate the eneregy consumption/environemental impact of the deployment of a coding assistant (StarCoder) in a controlled environment.
++ Review of a survey about "Edge Intelligence" which prensent diverse method to allow AI system to be deployed on edge devices, this paper also present a pipeline to evaluate the Quality of Experience (QoE) for an "AI on edge" system.
+*** Observations :
++ Paper 1 :
+  + The study provides us an overview of the energy consumption of the inference process of a huge range of AI systems, that allow us to uderstand the global trend of the phenomenom.
+  + The study take in account only one inference process without taking into account the multiplactive factor defined by the usation of an AI system by multiple users
++ Don't take in account the environnemental impact
++ Paper 2 :
+  + The paper provide us a relevant way to estimate the environnemental impact of each part of the life cycle of an AI system.
+  + This paper provides us also a case study over Stable Diffusion, that highlight the non-negligable cost of the inference process among the global life cycle of the model.
+  + The paper use a constant to estimate the impact of the cooling system (Because it's difficult to measure it by using grid5000), But in the case where we use edge devices for the computation of the inference process we can measure the energy consumption of the cooling system, thus the impact of this process. This measurment difference between edge deployment and large scale deployment can introduce a bias if we want to compare our results.
++ Paper 3 :
+  + The paper provide us a comparative an analysis of the Co2 emission of the training of multiple LLM
+  + But this study is more focused on the trainning phase, and they do approximation for the inference process, so I don't know if we can use it for our study.
++ Paper 4 :
+  + The paper provide us a relevant analysis on the impact (latency, energy consumptio) of different parameter regarding the inference deployment of AI system (number of user, number of GPU, model size, model architecture, ...)
+  + The paper provide us a well-defined methodology with a strong reproductibility. I think that we can adapt this methodology to an edge deployment context.
+  + They used a linear function to measure the CO2 emission of the inference process from its energy consumption.
+  + In the results section, they present that, from a given number of developper using the inference server concurently (~100), the power consumption of attain a "roofline", thus the eneregy consumption per user decrease a lot by adding more user. My analysis of this roofline is that the inference server attain it's peak performance (FLOPs/sec) and by the way it's peak energy consumption. But I think that using the server at its peak performance during a long period of time introduce another energy consumption source which must be considered : the energy used to maintain the proceqssors of the server at a stable temperature (cooling process).
+  + Finally the study didn't include a measure of the performance for the differents setting such as BLUE.
++ Paper 5 :
+  + The survey provide us a pipeline for evaluate the performance of AI models deploy on edge devices based on a Quality of Experience (QoE) approach.
+  + The survey provide us a huge ammount of method to reduce the size and decrease the computation's requirement of AI models to handle the constraints of edges devices for their deployments (a low energy consumption and a lack of memory space).
+*** What to do next :
+**** TODO :: Find technical documentation about edges devices to represent the computational constraints of edge devicies by values
++ Nvidia Jetson
++ STMicro hardware with low consumption
+**** TODO :: Read the documentation about the model what we want to study to define what modification of them must be done to statisfy the computational constraints of edge devices
++ Starcoder
++ Bloom
++ Deepseek
++ Mistral
++ ...
