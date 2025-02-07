@@ -385,7 +385,7 @@ AI, NVIDIA, Environemental impact, Rebound effect.
 #+end_center
 + Hardware quantity has increased exponentially.(y-logscale)
 **** IDEA :: Data on AI : https://epoch.ai/data
-** 8° paper : StarCoder: may the source be with you!
+** 8° paper : StarCoder: may the source be with you! (https://arxiv.org/pdf/2305.06161)
 *** Keywords :
  Large Language Models for Code (Code LLMs)
 *** SOTA :
