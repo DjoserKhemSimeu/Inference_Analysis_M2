@@ -299,18 +299,18 @@ PRASHANTHI S.K, SAI ANUROOP KESANAPALLI, and YOGESH SIMMHAN
 DNNs, edge computing devices, Nvidia Jetson
 *** SOTA :
 + Hazem A. Abdelhafez, Hassan Halawa, Karthik Pattabiraman, and Matei Ripeanu. 2021. Snowflakes at the Edge: A Study of Variability among NVIDIA Jetson AGX Xavier Boards. In ACM EdgeSys Workshop.
-  + " Snowflakes [1] reports a detailed study on the latency and power variability observed across Jetson AGX Xaviers for inferencing. "
+  + "Snowflakes [1] reports a detailed study on the latency and power variability observed across Jetson AGX Xaviers for inferencing. "
 *** Citations :
 + "NVIDIA Jetson AGX Xavier kit has a 512-core Volta GPU, an 8-core ARM CPU and 32𝐺𝐵 of LPDDR4x memory, that operates within 65𝑊 of power"
  #+begin_center
  [[file:images/Jetson_hard_table.png]]
  #+end_center
-+ Nvidia Jetson microarchitecture ~ workstation/server GPU microarchitecture (with less cores)
++ Nvidia Jetson microarchitecture ~ workstation/server GPU microarchitecture (with fewer cores)
 + "Jetson devices are available as accelerator modules with CPU, GPU and memory"
 + what is TOPS performance measure?
-+ "The RAM is shared between the CPU and GPU" -> increase the amount of memory available for the GPU -> but make slower the communication with the memory.
++ "The RAM is shared between the CPU and GPU" → increase the amount of memory available for the GPU → but make slower the communication with the memory.
   + ". Also, the LPDDR RAM used in these devices is slower and low-powered, as opposed to GDDR that is used in regular GPUs."
-+ differents power modes -> differents cores / CPU frequency / GPU frequency (power/performance trade off)
++ differents power modes → differents cores / CPU frequency / GPU frequency (power/performance trade off)
 + support a wide variety of storage media (eMMC, Micro SD card, NVME Solid State Drive (SSD), Hard Disk Drive (HDD)...) not the same costs/perfs.
 *** DNN Trainning :
 #+begin_center
@@ -326,15 +326,13 @@ DNNs, edge computing devices, Nvidia Jetson
   #+begin_center
   [[file:images/Table_pm.png]]
   #+end_center
-+ " The fan speed is set to maximum to avoid resource throttling due to overheating. "
++ "The fan speed is set to maximum to avoid resource throttling due to overheating. "
 *** Perdformance Metrics :
 + "average and instantaneous power are measured using the jtop Python module, which internally uses the tegrastats [41] utility from NVIDIA, at ≈ 1 𝑠 sampling."
 + "The power measurements are from on-board sensors in the Jetsons, which capture the power load from the module but not the carrier board and peripherals"
 + "However, the bulk of the variation in the energy usage during training is from the module load."
-+ "So the total energy for training
-in a duration 𝑇 is calculated as a sum of the instantaneous power (𝑝𝑡𝑖
-in watts) measured at time 𝑡𝑖, weighted by the duration between successive samples (𝑡𝑖 −𝑡𝑖−1), given as:
-        sum{𝑡𝑖 ∈𝑇} (𝑝𝑡𝑖 · (𝑡𝑖 −𝑡𝑖−1)"
++ "So the total energy for training in a duration 𝑇 is calculated as a sum of the instantaneous power (𝑝𝑡𝑖 in watts) measured at time 𝑡𝑖, weighted by the duration between successive samples (𝑡𝑖 −𝑡𝑖−1), given as:
+        sum{𝑡𝑖 ∈𝑇} (𝑝𝑡𝑖 · (𝑡𝑖 −𝑡𝑖−1))"
 *** Results :
 +  The scripts and logs for these are available at https://github.com/dream-lab/edge-train-bench/tree/sigmetrics-2023
 + Number of Fetch/Pre-process Workers : With 𝑤 > 1, multiple workers perform the fetch and pre-process in parallel to get batches ready for a separate GPU compute process.
@@ -349,3 +347,115 @@ in watts) measured at time 𝑡𝑖, weighted by the duration between successive
 + hypothèses
 + designer la methodologie pour répondre au question de recherche
   + est ce qu'on a tout ce qu'il faut?
+** 7° paper : How Green Can AI Be? A Study of Trends in Machine Learning Environmental Impacts (https://arxiv.org/pdf/2412.17376)
+*** Authors :
+Clement Morand, Anne-Laure Ligozat, Aurelie Neveol
+*** Keywords :
+AI, NVIDIA, Environemental impact, Rebound effect.
+*** Citations :
++ "Specifically, we investigate how the impacts of individual graphics cards have evolved in the past 10 years and how the environmental impacts associated with training ML models have evolved over this period."
+*** SOTA :
++ "After the high level of carbon emissions associated with training Natural Language processing models was reported (Strubell, Ganesh, and McCallum 2019),"
++ "A position paper by de Vries (2023) discussed the potential growth of the ML sector with the recent surge in demand for large language models freely accessible as chatbots."
++ "Masanet et al. (2020) has shown that despite an exponential growth in computation demand between 2012 and 2018, the total energy consumption of datacenters had only increased by around 5% indicates that ”A [...] source of higher electricity consumption is coming from energy-intensive data centres, artificial intelligence (AI) and cryptocurrencies, which could double by 2026.”"
+*** Observations :
++ "Life cycle assessments of ICT equipment have shown the importance of Integrated Circuits (IC) in the environmental impacts of ICT equipment (Clement, Jacquemotte, and Hilty 2020)."
+  + GPU (logic type ICs)
+  + memory (memory type ICs)
++ die area = surface of the GPU
++ "Thus, if the die area increases we can expect an increase in the environmental impacts of the device."
++ "The dataset is based on data retrieved from the TechPowerUp GPU database"
++ ”Models that have advanced the state of the art, had a large influence in the field’s history, or had a large impact within the world”
+  + https://epochai.org/data/notable-ai-models-documentation
+#+begin_center
+[[file:images/GreenAI_Nvidia_evo.png]]
+#+end_center
++ Die area has increased linearly while memory size has grown exponentially
++ Exponential growth in the memory size does not necessarily mean a proportional increase in memory IC area as Moore’s Law has allowed to exponentially miniaturize ICs.
+#+begin_center
+[[file:images/GreenAI_Nvidia_nrj.png]]
+#+end_center
++ Even if the energy consumption per operation has decreased over time, the total energy consumption of a card has slightly increased over time (rebbound effect)
+#+begin_center
+[[file:images/GreenAI_Nvidia_manu.png]]
+#+end_center
++ Overall, all the important characteristics of graphics cards produced by NVIDIA for workstation have increased, leading to an increase in the environmental impacts incurred by the production of these cards over time.
+#+begin_center
+[[file:images/GreenAI_ML.png]]
+#+end_center
++ Hardware quantity has increased exponentially.(y-logscale)
+**** IDEA :: Data on AI : https://epoch.ai/data
+** 8° paper : StarCoder: may the source be with you!
+*** Keywords :
+ Large Language Models for Code (Code LLMs)
+*** SOTA :
++ Most of these models have not been fully open, but PolyCoder (Xu et al., 2022) and SantaCoder (Ben Allal et al., 2023) are notable exceptions and have both open models and training data.
+*** Citations :
++ "GitHub reports that Copilot users rely on it to produce 35% of the code they write for some languages."
++ "StarCoder and StarCoderBase, open-access code LLMs developed and released by the BigCode community, with a focus on respecting copyright, privacy, transparency, and community-driven model development."
++ The Stack : publicly available pre-training dataset for Code LLMs with a transparent data governance framework (6.4 TB, 384 programming language)
++ StarCoder and StarCoderBase are both 15.5B parameter models trained on permissively licensed data from The Stack.
++ We trained StarCoderBase on 1 trillion tokens sourced from 80+ programming languages
++ We fine-tuned StarCoderBase on another 35B Python tokens, leading to the StarCoder model.
++ Improvement :
+  + 8K token context length
+  + fast large-batch inference through Multi-Query-Attention (MQA)
++ "The Transformer architecture led to the development of highly scalable language models which have shown a predictable relationship b etween language modeling loss and scaling factors such as the model size, number of training tokens, and compute budget"
++ "We fine-tuned StarEncoder on the annotated PII dataset for the Named Entity Recognition (NER) task."
+*** Observations :
+StarEncoder (encoder only model) : Personally Identifiable Information (PII) detection for data pre-processing (i.e., bi-directionally self-attentive Transformers ~ BERT)
+**** Model Training :
+***** Data formating :
++ Template : <token> refers to a sentinel token, and metadata and data refer to placeholders for data fields.
++ Code/ Script : <reponame>reponame<filename>filename<gh_stars>stars\ncode<|endoftext|>
+  + "To enable the model to operate without this metadata during inference, we prefixed the repository name, filename, and stars independently at random, each with a probability of 0.2."
+  + code → fill-in-the-middle transformation (FIM): https://arxiv.org/abs/2207.14255
++ Issue (~ GitHub FAQ) : <issue_start>Title:title\nusername_id0:comment0<issue_comment>username_id1:comment1 ... <issue_closed (optional)><|endoftext|>
+  + idx = an anonymized speaker identifier
++ Jupyter structured : <jupyter_start><jupyter_text>text0<jupyter_code>code0<jupyter_output>output0<jupyter_text> ... <|endoftext|>
++ Git commits : <commit_before>code_before<commit_msg>message<commit_after>code_after<|endoftext|>
+***** Tokenizer :
++ Hugging Face Tokenizers library → train a byte-level Byte-Pair-Encoding with a vocabulary size of 49,152 tokens
+  + The pre-tokenization step includes a digit-splitter and the regex splitter from the GPT-2 pre-tokenizer.
+***** Model architechture
++ 15.5B parameters
++ Same architechture as SantaCoder :
+  + Decoder-only Transformer
+  + Multi-Query-Attention : http://arxiv.org/abs/1911.02150
+  + FlashAttention : Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, and Christopher Ré. FlashAttention: Fast and memoryefficient exact attention with IO-awareness. In Advances in Neural Information Processing Systems, 2022.
+    + "to speed up the attention computation and reduce its memory footprint, allowing us to scale to a 8K context length."
+  + "To make FlashAttention work with MQA during training, we simply expand the key and value before calling the attention kernel."
+[[file:images/StarsCoder_archi.png]]
+****** TODO :: Understanding validating :
++ Hidden size = number of hidden layer in the FFNs
++ Intermediate size = size of query, key, value and embedings vectors
++ Max positional embeddings = maximum number of input tokens
++ Num. Of attention heads = number of heads used during the multi-head attention process
++ Num. Of hidden layers = number of decoder block in the global decoder stack which define the model.
+***** Training details :
++ StarCoderBase :
+  + 250k iterations
+  + Batch size = 4M tokens
+  + 1 trillion token in total
+  + Adam optimizer : β1 = 0.9, β2 = 0.95, ϵ = 10−8
+  + Learning rate : cosine decay from 3 × 10−4 to 3 × 10−5 after a linear warmup of 2,000 iterations
++ StarCoder : (finetunning)
+  + Python variant of the model
+  + 2 epochs
+  + We used the same settings as StarCoderBase, except that we used a learning rate of 5 × 10−5 and decayed it to 5 × 10−6 after 1,000 iterations of linear warmup.
+  + 8500 iterations
+***** TODO :: Hardware used : (to better understand)
++ GPU clusters :
+  + 512 A100 80 GB GPUs
+  + Distributed across 64 nodes
+  + 3D parallel layout partitioning : "that shards the model with both tensor and pipeline parallelism rank 4"
+  + 16 GPUs (two nodes) for one replica
+  + 32-fold data parallelism
++ Megatron-LM's distributed optimizer : it leads to slightly higher throughput in this configuration.
+  + "Since it requires the gradient reduction step in FP32, the training in BF16 leads to 10% lower throughput than FP16, but we used it anyway to avoid training instabilities."(BF16=brain floating point)
++ Total number of GPU hours for training : 320,256
++ 280W per GPU → 89671.68 kWh of electricity consumed during the trainning process
++ carbon intensity of the energy of the us-west-2 AWS location : 0.15495 kgCO2e per kWh
++ PUE AWS = 1.2
++ 16.68 tonnes of CO2eq emitted
+  + finetunning : 3.5% of the training time  0.58 tonnes of CO2eq.
