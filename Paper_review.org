@@ -486,6 +486,8 @@ Graphics card manufacturacturing impacts, LCA,
 *** Observations :
 + Machine Learning life Cycle Assessment (MLCA) : aimed at providing researchers with LCA estimates of computation impact that can be obtained independently from running calculations.
 + The carbon footprint is computed by all tools as follows:
-  \[
-  GWP = CI ∗ PUE ∗ (p_c + p_g + p_m) ∗ t
-  \]
+#+BEGIN_EXPORT latex
+\begin{equation}
+GWP = CI ∗ PUE ∗ (p_c + p_g + p_m) ∗ t
+\end{equation}
+#+END_EXPORT
