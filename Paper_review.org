@@ -459,3 +459,33 @@ StarEncoder (encoder only model) : Personally Identifiable Information (PII) det
 + PUE AWS = 1.2
 + 16.68 tonnes of CO2eq emitted
   + finetunning : 3.5% of the training time  0.58 tonnes of CO2eq.
+***** Evaluation :
++ Code LM Evaluation Harness : This harness provides a framework for the efficient evaluation of code models, utilizing data parallelism and docker containers for execution.
++ HumanEval/MBPP : widely-used benchmarks for Code LLMs consisting of hundreds of Python programming problems that use test cases to validate the code produced by a Code LLM
++ Code LLMs generate code by sampling from their output distribution.
++ pass@k : the total fraction of benchmark problems solved, where a problem is considered solved if any one of k code samples passes every test case.
+[[file:images/StarCoder_eval_1.png]]
++  DS-1000 benchmark : a suite of 1,000 realistic and practical data science workflows across seven libraries and evaluates generations in execution against test cases.
+  + 2 eval modes : completion vs insertion
+[[file:images/StarCoder_eval_2.png]]
++ "model performance on HumanEval and MBPP benchmarks does not always correlate with performance on the more realistic DS-1000 benchmarks."
++ ODEX benchmark : 505 open-domain and 440 closed-domain Python coding queries, in four natural languages — English, Spanish, Japanese, and Russian — with test-case-based execution evaluation.
+  + closed-domain : using only built-in Python functions
+  + open-domain : using functions from imported libraries
+[[file:images/StarCoder_eval_3.png]]
+** 9° paper : MLCA: a tool for Machine Learning Life Cycle Assessment (https://hal.science/hal-04643414v1/file/ICT4S_Paper.pdf)
+*** Date : 10 Jul 2024
+*** Authors :
+Clement Morand, Anne-Laure Ligozat, Aurelie Neveol
+*** Keywords :
+Graphics card manufacturacturing impacts, LCA,
+*** SOTA :
+*** Citations :
++ " The impacts of producing the hardware are not addressed in spite of their significance."
++ "LCA does not account for structural or societal impacts such as rebound effect"
+*** Observations :
++ Machine Learning life Cycle Assessment (MLCA) : aimed at providing researchers with LCA estimates of computation impact that can be obtained independently from running calculations.
++ The carbon footprint is computed by all tools as follows:
+  \[
+  GWP = CI ∗ PUE ∗ (p_c + p_g + p_m) ∗ t
+  \]
