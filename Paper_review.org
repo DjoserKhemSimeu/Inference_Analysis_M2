@@ -549,7 +549,7 @@ I failed to use the tool via the github repository. But maybe it enough to compa
   + By considering only the multi query attention mechanism and the feed forward network for the layer of the decoder only architecture: (source : Attention is all you need)
     + Mutli-query attention >~ O(l²*d) = 8192² * 6144 ~ 4.12e11
     + FFN >~ O(l*d*f) = 8192 * 6144 * 24576 ~  1.24e12
-  + Total ~ 1.65e12 Flop for 1 decoder bloc -> 40*1.65e12 ~ 6.6e13 = Lower bound of the number of GFLOPS per forward pass
+  + Total ~ 1.65e12 Flop for 1 decoder bloc -> 40*1.65e12 ~ 6.6e13 = Lower bound of the number of FLOPs per forward pass
 ****** Roofline model :
 + Nvidia A100 SXM4 - 40G :
   + Bandwidth : 1.56T/s
@@ -559,3 +559,19 @@ I failed to use the tool via the github repository. But maybe it enough to compa
   + Performance : 1.410 GFLOPS
 Computational intensity of 1 inference : 6.6e4/57.74 ~ 1143.0.5 FLOPS/Byte
 [[file:images/Roofline_model.png]]
++ We can see that in both settings, the inference computation will be limited by the peak performance of the GPU used
++  The limitation is really hard for Jetson (~ perf divided by 10 000)
++  Time : FLOPs/FLOPS
+  + Jetson ~ 46808.51 seconds ~ 13 hours
+  + A100 ~ 3.38 seconds
+** 10° paper :  Life-Cycle Emissions of AI Hardware: A Cradle-To-Grave Approach and Generational Trends
+*** Authors :
+Ian Schneider, Hui Xu, Stephan Benecke, David Patterson, Keguo Huang, Parthasarathy Ranganathan, and Cooper Elsworth (Google)
+*** Keywords :
+LCA, AI accelerator, Tensor Processing Units (TPUs)
+*** SOTA :
+*** Observations :
+[[file:images/TPU_ctg.png]]
++ Google’s AI-focused application-specific integrated circuits (ASICs) : offer substantial improvements in training and inference speeds for large-scale machine learning models.
+[[file:images/TPU_Results.png]]
++ compute carbon intensity (CCI) : the CO2e per utilized floating-point operation (FLOP), or CO2e/FLOP
