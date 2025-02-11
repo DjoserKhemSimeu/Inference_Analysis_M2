@@ -427,8 +427,8 @@ StarEncoder (encoder only model) : Personally Identifiable Information (PII) det
   + "To make FlashAttention work with MQA during training, we simply expand the key and value before calling the attention kernel."
 [[file:images/StarsCoder_archi.png]]
 ****** TODO :: Understanding validating :
-+ Hidden size = number of hidden layer in the FFNs
-+ Intermediate size = size of query, key, value and embedings vectors
++ Hidden size = size of query, key, value and embedings vectors
++ Intermediate size = number of hidden layer in the FFN
 + Max positional embeddings = maximum number of input tokens
 + Num. Of attention heads = number of heads used during the multi-head attention process
 + Num. Of hidden layers = number of decoder block in the global decoder stack which define the model.
@@ -478,14 +478,84 @@ StarEncoder (encoder only model) : Personally Identifiable Information (PII) det
 *** Authors :
 Clement Morand, Anne-Laure Ligozat, Aurelie Neveol
 *** Keywords :
-Graphics card manufacturacturing impacts, LCA,
-*** SOTA :
+Graphics card manufacturacturing impacts, LCA
 *** Citations :
 + " The impacts of producing the hardware are not addressed in spite of their significance."
 + "LCA does not account for structural or societal impacts such as rebound effect"
++ "In fact, for Facebook, hardware production represent 30% of the total carbon footprint of ”large scale ML tasks”"
++ "The objective of MLCA is to allow ML practitioners to estimate the environmental impacts/ benefits balance of their experiments and decide if it is worth pursuing them."
 *** Observations :
 + Machine Learning life Cycle Assessment (MLCA) : aimed at providing researchers with LCA estimates of computation impact that can be obtained independently from running calculations.
 + The carbon footprint is computed by all tools as follows:
 #+begin_example
 GWP = CI ∗ PUE ∗ (p_c + p_g + p_m) ∗ t
+where :
+p_c = power consumption of CPU
+p_g = power consumption of GPU
+p_m = power consumption of memory
+PUE = Power usage efficiency
+CI = Carbon Itensity of the electicity powering computation (grid mix)
+GWP = Global Warming Potential
 #+end_example
++ Attributional LCA : ”What are the impacts of transporting 10,000 people a day by bus over 15 km?”
++ Consequencial LCA : ”Given the current bus network, what would be the impacts of adding 1,000 new passengers a day?”
++ MLCA : ”What are the impacts of running program X on the hardware Y during Z hours?”
++ " An analysis of different phases of the life cycle of hardware Y is required to evaluate the different impacts each considered part of the life cycle has."
+#+begin_center
+[[file:images/MLCA_Table.png]]
+[[file:images/MLCA_gpu_impact.png]]
+#+end_center
++ docs : https://github.com/blubrom/MLCA/blob/main/docs/docs/Explanations/manufacture-components.md
+** Tuesday 11 february :
+*** MLCA Tool :
+I failed to use the tool via the github repository. But maybe it enough to compare the die size en memory size to observe that the edges device have the potential to have less impact compare to the large scale
+**** Data :
+***** NVIDIA Jetson AGX Xavier 32 GB (Edge device):
++ Die size = 350 mm²
++ Transistors = 9000M
++ TDP = 30W
++ L1 cache = 128KB/SM
++ L2 cache = 512 KB
++ SM = 8
++ Cuda cores = 512
++ Tensor cores = 64
++ Architecture = Volta
+***** NVIDIA A100 SXM4 - 40G (Harware used ):
++ Die size = 826 mm²
++ Transistors = 54200M
++ TDP = 400W
++ L1 cache = 192KB/SM
++ L2 cache = 40MB
++ SM = 108
++ Cuda cores = 6912
++ Tensor cores = 432
++ Architecture = Ampere
+*** Recall on the PBQ : Which conditions allow edge computing deployments to be more efficient than large-scale deployments for inference?
+  + Efficiency : In our context we can consider efficiency with a QoE approach where the cost refer to the environemental impact + latencty.
+**** Hypothesis :
++ by knowing that the die area of the Esge device that we want to study is less important than the ones used for large scale deployment we can expect that the manufacturing impact of edge devices have a les important impact.
+[[file:images/Inf_Formula.png]]
++ With this impact formula for the inference process, we can that :
+  + The imapct of the hardware is mesured by Cie and Fe
+  + Fe : The impact of the GPU used is ponderated by the allocation time of the hardware
+  + Cie : The Electicty comsuption of running i with the hardware e depend on the time of usage of e with i
++ Observations : for the same allocation time of the device e (same percentage of use) the inference impact of edge devices is less important than large scale):
+  + Cie = TDP
+  + Fe = Die size
+***** Problem : With the same model ae(t) will be much higher for edge device : Starcoder case :
++ StarCoder size : 15,5B
+  + float32 ~ 15.5 * 10⁹ * 4 bytes ~ 57,74 GB (incompatibe with NVIDIA jetson hardware)
++ StarCoder complexity : l= size of the sequence; d = embeddsing size; f = size of the intermediate layer of the FFN
+  + By considering only the multi query attention mechanism and the feed forward network for the layer of the decoder only architecture: (source : Attention is all you need)
+    + Mutli-query attention >~ O(l²*d) = 8192² * 6144 ~ 4.12e11
+    + FFN >~ O(l*d*f) = 8192 * 6144 * 24576 ~  1.24e12
+  + Total ~ 1.65e12 Flop for 1 decoder bloc -> 40*1.65e12 ~ 6.6e13 = Lower bound of the number of GFLOPS per forward pass
+****** Roofline model :
++ Nvidia A100 SXM4 - 40G :
+  + Bandwidth : 1.56T/s
+  + Performance : 19.49 TFLOPS
++ Nvidia Jetson AMX Xavier 32 GB :
+  + Bandwidth : 136.5GB/s
+  + Performance : 1.410 GFLOPS
+Computational intensity of 1 inference : 6.6e4/57.74 ~ 1143.0.5 FLOPS/Byte
+[[file:images/Roofline_model.png]]
