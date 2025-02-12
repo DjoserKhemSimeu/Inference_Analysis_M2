@@ -540,7 +540,7 @@ I failed to use the tool via the github repository. But maybe it enough to compa
   + Fe : The impact of the GPU used is ponderated by the allocation time of the hardware
   + Cie : The Electicty comsuption of running i with the hardware e depend on the time of usage of e with i
 + Observations : for the same allocation time of the device e (same percentage of use) the inference impact of edge devices is less important than large scale):
-  + Cie = TDP
+  + Cie = TDP * t
   + Fe = Die size
 ***** Problem : With the same model ae(t) will be much higher for edge device : Starcoder case :
 + StarCoder size : 15,5B
@@ -564,6 +564,18 @@ Computational intensity of 1 inference : 6.6e4/57.74 ~ 1143.0.5 FLOPS/Byte
 +  Time : FLOPs/FLOPS
   + Jetson ~ 46808.51 seconds ~ 13 hours
   + A100 ~ 3.38 seconds
++ To mesure the inference cost of both settings by following the inference formula we can set :
+  + PUE = 1
+  + EGM = 1
+  + A100 :
+    + Cie = 400 * 3.38 = 1352
+    + Fe ~ 826
+    + I ~ 2178
+  + AGX Xavier :
+    + Cie = 30* 46808.51 = 1404255.3
+    + Fe ~ 350
+    + I ~ 1404605.3
+
 ** 10° paper :  Life-Cycle Emissions of AI Hardware: A Cradle-To-Grave Approach and Generational Trends
 *** Authors :
 Ian Schneider, Hui Xu, Stephan Benecke, David Patterson, Keguo Huang, Parthasarathy Ranganathan, and Cooper Elsworth (Google)
@@ -575,3 +587,30 @@ LCA, AI accelerator, Tensor Processing Units (TPUs)
 + Google’s AI-focused application-specific integrated circuits (ASICs) : offer substantial improvements in training and inference speeds for large-scale machine learning models.
 [[file:images/TPU_Results.png]]
 + compute carbon intensity (CCI) : the CO2e per utilized floating-point operation (FLOP), or CO2e/FLOP
+[[file:images/TPU_Results_2.png]]
++ " Trillium (TPU v6e), launched to customers in December 2024, offers a 3x improvement on CCI versus v4i."
+  + This study don't take into account the ADP
+  + They not devolloped their methods to measure the manufacturing impact
+  + The normalzition by performance also smooth the CO² estimation
+  + The substarction of "clean eneregy" seems a bit strange (0 impacts? Really ?)
+** 11° paper : SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models (https://openreview.net/pdf?id=sHfSV8eYEp)
+*** Authors :
+Guangxuan Xiao, Ji Lin, Mickael Seznec, Hao Wu, Julien Demouth, Song Han
+*** Date : 2023
+*** Keywords :
+Large language models (LLMs), post-training quantization (PTQ), accuracy-preserving
+*** Citations :
++ "By quantizing the weights and activations with low-bit integers, we can reduce GPU memory requirements, in size and bandwidth, and accelerate compute-intensive operations."
++ "However, to speed up the inference, we need to quantize both weights and activations into INT8 (i.e., W8A8) to utilize the integer kernels (e.g., INT8 GEMM), which are supported by a wide range of hardware (e.g., NVIDIA GPUs, Intel CPUs, Qualcomm DSPs, etc.)."
++ "Previous work has shown that quantizing the weights of LLMs with INT8 or even with INT4 does not degrade accuracy"(uniform/flat distribution)
+*** Observations :
+ [[file:images/SmoothQuant_intro.png]]
+**** Quantization :
++ maps a high-precision value into discrete levels.
+  [[file:images/Quant_formula.png]]
++ Static quantization : "We can calculate ∆ offline with the activations of some calibration samples"
++ Dynamic quantization : "We can also use the runtime statistics of activations to get ∆"
++ "LLMs are notoriously difficult to quantize due to the outliers in the activations "
++ "The scale of outliers in activations is ∼ 100× larger than most of the activation values."
+  [[file:images/Quant_window.png]]
+  [[file:images/Quant_transformer.png]]
