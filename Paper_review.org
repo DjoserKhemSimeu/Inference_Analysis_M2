@@ -458,14 +458,14 @@ StarEncoder (encoder only model) : Personally Identifiable Information (PII) det
 + carbon intensity of the energy of the us-west-2 AWS location : 0.15495 kgCO2e per kWh
 + PUE AWS = 1.2
 + 16.68 tonnes of CO2eq emitted
-  + finetunning : 3.5% of the training time  0.58 tonnes of CO2eq.
+  + finetunning : 3.5% of the training time 0.58 tonnes of CO2eq.
 ***** Evaluation :
 + Code LM Evaluation Harness : This harness provides a framework for the efficient evaluation of code models, utilizing data parallelism and docker containers for execution.
 + HumanEval/MBPP : widely-used benchmarks for Code LLMs consisting of hundreds of Python programming problems that use test cases to validate the code produced by a Code LLM
 + Code LLMs generate code by sampling from their output distribution.
 + pass@k : the total fraction of benchmark problems solved, where a problem is considered solved if any one of k code samples passes every test case.
 [[file:images/StarCoder_eval_1.png]]
-+  DS-1000 benchmark : a suite of 1,000 realistic and practical data science workflows across seven libraries and evaluates generations in execution against test cases.
++ DS-1000 benchmark : a suite of 1,000 realistic and practical data science workflows across seven libraries and evaluates generations in execution against test cases.
   + 2 eval modes : completion vs insertion
 [[file:images/StarCoder_eval_2.png]]
 + "model performance on HumanEval and MBPP benchmarks does not always correlate with performance on the more realistic DS-1000 benchmarks."
@@ -480,12 +480,12 @@ Clement Morand, Anne-Laure Ligozat, Aurelie Neveol
 *** Keywords :
 Graphics card manufacturacturing impacts, LCA
 *** Citations :
-+ " The impacts of producing the hardware are not addressed in spite of their significance."
++ "The impacts of producing the hardware are not addressed in spite of their significance."
 + "LCA does not account for structural or societal impacts such as rebound effect"
 + "In fact, for Facebook, hardware production represent 30% of the total carbon footprint of ”large scale ML tasks”"
 + "The objective of MLCA is to allow ML practitioners to estimate the environmental impacts/ benefits balance of their experiments and decide if it is worth pursuing them."
 *** Observations :
-+ Machine Learning life Cycle Assessment (MLCA) : aimed at providing researchers with LCA estimates of computation impact that can be obtained independently from running calculations.
++ Machine Learning life Cycle Assessment (MLCA) : aimed at providing researchers with LCA estimates of computation impact that can be obtained independently of running calculations.
 + The carbon footprint is computed by all tools as follows:
 #+begin_example
 GWP = CI ∗ PUE ∗ (p_c + p_g + p_m) ∗ t
@@ -500,7 +500,7 @@ GWP = Global Warming Potential
 + Attributional LCA : ”What are the impacts of transporting 10,000 people a day by bus over 15 km?”
 + Consequencial LCA : ”Given the current bus network, what would be the impacts of adding 1,000 new passengers a day?”
 + MLCA : ”What are the impacts of running program X on the hardware Y during Z hours?”
-+ " An analysis of different phases of the life cycle of hardware Y is required to evaluate the different impacts each considered part of the life cycle has."
++ "An analysis of different phases of the life cycle of hardware Y is required to evaluate the different impacts each considered part of the life cycle has."
 #+begin_center
 [[file:images/MLCA_Table.png]]
 [[file:images/MLCA_gpu_impact.png]]
@@ -508,7 +508,7 @@ GWP = Global Warming Potential
 + docs : https://github.com/blubrom/MLCA/blob/main/docs/docs/Explanations/manufacture-components.md
 ** Tuesday 11 february :
 *** MLCA Tool :
-I failed to use the tool via the github repository. But maybe it enough to compare the die size en memory size to observe that the edges device have the potential to have less impact compare to the large scale
+I failed to use the tool via the GitHub repository. But maybe it enough to compare the die size en memory size to observe that the edge's device have the potential to have less impact compare to the large scale
 **** Data :
 ***** NVIDIA Jetson AGX Xavier 32 GB (Edge device):
 + Die size = 350 mm²
@@ -520,7 +520,7 @@ I failed to use the tool via the github repository. But maybe it enough to compa
 + Cuda cores = 512
 + Tensor cores = 64
 + Architecture = Volta
-***** NVIDIA A100 SXM4 - 40G (Harware used ):
+***** NVIDIA A100 SXM4 - 40G (Harware used):
 + Die size = 826 mm²
 + Transistors = 54200M
 + TDP = 400W
@@ -533,7 +533,7 @@ I failed to use the tool via the github repository. But maybe it enough to compa
 *** Recall on the PBQ : Which conditions allow edge computing deployments to be more efficient than large-scale deployments for inference?
   + Efficiency : In our context we can consider efficiency with a QoE approach where the cost refer to the environemental impact + latencty.
 **** Hypothesis :
-+ by knowing that the die area of the Esge device that we want to study is less important than the ones used for large scale deployment we can expect that the manufacturing impact of edge devices have a les important impact.
++ by knowing that the die area of the Esge device that we want to study is less important than the ones used for large scale deployment we can expect that the manufacturing impact of edge devices have a less important impact.
 [[file:images/Inf_Formula.png]]
 + With this impact formula for the inference process, we can that :
   + The imapct of the hardware is mesured by Cie and Fe
@@ -544,12 +544,12 @@ I failed to use the tool via the github repository. But maybe it enough to compa
   + Fe = Die size
 ***** Problem : With the same model ae(t) will be much higher for edge device : Starcoder case :
 + StarCoder size : 15,5B
-  + float32 ~ 15.5 * 10⁹ * 4 bytes ~ 57,74 GB (incompatibe with NVIDIA jetson hardware)
+  + float32 ~ 15.5 * 10⁹ * 4 bytes ~ 57.74 GB (incompatibe with NVIDIA jetson hardware)
 + StarCoder complexity : l= size of the sequence; d = embeddsing size; f = size of the intermediate layer of the FFN
   + By considering only the multi query attention mechanism and the feed forward network for the layer of the decoder only architecture: (source : Attention is all you need)
     + Mutli-query attention >~ O(l²*d) = 8192² * 6144 ~ 4.12e11
-    + FFN >~ O(l*d*f) = 8192 * 6144 * 24576 ~  1.24e12
-  + Total ~ 1.65e12 Flop for 1 decoder bloc -> 40*1.65e12 ~ 6.6e13 = Lower bound of the number of FLOPs per forward pass
+    + FFN >~ O(l*d*f) = 8192 * 6144 * 24576 ~ 1.24e12
+  + Total ~ 1.65e12 Flop for 1 decoder bloc → 40*1.65e12 ~ 6.6e13 = Lower bound of the number of FLOPs per forward pass
 ****** Roofline model :
 + Nvidia A100 SXM4 - 40G :
   + Bandwidth : 1.56T/s
@@ -560,8 +560,8 @@ I failed to use the tool via the github repository. But maybe it enough to compa
 Computational intensity of 1 inference : 6.6e4/57.74 ~ 1143.0.5 FLOPS/Byte
 [[file:images/Roofline_model.png]]
 + We can see that in both settings, the inference computation will be limited by the peak performance of the GPU used
-+  The limitation is really hard for Jetson (~ perf divided by 10 000)
-+  Time : FLOPs/FLOPS
++ The limitation is really hard for Jetson (~ perf divided by 10 000)
++ Time : FLOPs/FLOPS
   + Jetson ~ 46808.51 seconds ~ 13 hours
   + A100 ~ 3.38 seconds
 + To mesure the inference cost of both settings by following the inference formula we can set :
@@ -576,7 +576,7 @@ Computational intensity of 1 inference : 6.6e4/57.74 ~ 1143.0.5 FLOPS/Byte
     + Fe ~ 350
     + I ~ 1404605.3
 
-** 10° paper :  Life-Cycle Emissions of AI Hardware: A Cradle-To-Grave Approach and Generational Trends
+** 10° paper : Life-Cycle Emissions of AI Hardware: A Cradle-To-Grave Approach and Generational Trends
 *** Authors :
 Ian Schneider, Hui Xu, Stephan Benecke, David Patterson, Keguo Huang, Parthasarathy Ranganathan, and Cooper Elsworth (Google)
 *** Keywords :
@@ -588,7 +588,7 @@ LCA, AI accelerator, Tensor Processing Units (TPUs)
 [[file:images/TPU_Results.png]]
 + compute carbon intensity (CCI) : the CO2e per utilized floating-point operation (FLOP), or CO2e/FLOP
 [[file:images/TPU_Results_2.png]]
-+ " Trillium (TPU v6e), launched to customers in December 2024, offers a 3x improvement on CCI versus v4i."
++ "Trillium (TPU v6e), launched to customers in December 2024, offers a 3x improvement on CCI versus v4i."
   + This study don't take into account the ADP
   + They not devolloped their methods to measure the manufacturing impact
   + The normalzition by performance also smooth the CO² estimation
@@ -610,8 +610,7 @@ Large language models (LLMs), post-training quantization (PTQ), accuracy-preserv
   [[file:images/Quant_formula.png]]
 + Static quantization : "We can calculate ∆ offline with the activations of some calibration samples"
 + Dynamic quantization : "We can also use the runtime statistics of activations to get ∆"
-+ "LLMs are notoriously difficult to quantize due to the outliers in the activations "
-+ "The scale of outliers in activations is ∼ 100× larger than most of the activation values."
++ "LLMs are notoriously difficult to quantize due to the outliers in the activations" + "The scale of outliers in activations is ∼ 100× larger than most of the activation values."
   [[file:images/Quant_window.png]]
   [[file:images/Quant_transformer.png]]
 ** 2° survey : A Survey on Transformer Compression (https://arxiv.org/pdf/2402.05964)
