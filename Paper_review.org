@@ -614,3 +614,14 @@ Large language models (LLMs), post-training quantization (PTQ), accuracy-preserv
 + "The scale of outliers in activations is ∼ 100× larger than most of the activation values."
   [[file:images/Quant_window.png]]
   [[file:images/Quant_transformer.png]]
+** 2° survey : A Survey on Transformer Compression (https://arxiv.org/pdf/2402.05964)
+*** Quantization :
+[[file:images/Trans_quant.png]]
+*** Knowledge Distillation :
+[[file:images/Trans_KD.png]]
+**** TODO :: Papers to read :
++ TinyBERT : X. Jiao et al. Tinybert: Distilling bert for natural language understanding. arXiv preprint arXiv:1909.10351, 2019.
+*** Efficient architecture :
+[[file:images/Trans_arch.png]]
+*** TODO :: For next time :
++ Deeply define the part of the mind map on PBQ, Case Study, and the Estimation to define what we can do from these estimations
