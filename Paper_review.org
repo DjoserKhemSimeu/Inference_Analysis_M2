@@ -624,3 +624,22 @@ Large language models (LLMs), post-training quantization (PTQ), accuracy-preserv
 [[file:images/Trans_arch.png]]
 *** TODO :: For next time :
 + Deeply define the part of the mind map on PBQ, Case Study, and the Estimation to define what we can do from these estimations
+** Article : AI energy score (https://huggingface.github.io/AIEnergyScore/):
+[[file:images/HF_mem.png]]
+[[file:images/HF_EGM.png]]
++ ADEME : https://base-empreinte.ademe.fr/
++ "However, results on alternative hardware should be interpreted cautiously, as thez will not align  directly with the GPU-specific metrics established in this study."
++ "Data center overhead is captured by the Power Usage Effectiveness (PUE) metric, which can vary by location and Hyperscaler. PUE values are often published online by major Hyperscalers (Google Cloud, AWS, Microsoft Azure) and can be referenced for specific data center locations. For example, a PUE of 1.2 would indicate that 20% of energy consumption is used for non-IT functions, such as cooling and infrastructure."
+*** ADPe (kg Sb eq / kWh) – Abiotic Depletion Potential of elements (ADPe) :
++ This metric measures the depletion of non-renewable abiotic resources, such as minerals and metals.
++ It is expressed in kilograms of antimony equivalent (kg Sb eq) per kilowatt-hour (kWh).
++ A higher ADPe value means that more scarce resources are being consumed per unit of energy, indicating a greater environmental impact.
+*** PE (MJ / kWh) – Primary Energy (PE) :
++ This represents the total amount of primary energy required to produce one kilowatt-hour (kWh) of electricity.
++ It is measured in megajoules per kilowatt-hour (MJ/kWh).
++ A higher PE value means more energy is needed for generation, often implying a higher environmental footprint.
+** Grid5000 : GPU distribution among sites :
+[[file:images/G5k_GPU.png]]
+[[file:images/G5k_edge.png]]
++ Grid'5000: Adding support for experimentation from core-network to edge devices : https://www.grid5000.fr/Core2EdgeNetworkXP/
++ price source : https://smicro.eu/search?search=nvidia%20l40
