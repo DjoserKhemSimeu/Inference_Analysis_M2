@@ -643,3 +643,30 @@ Large language models (LLMs), post-training quantization (PTQ), accuracy-preserv
 [[file:images/G5k_edge.png]]
 + Grid'5000: Adding support for experimentation from core-network to edge devices : https://www.grid5000.fr/Core2EdgeNetworkXP/
 + price source : https://smicro.eu/search?search=nvidia%20l40
+** Experimental methodology
+*** Application :
+StarCoder inference.
+*** Hadware to use :
+Goal : compare environnemental impact of different hardware depending of their edge level:
++ Select a sample of hardware available and observe the environnemental impact of the inference process :
+  + How to measure energy consumption of the hardware during the inference process :
+    + CodeCarbon(Nvidia-smi): allow us to follow the eneregy consumption of the device during inference.
+      "Specifically, CodeCarbon leverages the NVIDIA System Management Interface (nvidia-smi), a command-line utility, to measure GPU energy consumption. Furthermore, it provides a detailed breakdown of energy contributions from individual steps such as preprocess, prefill, and decode."(https://mlco2.github.io/codecarbon/)
+  + How to meausure the PUE ?
++ How many inference do we consider ?
+  + Same as the Copilot study ?
+  + Just one inference process ?
++ How do we handle memory requirement for the StarCoder model ?
+  + By considering only GPU with enough memory ? (don't consider some edge devices)
+  + Quantization ?
+    + Only for GPU with not enough memory? (different models ~> different performances)
+    + For all GPU ?
+*** Text Generation Inference (TGI) : https://www.adyen.com/knowledge-hub/llm-inference-at-scale-with-tgi
++ toolkit for deploying and serving Large Language Models (LLMs)
++ API Documentation : https://huggingface.github.io/text-generation-inference
+[[file:images/TGI_arch.png]]
++ Prefill : tokenization of the prompt on CPU -> GPU
++ Decode : autoregressive nature of the LLM (genrate output one token at time)-> De-tokenized on CPU
++ "The separation of the Prefill and Decode stages is essential due to the distinct computational characteristics of each stage."
++ "The engine handles everything related to the models and batching requests, while the server focuses on forwarding user requests. In TGI, these components are named accordingly: the server is referred to as the router, and the engine is called the text_generation_server."
+[[file:images/TGI_arch_2.png]]
