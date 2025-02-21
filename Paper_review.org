@@ -670,3 +670,16 @@ Goal : compare environnemental impact of different hardware depending of their e
 + "The separation of the Prefill and Decode stages is essential due to the distinct computational characteristics of each stage."
 + "The engine handles everything related to the models and batching requests, while the server focuses on forwarding user requests. In TGI, these components are named accordingly: the server is referred to as the router, and the engine is called the text_generation_server."
 [[file:images/TGI_arch_2.png]]
+** Review meeting friday 21 february :
+*** Enviornmental impacts :
++ The metrics choosed by the StableDiffusion study was choosed by the author, we can consider others metrics.
++ For the PUE we can use some approximation/estimation of datacenters.
++ Fe= manufacturing impact.
++ The term deployment is not the right one.
+*** StarCoder case study :
++ maybe not enough performant we must check for other models
+*** Experimental methodology :
++ Work with danilo about the manufacturing impact and the edge level
++ Change the term edge level
++ Change the term deployment
++ No Code Carbon -> Use Kwollect
