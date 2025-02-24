@@ -641,6 +641,18 @@ Large language models (LLMs), post-training quantization (PTQ), accuracy-preserv
 ** Grid5000 : GPU distribution among sites :
 [[file:images/G5k_GPU.png]]
 [[file:images/G5k_edge.png]]
++ Manufacturing impact :
+  #+begin_example
+  (norm(Die_area/transistro_size)+norm(MemGB))/2
+  #+end_example
++ Scale level :
+  #+begin_example
+  (norm(manufacturing_impact)+norm(TDP))/2
+  #+end_example
++ Normalization :
+  #+begin_example
+  norm(x)=(x-min(x))/(max(x)-min(x))
+  #+end_example
 + Grid'5000: Adding support for experimentation from core-network to edge devices : https://www.grid5000.fr/Core2EdgeNetworkXP/
 + price source : https://smicro.eu/search?search=nvidia%20l40
 ** Experimental methodology
