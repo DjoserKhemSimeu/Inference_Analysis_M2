@@ -58,10 +58,10 @@ for i, name in enumerate(names):
     texts.append(axes[1].annotate(name, (env[i], gflops[i]), fontsize=12, ha='right',
                                   arrowprops=dict(arrowstyle="->", lw=0.5, color='gray')))
 adjust_text(texts, only_move={'points':'xy', 'text':'xy'}, max_move=(10,10), ax=axes[1])
-axes[1].set_xlabel('Edge level')
+axes[1].set_xlabel('Scale level')
 axes[1].set_ylabel('GFLOPS(FP32)')
 axes[1].set_yscale('log')
-axes[1].set_title('Edge level vs GFLOPS')
+axes[1].set_title('Scale level level vs GFLOPS')
 axes[1].legend()
 
 

@@ -6,7 +6,7 @@
 + The test will be made on the drac node of the grenoble site (4 x Nvidia Tesla P100-SXM2-16GB (16 GiB)) : https://www.grid5000.fr/w/Grenoble:Hardware
   #+begin_example
   fgrenoble : oarsub -t exotic -t deploy -p drac -I -l host=1,walltime=3
-  frontend : kadeploy3 debian12-big
+  frontend : kadeploy3 debian11-big
   #+end_example
 *** Installing TGI
 **** With python venv
@@ -35,20 +35,67 @@ nix-build copying path '/nix/store/n1gwpmvmcgsbnr0a8ncflhvc59db775h-myproject-1.
 #+end_example
 **** Docker (https://docs.docker.com/engine/install/debian/)
 #+begin_example
-apt update
-apt install -y ca-certificates curl gnupg
-install -m 0755 -d /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo tee /etc/apt/keyrings/docker.asc > /dev/null
-chmod a+r /etc/apt/keyrings/docker.asc
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/debian bookworm stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
-sudo apt update
-sudo apt install -y docker-ce docker-ce-cli containerd.io
-sudo systemctl start docker
-sudo systemctl enable docker
-docker --version
-model=teknium/OpenHermes-2.5-Mistral-7B
+/grid5000/code/bin/g5k-setup-nvidia-docker -t
+model=Qwen/Qwen2.5-0.5B
 volume=$PWD/data
-docker run --gpus all --shm-size 64g -p 8080:80 -v $volume:/data \
+docker run --gpus all ubuntu:22.04 nvidia-smi
+docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data \
     ghcr.io/huggingface/text-generation-inference:3.1.0 \
     --model-id $model
+#+end_example
+***** TGI : Documentation
++ --model_id <MODEL_ID> : The name of the model to load. Can be a MODEL_ID as listed on <https://hf.co/models> like `gpt2` or `OpenAssistant/oasst-sft-1-pythia-12b`[default: bigscience/bloom-560m]
++ --validation-workers <VALIDATION_WORKERS> : The number of tokenizer workers used for payload validation and truncation inside the router
++ --sharded <SHARDED> : Whether to shard the model across multiple GPUs By default text-generation-inference will use all available GPUs to run the model. Setting it to `false` deactivates `num_shard`
++ --num-shard <NUM_SHARD> : The number of shards to use if you don't want to use all GPUs on a given machine. You can use `CUDA_VISIBLE_DEVICES=0,1 text-generation-launcher... --num_shard 2` and `CUDA_VISIBLE_DEVICES=2,3 text-generation-launcher... --num_shard 2` to launch 2 copies with 2 shard each on a given machine with 4 GPUs for instance
++ --quantize <QUANTIZE> : Quantization method to use for the model. It is not necessary to specify this option for pre-quantized models, since the quantization method is read from the model configuration.
+  + awq : 4 bit quantization. Requires a specific AWQ quantized model: <https://hf.co/models?search=awq>. Should replace GPTQ models wherever possible because of the better latency
+  + compressed-tensors : Compressed tensors, which can be a mixture of different quantization methods
+  + eetq : 8 bit quantization, doesn't require specific model. Should be a drop-in replacement to bitsandbytes with much better performance. Kernels are from <https://github.com/NetEase-FuXi/EETQ.git>
+  + exl2 : Variable bit quantization. Requires a specific EXL2 quantized model: <https://hf.co/models?search=exl2>. Requires exllama2 kernels and does not support tensor parallelism (num_shard > 1)
+  + gptq : 4 bit quantization. Requires a specific GTPQ quantized model: <https://hf.co/models?search=gptq>. text-generation-inference will use exllama (faster) kernels wherever possible, and use triton kernel (wider support) when it's not. AWQ has faster kernels
+  + marlin : 4 bit quantization. Requires a specific Marlin quantized model: <https://hf.co/models?search=marlin>
+  + bitsandbytes : Bitsandbytes 8bit. Can be applied on any model, will cut the memory requirement in half, but it is known that the model will be much slower to run than the native f16
+  + bitsandbytes-nf4 : Bitsandbytes 4bit. Can be applied on any model, will cut the memory requirement by 4x, but it is known that the model will be much slower to run than the native f16
+  + bitsandbytes-fp4 : Bitsandbytes 4bit. nf4 should be preferred in most cases but maybe this one has better perplexity performance for you model
+  + fp8 : [FP8](https://developer.nvidia.com/blog/nvidia-arm-and-intel-publish-fp8-specification-for-standardization-as-an-interchange-format-for-ai/) (e4m3) works on H100 and above This dtype has native ops should be the fastest if available. This is currently not the fastest because of local unpacking + padding to satisfy matrix multiplication limitations
++ --dtype <DTYPE> : The dtype to be forced upon the model. This option cannot be used with `--quantize`
++ --kv-cache-dtype <KV_CACHE_DTYPE> : Specify the dtype for the key-value cache. When this option is not provided, the dtype of the model is used (typically `float16` or `bfloat16`). Currently the only supported value are `fp8_e4m3fn` and `fp8_e5m2` on CUDA
++  --max-concurrent-requests <MAX_CONCURRENT_REQUESTS> : The maximum amount of concurrent requests for this particular deployment. Having a low limit will refuse clients requests instead of having them wait for too long and is usually good to handle backpressure correctly [default: 128]
++ --max-best-of <MAX_BEST_OF> : This is the maximum allowed value for clients to set `best_of`. Best of makes `n` generations at the same time, and return the best in terms of overall log probability over the entire generated sequence
++ --max-input-tokens <MAX_INPUT_TOKENS> : This is the maximum allowed input length (expressed in number of tokens) for users. The larger this value, the longer prompt users can send which can impact the overall memory required to handle the load. Please note that some models have a finite range of sequence they can handle. Default to min(max_allocatable, max_position_embeddings) - 1
++ --max-total-tokens <MAX_TOTAL_TOKENS> : This is the most important value to set as it defines the "memory budget" of running clients requests.
++ --max-batch-prefill-tokens <MAX_BATCH_PREFILL_TOKENS> : Limits the number of tokens for the prefill operation. Since this operation take the most memory and is compute bound, it is interesting to limit the number of requests that can be sent. Default to `max_input_tokens + 50` to give a bit of room
++ --max-batch-total-tokens <MAX_BATCH_TOTAL_TOKENS> : **IMPORTANT** This is one critical control to allow maximum usage of the available hardware. This represents the total amount of potential tokens within a batch. When using padding (not recommended) this would be equivalent of `batch_size` * `max_total_tokens`.
++ --cuda-graphs <CUDA_GRAPHS> : Specify the batch sizes to compute cuda graphs for. Use "0" to disable. Default = "1,2,4,8,16,32"
++ --tokenizer-config-path <TOKENIZER_CONFIG_PATH> : The path to the tokenizer config file. This path is used to load the tokenizer configuration which may include a `chat_template`. If not provided, the default config will be used from the model hub
++  -e, --env : Display a lot of information about your runtime environment
+** On which nodes it works ?
+*** Rennes :
+**** TODO :: abacus21 : 3 x Nvidia A100-PCIE-40GB (40 GiB) Compute capability: 8.0
+**** NO :: abacus5 : 2 x Nvidia Tesla P100-PCIE-16GB (16 GiB)
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Tesla P100-PCIE-16GB           On  | 00000000:3B:00.0 Off |                    0 |
+| N/A   26C    P0              25W / 250W |      0MiB / 16384MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  Tesla P100-PCIE-16GB           On  | 00000000:D8:00.0 Off |                    0 |
+| N/A   29C    P0              25W / 250W |      0MiB / 16384MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
 #+end_example

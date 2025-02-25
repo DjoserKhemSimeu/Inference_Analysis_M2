@@ -695,3 +695,18 @@ Goal : compare environnemental impact of different hardware depending of their e
 + Change the term edge level
 + Change the term deployment
 + No Code Carbon -> Use Kwollect
+** 12° paper : The Environmental Footprint of IC Production: Review, Analysis, and Lessons From Historical Trends (https://ieeexplore.ieee.org/abstract/document/9979766)
+*** Keywords :
+environmental impacts of integrated circuit (IC), energy consumption, carbon footprint, water consumption
+*** SOTA :
+*** Citations :
++ ". A significant part of this footprint, i.e., between 360 and 660 MtCO2 eq [2], is attributed to the production phase. More specifically, the production of ICs is known to be responsible for an important share of cradle-to-gate impacts [3], [4], [5], [6], [7], [8], [9], therefore justifying special attention."
++ "In this study, we normalize all environmental indicators by the silicon die area in cm2"
+*** Observations :
++ Foundries have to annually report their environmental performance in corporate sustainability responsibility (CSR) reports which ensure a systematic source of information.
+  +  Four pure-play foundries are considered in this study, i.e., Taiwan Semiconductor Manufacturing Company (TSMC), United Microelectronics Corporation (UMC), Semiconductor Manufacturing International Corporation (SMIC), and GlobalFoundries (GF). We also include the IDM STMicroelectronics (STmicro) because they provide data in their CSR reports that can be directly related to their own production unit and IC fabrication capacity.
++ Roadmaps provide targets rather than actual data from on-site measurements.
++ Scientific literature is an important source of data as several peer-reviewed studies have been carried out over the last 20 years.
++ Databases from LCA tools provide specific data and usually benefit from regular updates.
+[[file:images/IC_node.png]]
+[[file:images/IC_Found.png]]
