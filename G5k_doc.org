@@ -38,7 +38,7 @@ nix-build copying path '/nix/store/n1gwpmvmcgsbnr0a8ncflhvc59db775h-myproject-1.
 /grid5000/code/bin/g5k-setup-nvidia-docker -t
 model=Qwen/Qwen2.5-0.5B
 volume=$PWD/data
-docker run --gpus all ubuntu:22.04 nvidia-smi
+docker run -it --gpus all nvidia/cuda:12.8.0-base-ubuntu20.04 nvidia-smi
 docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data \
     ghcr.io/huggingface/text-generation-inference:3.1.0 \
     --model-id $model
