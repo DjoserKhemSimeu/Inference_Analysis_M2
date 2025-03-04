@@ -10,7 +10,7 @@ data = pd.read_csv('g5k_edge.csv', delimiter=';')
 df = pd.read_csv('mem_density.csv', delimiter=';')
 mem_data = df.set_index('name')['density'].to_dict()
 xls = pd.ExcelFile('Environmental-Footprint-ICs.xlsx')
-df_gwp = xls.parse('GWP', header=3)
+df_gwp = xls.parse('Water', header=3)
 df_gwp = df_gwp.iloc[:, 1:]
 
 names = data['names']
@@ -144,7 +144,7 @@ poly = np.poly1d(coeffs)
 
 
 ax.set_xlabel('TDP',fontsize=14)
-ax.set_ylabel('Manufacturing impact (kgCO2 eq)',fontsize=14)
+ax.set_ylabel('Water Consumption (L)',fontsize=14)
 ax.set_title('Manufacturing impact - TDP with confidence intervals',fontsize=16)
 
 
