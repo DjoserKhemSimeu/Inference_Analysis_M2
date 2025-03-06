@@ -115,6 +115,7 @@ text-generation-benchmark --tokenizer-name Qwen/Qwen2.5-0.5B --sequence-length 1
 ** On which nodes it works ?
 *** Rennes :
 **** TODO :: abacus21 : 3 x Nvidia A100-PCIE-40GB (40 GiB) Compute capability: 8.0
+#+begin_example
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
 |-----------------------------------------+----------------------+----------------------+
@@ -138,8 +139,9 @@ text-generation-benchmark --tokenizer-name Qwen/Qwen2.5-0.5B --sequence-length 1
 |=======================================================================================|
 |  No running processes found                                                           |
 +---------------------------------------------------------------------------------------+
-
+#+end_example
 **** TODO :: abacus17 : 2 x Nvidia Quadro RTX 6000 (23 GiB) Compute capability: 7.5
+#+begin_example
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
 |-----------------------------------------+----------------------+----------------------+
@@ -163,7 +165,9 @@ text-generation-benchmark --tokenizer-name Qwen/Qwen2.5-0.5B --sequence-length 1
 |=======================================================================================|
 |  No running processes found                                                           |
 +---------------------------------------------------------------------------------------+
+#+end_example
 **** TODO :: grue : 4 x Nvidia Tesla T4 (15 GiB) Compute capability: 7.5
+#+begin_example
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
 |-----------------------------------------+----------------------+----------------------+
@@ -194,8 +198,10 @@ text-generation-benchmark --tokenizer-name Qwen/Qwen2.5-0.5B --sequence-length 1
 |        ID   ID                                                             Usage      |
 |=======================================================================================|
 +---------------------------------------------------------------------------------------+
+#+end_example
 [[file:images/bench_T4.png]]
 **** TODO :: abacus22 : 	3 x Nvidia A40 (45 GiB) Compute capability: 8.6
+#+begin_example
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
 |-----------------------------------------+----------------------+----------------------+
@@ -225,4 +231,5 @@ text-generation-benchmark --tokenizer-name Qwen/Qwen2.5-0.5B --sequence-length 1
 |    1   N/A  N/A     11336      C   /opt/conda/bin/python                      2658MiB |
 |    2   N/A  N/A     11336      C   /opt/conda/bin/python                      2204MiB |
 +---------------------------------------------------------------------------------------+
+#+end_example
 [[file:images/bench_A40.png]]
