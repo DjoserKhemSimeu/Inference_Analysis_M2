@@ -749,3 +749,19 @@ environmental impacts of integrated circuit (IC), energy consumption, carbon foo
 + Fin : mercredi 26 mars à 17h :
     [[file:rennes/Retour_Rennes.png]]
 + Hotel : (https://www.booking.com/hotel/fr/cosylocation-le-bois-perrin.fr.html?aid=357029&label=yho748jc-1FCAMoTUIGcmVubmVzSA1YA2hNiAEBmAENuAEZyAEM2AEB6AEB-AECiAIBqAIDuAK_spK-BsACAdICJDJmYmVlMmExLTNhOGQtNDRhNy04ZTA2LWI4ZDNhYzQzZmZjNdgCBeACAQ&sid=d6fe42cb0d1e27215d54689741a8705d&all_sr_blocks=646972501_265598844_1_0_0&checkin=2025-03-24&checkout=2025-03-26&dest_id=-1461464&dest_type=city&dist=0&group_adults=1&group_children=0&hapos=1&highlighted_blocks=646972501_265598844_1_0_0&hpos=1&matching_block_id=646972501_265598844_1_0_0&no_rooms=1&req_adults=1&req_children=0&room1=A&sb_price_type=total&sr_order=popularity&sr_pri_blocks=646972501_265598844_1_0_0__16326&srepoch=1740937769&srpvid=229b7d3ee330045b&type=total&ucfs=1&)
+** Benchmarking phase
+The goal of this phase is to simulate an inference server on the Grid5000 GPU nodes to observe data over different experimental settings.
+*** TODO :: Problem with Jetson AGX Xavier
++ The Jetson AGX Xavier is available on Grid5000 on toulouse with a Nvidia Caramel GPU based on a arm64  architecture.
++ TGI server is not compatible with arm64 architechture
++ We can inspect the possibility of performing an emulation of an x86 architecture on a arm64 architechture (with Qemu for example)
++ but an emulated environnement could introduce some lack of performance we must check if it introduce some waste of performance in the GPU compare to other settings.
++ Three choices :
+  + Perform our experimentation with an emulation
+  + Perform our experimentations without taking into account AGX Xavier (with T4 as best edge device)
+  + Try to find an other experimental setting instead of TGI
+*** What to do next :
++ Investigate over the TGI benchmarking process
++ See which model can be used for experimentations
++ Understand how to measure energy consumption
++ Reading Thomas Ropars's paper

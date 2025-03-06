@@ -38,10 +38,52 @@ nix-build copying path '/nix/store/n1gwpmvmcgsbnr0a8ncflhvc59db775h-myproject-1.
 /grid5000/code/bin/g5k-setup-nvidia-docker -t
 model=Qwen/Qwen2.5-0.5B
 volume=$PWD/data
-docker run -it --gpus all nvidia/cuda:12.8.0-base-ubuntu20.04 nvidia-smi
-docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data \
-    ghcr.io/huggingface/text-generation-inference:3.1.0 \
-    --model-id $model
+docker run --gpus all -e USE_FLASH_ATTENTION=False --shm-size 1g -p 8080:80 -v $volume:/data     ghcr.io/huggingface/text-generation-inference:3.0.2     --model-id $model --disable-custom-kernels
+#+end_example
+***** For jetson :
+#+begin_example
+model=Qwen/Qwen2.5-0.5B
+volume=$PWD/data
+docker run --platform linux/amd64 --gpus all -e USE_FLASH_ATTENTION=False --shm-size 1g -p 8080:80 -v $volume:/data     ghcr.io/huggingface/text-generation-inference:3.0.2     --model-id $model --disable-custom-kernels
+#+end_example
+*****  Script for Benchmark
+#+begin_example
+docker ps
+docker exec -it <ContainerName> /bin/bash
+(docker shell)
+apt update
+
+# install some stuff that's required for later commands
+export DEBIAN_FRONTEND=noninteractive && TZ=Etc/UTC apt-get -y install tzdata
+apt install -y git curl unzip libssl-dev pkg-config
+
+# install protobuf:
+PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
+curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/$PROTOC_ZIP
+unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
+rm -f $PROTOC_ZIP
+
+# install rust:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+
+# clone repo:
+cd /usr/src
+git clone --depth 1 --branch v3.0.2 https://github.com/huggingface/text-generation-inference
+
+# remove parts of the repo that this docker image already has, then put the rest in its proper place
+cd text-generation-inference
+rm -r proto
+rm -r server
+mv * ../
+cd ../
+rm -r text-generation-inference
+
+# build the benchmark binary:
+make install-benchmark
+text-generation-benchmark --tokenizer-name Qwen/Qwen2.5-0.5B --sequence-length 1024 --decode-length 256
+
 #+end_example
 ***** TGI : Documentation
 + --model_id <MODEL_ID> : The name of the model to load. Can be a MODEL_ID as listed on <https://hf.co/models> like `gpt2` or `OpenAssistant/oasst-sft-1-pythia-12b`[default: bigscience/bloom-560m]
@@ -73,8 +115,6 @@ docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data \
 ** On which nodes it works ?
 *** Rennes :
 **** TODO :: abacus21 : 3 x Nvidia A100-PCIE-40GB (40 GiB) Compute capability: 8.0
-**** NO :: abacus5 : 2 x Nvidia Tesla P100-PCIE-16GB (16 GiB)
-#+begin_example
 +---------------------------------------------------------------------------------------+
 | NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
 |-----------------------------------------+----------------------+----------------------+
@@ -82,12 +122,37 @@ docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data \
 | Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
 |                                         |                      |               MIG M. |
 |=========================================+======================+======================|
-|   0  Tesla P100-PCIE-16GB           On  | 00000000:3B:00.0 Off |                    0 |
-| N/A   26C    P0              25W / 250W |      0MiB / 16384MiB |      0%      Default |
+|   0  NVIDIA A100-PCIE-40GB          On  | 00000000:21:00.0 Off |                    0 |
+| N/A   32C    P0              34W / 250W |      0MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-PCIE-40GB          On  | 00000000:81:00.0 Off |                    0 |
+| N/A   31C    P0              33W / 250W |      0MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+
+**** TODO :: abacus17 : 2 x Nvidia Quadro RTX 6000 (23 GiB) Compute capability: 7.5
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Quadro RTX 6000                On  | 00000000:21:00.0 Off |                    0 |
+| N/A   30C    P8              22W / 250W |      0MiB / 23040MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
-|   1  Tesla P100-PCIE-16GB           On  | 00000000:D8:00.0 Off |                    0 |
-| N/A   29C    P0              25W / 250W |      0MiB / 16384MiB |      0%      Default |
+|   1  Quadro RTX 6000                On  | 00000000:81:00.0 Off |                    0 |
+| N/A   29C    P8              23W / 250W |      0MiB / 23040MiB |      0%      Default |
 |                                         |                      |                  N/A |
 +-----------------------------------------+----------------------+----------------------+
 
@@ -98,4 +163,66 @@ docker run --gpus all --shm-size 1g -p 8080:80 -v $volume:/data \
 |=======================================================================================|
 |  No running processes found                                                           |
 +---------------------------------------------------------------------------------------+
-#+end_example
+**** TODO :: grue : 4 x Nvidia Tesla T4 (15 GiB) Compute capability: 7.5
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Tesla T4                       On  | 00000000:41:00.0 Off |                    0 |
+| N/A   36C    P0              27W /  70W |  11188MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  Tesla T4                       On  | 00000000:61:00.0 Off |                    0 |
+| N/A   36C    P0              27W /  70W |   2308MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   2  Tesla T4                       On  | 00000000:81:00.0 Off |                    0 |
+| N/A   37C    P0              26W /  70W |   2308MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   3  Tesla T4                       On  | 00000000:C1:00.0 Off |                    0 |
+| N/A   38C    P0              28W /  70W |   1970MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
++---------------------------------------------------------------------------------------+
+[[file:images/bench_T4.png]]
+**** TODO :: abacus22 : 	3 x Nvidia A40 (45 GiB) Compute capability: 8.6
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A40                     On  | 00000000:27:00.0 Off |                    0 |
+|  0%   48C    P0              90W / 300W |  20092MiB / 46068MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A40                     On  | 00000000:A3:00.0 Off |                    0 |
+|  0%   47C    P0              93W / 300W |   2666MiB / 46068MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A40                     On  | 00000000:C3:00.0 Off |                    0 |
+|  0%   46C    P0              88W / 300W |   2212MiB / 46068MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A     11336      C   /opt/conda/bin/python                     20084MiB |
+|    1   N/A  N/A     11336      C   /opt/conda/bin/python                      2658MiB |
+|    2   N/A  N/A     11336      C   /opt/conda/bin/python                      2204MiB |
++---------------------------------------------------------------------------------------+
+[[file:images/bench_A40.png]]
