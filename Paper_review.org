@@ -765,3 +765,46 @@ The goal of this phase is to simulate an inference server on the Grid5000 GPU no
 + See which model can be used for experimentations
 + Understand how to measure energy consumption
 + Reading Thomas Ropars's paper
++ prendre en compte la durrée de vie :3. 5 .7
++ miltiplier la densite par gCo2
++ Souces memoire : https://www.techdesignforums.com/practice/technique/understanding-ddr-sdram-memory-choices/
++ https://www.techdesignforums.com/practice/technique/choosing-between-ddr4-and-hbm-in-memory-intensive-applications/
+** TODO paper to read : MLPerf Inference Benchmark (https://arxiv.org/pdf/1911.02549)
+** Nvidia report 2024 :
+Data Center
+The NVIDIA Data Center platform is focused on accelerating the most compute-intensive workloads, such as AI, data
+analytics, graphics and scientific computing, delivering significantly better performance and power efficiency relative to
+conventional CPU-only approaches. It is deployed in cloud, hyperscale, on-premises and edge data centers. The platform
+consists of compute and networking offerings typically delivered to customers as systems, subsystems, or modules,
+along with software and services.
+Our compute offerings include supercomputing platforms and servers, bringing together our energy efficient GPUs,
+DPUs, interconnects, and fully optimized AI and high-performance computing, or HPC, software stacks. In addition, they
+include NVIDIA AI Enterprise software; our DGX Cloud service; and a growing body of acceleration libraries, APIs, SDKs,
+and domain-specific application frameworks.
+Our networking offerings include end-to-end platforms for InfiniBand and Ethernet, consisting of network adapters,
+cables, DPUs, and switch systems, as well as a full software stack. This has enabled us to architect data center-scale
+computing platforms that can interconnect thousands of compute nodes with high-performance networking. While
+historically the server was the unit of computing, as AI and HPC workloads have become extremely large spanning
+thousands of compute nodes, the data center has become the new unit of computing, with networking as an integral
+part.
+Our end customers include the world’s leading public cloud and consumer internet companies, thousands of enterprises
+and startups, and public sector entities. We work with industry leaders to help build or transform their applications and
+data center infrastructure. Our direct customers include original equipment manufacturers, or OEMs, original device
+manufacturers, or ODMs, system integrators and distributors which we partner with to help bring our products to
+market. We also have partnerships in automotive, healthcare, financial services, manufacturing, and retail among others,
+to accelerate the adoption of AI.
+* paper expe : MLPerf Inference Benchmark (https://arxiv.org/pdf/1911.02549)
+** Keywords :
+Machine Learning , ML inference, Benchmarking
+** Citations :
++ "The myriad combinations of ML hardware and ML software make assessing MLsystem performance in an architecture-neutral, representative, and reproducible manner challenging."
+** Observations :
++  in offline batch processing, such as photo categorization, all the data may be readily available in (network) storage, allowing accelerators to reach and maintain peak performance.
++ Single-stream. The single-stream scenario represents one inference-query stream with a query sample size of 1, reflecting the many client applications where responsiveness is critical. An example is offline voice transcription on Google’s Pixel 4 smartphone. To measure performance, we inject a single query into the inference system; when the query is complete, we record the completion time and inject the next query. The metric is the query stream’s 90th-percentile latency.
++ Multistream. The multistream scenario represents applications with a stream of queries, but each query comprises multiple inferences, reflecting a variety of industrial-automation and remote-sensing tasks. For example, many autonomous vehicles analyze frames from multiple cameras simultaneously.
++ Server. The server scenario represents online applications where query arrival is random and latency is important. Almost every consumer-facing website is a good example, including services such as online translation from Baidu, Google, and Microsoft.
++ Offline. The offline scenario represents batch-processing applications where all data is immediately available and latency is unconstrained. An example is identifying the people and locations in a photo album. For this scenario, we send a single query that includes all sample-data IDs to be processed, and the system is free to process the input data in any order.
++ querie = request to the inference system
++ sample= inference input.
+  + Bert dataset= SQUAD v1.1 (https://rajpurkar.github.io/SQuAD-explorer/explore/1.1/dev/)
++ Doc bert with SQUAD: https://arxiv.org/pdf/1908.01767
