@@ -135,6 +135,12 @@ AGX_Xavier_TRT-custom_k_99_MaxP-Offline:
 AGX_Xavier_TRT-custom_k_99_MaxP-Offline:
     bert: No accuracy results in PerformanceOnly mode.
 #+end_example
+#+begin_example
+Moyenne de la consommation GPU (mW): 21898.029839326704
+Durée totale (heures): 0.1901764065027237
+Énergie totale consommée (kWh): 0.004164488624332568
+émission équivalent CO2 (g): 0.049973863491990816
+#+end_example
 * Quadro RTX 6000 x1:
 #+begin_example
 ================================================
