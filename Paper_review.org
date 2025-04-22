@@ -808,3 +808,11 @@ Machine Learning , ML inference, Benchmarking
 + sample= inference input.
   + Bert dataset= SQUAD v1.1 (https://rajpurkar.github.io/SQuAD-explorer/explore/1.1/dev/)
 + Doc bert with SQUAD: https://arxiv.org/pdf/1908.01767
+* Tuesday 22 april
++ I observed in detail of the energetic performance of different deployment setting on the Jetson and the A100 GPUs
++ in the single-stream scenario :
+  + For the A100 we can see that the performance is strongly affected by the modification of the batch size: when the batch size is one the instantaneous power observed is arround 175W during the benchmark, when the BS is 4 150W an 8 100W. We can see that a to large BS affect strongly the runtime : BS 8 -> 325s VS BS 1/4 -> 115s
+  + For the Jetson there is no difference when I vary the batch size parameters. This observation can be interpreted as the AGX Xavier device is already use at it's peak performance and increasing the number of inference input to process in parallel incur no improvment because we already apply the maximum parallelism with 1 input inference.
++ in the server scenario :
+  + For the A100 , The batch size have no effect on thge performance but the number of query by second have a significant effect on the results, we can see that when we increase the QPS from 360 to 720 the GPU is less under used, the runtime decrease and the average intantaneous power increase.
+  + For the Jetson, we can see that increasing the batch size reduce sligthly the runtime but not a lot and the maximum batch for the AGX Xavier is 24 due to lack of device memory.
