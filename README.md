@@ -84,28 +84,6 @@ pip install -r requirements.txt
 
 ---
 
-## 🧪 Run the Analysis
-
-Generate mean power plots:
-
-```bash
-python Plots/plot_means_FULL.py --gpu A100
-```
-
-Estimate carbon impact:
-
-```bash
-python Plots/save_impact.py
-```
-
-Compare inference latency:
-
-```bash
-python Plots/plot_box_single.py
-```
-
----
-
 ## 👤 Author
 
 Research project by **Djoser Simeu**, supervised by **Danilo Carastan Dos Santos**, **Laurent Lefèvre**, and **Denis Trystram** at LIG Grenoble.
