@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/dist-packages/jtop/jtop.py", line 1113, in start
+    self._broadcaster.connect()
+  File "/usr/lib/python3.10/multiprocessing/managers.py", line 531, in connect
+    conn = Client(self._address, authkey=self._authkey)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 502, in Client
+    c = SocketClient(address)
+  File "/usr/lib/python3.10/multiprocessing/connection.py", line 630, in SocketClient
+    s.connect(address)
+FileNotFoundError: [Errno 2] No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/work/code/main.py", line 36, in <module>
+    from code.jtop_measure import JtopMeasure
+  File "/work/code/jtop_measure.py", line 4, in <module>
+    with jtop() as jetson :
+  File "/usr/local/lib/python3.10/dist-packages/jtop/jtop.py", line 1278, in __enter__
+    self.start()
+  File "/usr/local/lib/python3.10/dist-packages/jtop/jtop.py", line 1116, in start
+    raise JtopException("The jtop.service is not active. Please run:\nsudo systemctl restart jtop.service")
+jtop.core.exceptions.JtopException: The jtop.service is not active. Please run:
+sudo systemctl restart jtop.service

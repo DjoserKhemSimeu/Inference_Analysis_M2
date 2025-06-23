@@ -1,0 +1,460 @@
+[2025-03-18 10:57:18,457 module.py:561 INFO] - * mlcr run-mlperf,inference,_find-performance,_full,_r5.0-dev
+[2025-03-18 10:57:18,479 module.py:561 INFO] -   * mlcr get,mlcommons,inference,src
+[2025-03-18 10:57:18,510 module.py:561 INFO] -     * mlcr detect,os
+[2025-03-18 10:57:18,516 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-mlperf-inference-src_e3764b63
+[2025-03-18 10:57:18,516 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 10:57:18,548 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 10:57:18,576 module.py:561 INFO] -     * mlcr get,python3
+[2025-03-18 10:57:18,689 module.py:3869 INFO] -         * /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 10:57:18,689 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d
+[2025-03-18 10:57:18,690 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-python3/run.sh from tmp-run.sh
+[2025-03-18 10:57:18,699 module.py:5252 INFO] -                ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-python3/customize.py
+[2025-03-18 10:57:18,730 module.py:3869 INFO] -         * /usr/bin/python3
+[2025-03-18 10:57:18,731 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d
+[2025-03-18 10:57:18,731 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-python3/run.sh from tmp-run.sh
+[2025-03-18 10:57:18,741 module.py:5252 INFO] -                ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-python3/customize.py
+[2025-03-18 10:57:18,773 module.py:3938 INFO] -       Selected 0: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 10:57:18,774 module.py:4185 INFO] -         # Found artifact in /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 10:57:18,774 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d
+[2025-03-18 10:57:18,774 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-python3/run.sh from tmp-run.sh
+[2025-03-18 10:57:18,785 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-python3/customize.py
+[2025-03-18 10:57:18,807 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 10:57:18,807 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 10:57:18,828 module.py:561 INFO] -     * mlcr get,git,repo,_branch.master,_repo.https://github.com/mlcommons/inference
+[2025-03-18 10:57:18,868 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 10:57:18,873 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-git-repo_11fa0dfb
+[2025-03-18 10:57:18,873 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 10:57:18,903 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 10:57:18,920 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-git-repo_11fa0dfb
+[2025-03-18 10:57:18,920 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-git-repo/run.sh from tmp-run.sh
+[2025-03-18 10:57:37,333 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-git-repo/customize.py
+[2025-03-18 10:57:37,353 module.py:2227 INFO] - CM cache path to the Git repo: /home/djoser/MLC/repos/local/cache/get-git-repo_11fa0dfb/inference
+[2025-03-18 10:57:37,354 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-src/customize.py
+[2025-03-18 10:57:37,412 module.py:561 INFO] -   * mlcr get,mlperf,inference,results,dir,_version.r5.0-dev
+[2025-03-18 10:57:37,438 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-results-dir/customize.py
+[2025-03-18 10:57:37,465 module.py:561 INFO] -   * mlcr install,pip-package,for-mlc-python,_package.tabulate
+[2025-03-18 10:57:39,152 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/install-pip-package-for-mlc-python/customize.py
+[2025-03-18 10:57:39,185 module.py:561 INFO] -   * mlcr get,mlperf,inference,utils
+[2025-03-18 10:57:39,214 module.py:561 INFO] -     * mlcr get,mlperf,inference,src
+[2025-03-18 10:57:39,216 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-mlperf-inference-src_e3764b63/mlc-cached-state.json
+[2025-03-18 10:57:39,222 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-utils/customize.py
+[2025-03-18 10:57:39,442 module.py:561 INFO] - * mlcr detect,os
+[2025-03-18 10:57:39,448 module.py:5105 INFO] -        ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 10:57:39,448 module.py:5106 INFO] -        ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 10:57:39,479 module.py:5252 INFO] -        ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 10:57:39,502 module.py:561 INFO] - * mlcr build,dockerfile
+[2025-03-18 10:57:39,517 module.py:561 INFO] -   * mlcr get,docker
+[2025-03-18 10:57:39,551 module.py:561 INFO] -     * mlcr detect,os
+[2025-03-18 10:57:39,557 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-docker_d9fe64f8
+[2025-03-18 10:57:39,557 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 10:57:39,591 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 10:57:39,680 module.py:3869 INFO] -       * /usr/bin/docker
+[2025-03-18 10:57:39,681 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-docker_d9fe64f8
+[2025-03-18 10:57:39,681 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-docker/run.sh from tmp-run.sh
+[2025-03-18 10:57:39,772 module.py:5252 INFO] -              ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-docker/customize.py
+[2025-03-18 10:57:39,776 module.py:3869 INFO] -       * /snap/bin/docker
+[2025-03-18 10:57:39,777 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-docker_d9fe64f8
+[2025-03-18 10:57:39,777 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-docker/run.sh from tmp-run.sh
+[2025-03-18 10:57:39,810 module.py:5252 INFO] -              ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-docker/customize.py
+[2025-03-18 10:57:39,814 module.py:3938 INFO] -     Selected 0: /usr/bin/docker
+[2025-03-18 10:57:39,814 module.py:4185 INFO] -       # Found artifact in /usr/bin/docker
+[2025-03-18 10:57:39,815 module.py:5105 INFO] -          ! cd /home/djoser/MLC/repos/local/cache/get-docker_d9fe64f8
+[2025-03-18 10:57:39,815 module.py:5106 INFO] -          ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-docker/run.sh from tmp-run.sh
+[2025-03-18 10:57:39,848 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-docker/customize.py
+[2025-03-18 10:57:40,048 docker.py:191 INFO] - Dockerfile generated at /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/app-mlperf-inference/dockerfiles/nvcr.io-nvidia-mlperf-mlperf-inference-mlpinf-v4.0-cuda12.2-cudnn8.9-x86_64-ubuntu20.04-public.Dockerfile
+[2025-03-18 10:57:40,230 module.py:561 INFO] - * mlcr get,docker
+[2025-03-18 10:57:40,230 module.py:1276 INFO] -      ! load /home/djoser/MLC/repos/local/cache/get-docker_d9fe64f8/mlc-cached-state.json
+[2025-03-18 10:57:40,248 module.py:561 INFO] - * mlcr get,mlperf,inference,submission,dir,local,_version.r5.0-dev
+[2025-03-18 10:57:40,277 module.py:5252 INFO] -        ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-submission-dir/customize.py
+[2025-03-18 10:57:40,312 module.py:561 INFO] - * mlcr get,dataset,imagenet,validation,original,_full
+[2025-03-18 10:57:40,347 module.py:561 INFO] -   * mlcr detect,os
+[2025-03-18 10:57:40,352 module.py:5105 INFO] -          ! cd /home/djoser/MLC/repos/local/cache/get-dataset-imagenet-val_cd4add2e
+[2025-03-18 10:57:40,352 module.py:5106 INFO] -          ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 10:57:40,384 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 10:57:40,419 module.py:561 INFO] -   * mlcr download-and-extract,file,_extract,_url.https://image-net.org/data/ILSVRC/2012/ILSVRC2012_img_val.tar
+[2025-03-18 10:57:40,448 module.py:561 INFO] -     * mlcr download,file,_cmutil,_url.https://image-net.org/data/ILSVRC/2012/ILSVRC2012_img_val.tar
+[2025-03-18 10:57:40,463 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 10:57:40,470 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-dataset-imagenet-val_cd4add2e
+[2025-03-18 10:57:40,470 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 10:57:40,502 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:00:29,093 module.py:561 INFO] - * mlcr run-mlperf,inference,_full,_r5.0-dev
+[2025-03-18 11:00:29,103 module.py:561 INFO] -   * mlcr detect,os
+[2025-03-18 11:00:29,107 module.py:5105 INFO] -          ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:00:29,108 module.py:5106 INFO] -          ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:00:29,138 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:00:29,156 module.py:561 INFO] -   * mlcr detect,cpu
+[2025-03-18 11:00:29,171 module.py:561 INFO] -     * mlcr detect,os
+[2025-03-18 11:00:29,175 module.py:5105 INFO] -            ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:00:29,176 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:00:29,205 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:00:29,217 module.py:5105 INFO] -          ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:00:29,217 module.py:5106 INFO] -          ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:00:29,308 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:00:29,323 module.py:561 INFO] -   * mlcr get,python3
+[2025-03-18 11:00:29,325 module.py:1276 INFO] -        ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:00:29,326 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:00:29,326 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:00:29,352 module.py:561 INFO] -   * mlcr get,mlcommons,inference,src
+[2025-03-18 11:00:29,353 module.py:1276 INFO] -        ! load /home/djoser/MLC/repos/local/cache/get-mlperf-inference-src_e3764b63/mlc-cached-state.json
+[2025-03-18 11:00:29,365 module.py:561 INFO] -   * mlcr get,sut,description
+[2025-03-18 11:00:29,378 module.py:561 INFO] -     * mlcr detect,os
+[2025-03-18 11:00:29,384 module.py:5105 INFO] -            ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:00:29,384 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:00:29,417 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:00:29,435 module.py:561 INFO] -     * mlcr detect,cpu
+[2025-03-18 11:00:29,453 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 11:00:29,459 module.py:5105 INFO] -              ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:00:29,459 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:00:29,495 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:00:29,514 module.py:5105 INFO] -            ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:00:29,514 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:00:29,604 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:00:29,620 module.py:561 INFO] -     * mlcr get,python3
+[2025-03-18 11:00:29,622 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:00:29,622 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:00:29,622 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:00:29,646 module.py:561 INFO] -     * mlcr get,compiler
+[2025-03-18 11:00:29,812 module.py:561 INFO] -       * mlcr install,llvm
+[2025-03-18 11:00:29,852 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:00:29,858 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/install-llvm-prebuilt_a8797015
+[2025-03-18 11:00:29,858 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:00:29,891 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:06:28,341 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/install-llvm-prebuilt_a8797015
+[2025-03-18 11:06:28,341 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/install-llvm-prebuilt/run.sh from tmp-run.sh
+[2025-03-18 11:08:22,907 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/install-llvm-prebuilt/customize.py
+[2025-03-18 11:08:22,955 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-llvm_c5dfc16e
+[2025-03-18 11:08:22,955 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-llvm/run.sh from tmp-run.sh
+[2025-03-18 11:08:23,253 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-llvm/customize.py
+[2025-03-18 11:08:23,273 module.py:561 INFO] -     * mlcr get,compiler-flags
+[2025-03-18 11:08:23,329 module.py:561 INFO] -       * mlcr detect,cpu
+[2025-03-18 11:08:23,350 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:08:23,358 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-llvm_c5dfc16e
+[2025-03-18 11:08:23,358 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:08:23,435 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:08:23,454 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-llvm_c5dfc16e
+[2025-03-18 11:08:23,454 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:08:23,603 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:08:24,652 module.py:561 INFO] -     * mlcr get,cuda-devices,_with-pycuda
+[2025-03-18 11:08:24,716 module.py:561 INFO] -       * mlcr get,cuda,_toolkit
+[2025-03-18 11:08:24,790 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:08:24,796 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-cuda_6d24f115
+[2025-03-18 11:08:24,797 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:08:24,830 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:08:24,844 module.py:4120 INFO] -           # Requested paths: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin:/usr/local/cuda-12.2/bin:/home/djoser/miniconda3/bin:/home/djoser/miniconda3/condabin:/home/djoser/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/home/djoser/.cargo/bin:/home/djoser/.local/bin:/home/djoser/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/home/djoser/.nix-profile/bin:/nix/var/nix/profiles/default/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/usr/local/cuda/bin:/usr/cuda/bin:/usr/local/cuda-11/bin:/usr/cuda-11/bin:/usr/local/cuda-12/bin:/usr/cuda-12/bin:/usr/local/packages/cuda
+[2025-03-18 11:08:24,927 module.py:3869 INFO] -           * /usr/local/cuda-12.2/bin/nvcc
+[2025-03-18 11:08:24,928 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-cuda_6d24f115
+[2025-03-18 11:08:24,929 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda/run.sh from tmp-run.sh
+[2025-03-18 11:08:25,141 module.py:5252 INFO] -                  ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda/customize.py
+[2025-03-18 11:08:25,150 module.py:4185 INFO] -           # Found artifact in /usr/local/cuda-12.2/bin/nvcc
+[2025-03-18 11:08:25,156 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-cuda_6d24f115
+[2025-03-18 11:08:25,156 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda/run.sh from tmp-run.sh
+[2025-03-18 11:08:25,181 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda/customize.py
+[2025-03-18 11:08:25,217 module.py:2227 INFO] - ENV[CUDA_HOME]: /usr/local/cuda-12.2
+[2025-03-18 11:08:25,217 module.py:2227 INFO] - ENV[MLC_CUDA_PATH_LIB_CUDNN_EXISTS]: no
+[2025-03-18 11:08:25,217 module.py:2227 INFO] - ENV[MLC_CUDA_VERSION]: 12.2
+[2025-03-18 11:08:25,217 module.py:2227 INFO] - ENV[MLC_CUDA_VERSION_STRING]: cu122
+[2025-03-18 11:08:25,217 module.py:2227 INFO] - ENV[MLC_NVCC_BIN_WITH_PATH]: /usr/local/cuda-12.2/bin/nvcc
+[2025-03-18 11:08:25,244 module.py:561 INFO] -       * mlcr get,python3
+[2025-03-18 11:08:25,245 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:08:25,246 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:08:25,246 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:08:25,455 module.py:561 INFO] -       * mlcr get,generic-python-lib,_package.pycuda
+[2025-03-18 11:08:25,568 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:08:25,574 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_d93ed816
+[2025-03-18 11:08:25,574 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:08:25,605 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:08:25,625 module.py:561 INFO] -         * mlcr detect,cpu
+[2025-03-18 11:08:25,634 module.py:561 INFO] -           * mlcr detect,os
+[2025-03-18 11:08:25,640 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_d93ed816
+[2025-03-18 11:08:25,640 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:08:25,672 module.py:5252 INFO] -                  ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:08:25,686 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_d93ed816
+[2025-03-18 11:08:25,687 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:08:25,779 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:08:25,798 module.py:561 INFO] -         * mlcr get,python3
+[2025-03-18 11:08:25,800 module.py:1276 INFO] -              ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:08:25,800 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:08:25,800 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:08:25,903 module.py:561 INFO] -         * mlcr get,generic-python-lib,_pip
+[2025-03-18 11:08:25,982 module.py:561 INFO] -           * mlcr detect,os
+[2025-03-18 11:08:25,989 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82
+[2025-03-18 11:08:25,989 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:08:26,027 module.py:5252 INFO] -                  ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:08:26,053 module.py:561 INFO] -           * mlcr detect,cpu
+[2025-03-18 11:08:26,069 module.py:561 INFO] -             * mlcr detect,os
+[2025-03-18 11:08:26,075 module.py:5105 INFO] -                    ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82
+[2025-03-18 11:08:26,075 module.py:5106 INFO] -                    ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:08:26,107 module.py:5252 INFO] -                    ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:08:26,122 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82
+[2025-03-18 11:08:26,122 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:08:26,220 module.py:5252 INFO] -                  ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:08:26,242 module.py:561 INFO] -           * mlcr get,python3
+[2025-03-18 11:08:26,244 module.py:1276 INFO] -                ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:08:26,245 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:08:26,245 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:08:26,253 module.py:5105 INFO] -                    ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82
+[2025-03-18 11:08:26,253 module.py:5106 INFO] -                    ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:08:26,508 module.py:5252 INFO] -                    ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:08:26,519 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82
+[2025-03-18 11:08:26,519 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:08:26,665 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:08:26,717 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_d93ed816
+[2025-03-18 11:08:26,718 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:08:26,863 module.py:5252 INFO] -                  ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:08:26,870 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_d93ed816
+[2025-03-18 11:08:26,871 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/install.sh from tmp-run.sh
+[2025-03-18 11:11:20,753 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_d93ed816
+[2025-03-18 11:11:20,753 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:11:20,900 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:21,119 module.py:561 INFO] -       * mlcr get,generic-python-lib,_package.numpy
+[2025-03-18 11:11:21,157 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:11:21,163 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a
+[2025-03-18 11:11:21,163 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:21,198 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:21,218 module.py:561 INFO] -         * mlcr detect,cpu
+[2025-03-18 11:11:21,227 module.py:561 INFO] -           * mlcr detect,os
+[2025-03-18 11:11:21,233 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a
+[2025-03-18 11:11:21,233 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:21,265 module.py:5252 INFO] -                  ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:21,281 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a
+[2025-03-18 11:11:21,281 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:11:21,373 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:11:21,394 module.py:561 INFO] -         * mlcr get,python3
+[2025-03-18 11:11:21,396 module.py:1276 INFO] -              ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:21,396 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:21,396 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:21,470 module.py:561 INFO] -         * mlcr get,generic-python-lib,_pip
+[2025-03-18 11:11:21,483 module.py:561 INFO] -           * mlcr get,python3
+[2025-03-18 11:11:21,484 module.py:1276 INFO] -                ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:21,485 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:21,485 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:21,486 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a
+[2025-03-18 11:11:21,486 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/validate_cache.sh from tmp-run.sh
+[2025-03-18 11:11:21,609 module.py:5252 INFO] -                ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:21,632 module.py:561 INFO] -           * mlcr get,python3
+[2025-03-18 11:11:21,633 module.py:1276 INFO] -                ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:21,634 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:21,634 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:21,634 module.py:1276 INFO] -              ! load /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82/mlc-cached-state.json
+[2025-03-18 11:11:21,642 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a
+[2025-03-18 11:11:21,643 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:11:21,764 module.py:5252 INFO] -                  ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:21,772 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a
+[2025-03-18 11:11:21,772 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/install.sh from tmp-run.sh
+[2025-03-18 11:11:26,561 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a
+[2025-03-18 11:11:26,561 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:11:26,702 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:26,739 module.py:5105 INFO] -            ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:11:26,739 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda-devices/detect.sh from tmp-run.sh
+[2025-03-18 11:11:27,075 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda-devices/customize.py
+[2025-03-18 11:11:27,155 module.py:561 INFO] -     * mlcr get,generic-python-lib,_package.dmiparser
+[2025-03-18 11:11:27,194 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 11:11:27,201 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_aa36c0a0
+[2025-03-18 11:11:27,201 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:27,235 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:27,262 module.py:561 INFO] -       * mlcr detect,cpu
+[2025-03-18 11:11:27,272 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:11:27,279 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_aa36c0a0
+[2025-03-18 11:11:27,279 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:27,312 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:27,327 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_aa36c0a0
+[2025-03-18 11:11:27,327 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:11:27,419 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:11:27,456 module.py:561 INFO] -       * mlcr get,python3
+[2025-03-18 11:11:27,457 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:27,458 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:27,458 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:27,655 module.py:561 INFO] -       * mlcr get,generic-python-lib,_pip
+[2025-03-18 11:11:27,674 module.py:561 INFO] -         * mlcr get,python3
+[2025-03-18 11:11:27,676 module.py:1276 INFO] -              ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:27,676 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:27,676 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:27,677 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_aa36c0a0
+[2025-03-18 11:11:27,677 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/validate_cache.sh from tmp-run.sh
+[2025-03-18 11:11:27,800 module.py:5252 INFO] -              ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:27,823 module.py:561 INFO] -         * mlcr get,python3
+[2025-03-18 11:11:27,824 module.py:1276 INFO] -              ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:27,825 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:27,825 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:27,826 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82/mlc-cached-state.json
+[2025-03-18 11:11:27,834 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_aa36c0a0
+[2025-03-18 11:11:27,834 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:11:27,958 module.py:5252 INFO] -                ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:27,966 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_aa36c0a0
+[2025-03-18 11:11:27,966 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/install.sh from tmp-run.sh
+[2025-03-18 11:11:29,471 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_aa36c0a0
+[2025-03-18 11:11:29,471 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:11:29,603 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:29,636 module.py:561 INFO] -     * mlcr get,cache,dir,_name.mlperf-inference-sut-descriptions
+[2025-03-18 11:11:29,665 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cache-dir/customize.py
+[2025-03-18 11:11:29,691 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-sut-description/customize.py
+[2025-03-18 11:11:29,707 module.py:561 INFO] -   * mlcr get,mlperf,inference,results,dir,_version.r5.0-dev
+[2025-03-18 11:11:29,709 module.py:1276 INFO] -        ! load /home/djoser/MLC/repos/local/cache/get-mlperf-inference-results-dir_0ba25953/mlc-cached-state.json
+[2025-03-18 11:11:29,717 module.py:561 INFO] -   * mlcr install,pip-package,for-mlc-python,_package.tabulate
+[2025-03-18 11:11:29,718 module.py:1276 INFO] -        ! load /home/djoser/MLC/repos/local/cache/install-pip-package-for-mlc-python_212409a4/mlc-cached-state.json
+[2025-03-18 11:11:29,727 module.py:561 INFO] -   * mlcr get,mlperf,inference,utils
+[2025-03-18 11:11:29,752 module.py:561 INFO] -     * mlcr get,mlperf,inference,src
+[2025-03-18 11:11:29,754 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-mlperf-inference-src_e3764b63/mlc-cached-state.json
+[2025-03-18 11:11:29,759 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-utils/customize.py
+[2025-03-18 11:11:29,942 module.py:561 INFO] - * mlcr app,mlperf,inference,generic,_nvidia,_resnet50,_tensorrt,_cuda,_valid,_r5.0-dev_default,_offline
+[2025-03-18 11:11:29,963 module.py:561 INFO] -   * mlcr detect,os
+[2025-03-18 11:11:29,969 module.py:5105 INFO] -          ! cd /home/djoser/Documents/M2_MOSIG/internship
+[2025-03-18 11:11:29,969 module.py:5106 INFO] -          ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:30,001 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:30,020 module.py:561 INFO] -   * mlcr get,sys-utils-cm
+[2025-03-18 11:11:30,055 module.py:561 INFO] -     * mlcr detect,os
+[2025-03-18 11:11:30,061 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:30,061 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:30,091 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:30,117 module.py:561 INFO] -   * mlcr get,python
+[2025-03-18 11:11:30,118 module.py:1276 INFO] -        ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:30,119 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:30,119 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:30,142 module.py:561 INFO] -   * mlcr get,mlcommons,inference,src
+[2025-03-18 11:11:30,176 module.py:561 INFO] -     * mlcr detect,os
+[2025-03-18 11:11:30,182 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-mlperf-inference-src_d8b451f1
+[2025-03-18 11:11:30,182 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:30,214 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:30,241 module.py:561 INFO] -     * mlcr get,python3
+[2025-03-18 11:11:30,242 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:30,243 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:30,243 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:30,280 module.py:561 INFO] -     * mlcr get,git,repo,_branch.master,_repo.https://github.com/mlcommons/inference
+[2025-03-18 11:11:30,282 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-git-repo_11fa0dfb/mlc-cached-state.json
+[2025-03-18 11:11:30,283 module.py:2227 INFO] - CM cache path to the Git repo: /home/djoser/MLC/repos/local/cache/get-git-repo_11fa0dfb/inference
+[2025-03-18 11:11:30,284 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-src/customize.py
+[2025-03-18 11:11:30,311 module.py:561 INFO] -   * mlcr get,mlperf,inference,utils
+[2025-03-18 11:11:30,371 module.py:561 INFO] -     * mlcr get,mlperf,inference,src
+[2025-03-18 11:11:30,373 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-mlperf-inference-src_d8b451f1/mlc-cached-state.json
+[2025-03-18 11:11:30,379 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-utils/customize.py
+[2025-03-18 11:11:30,396 module.py:561 INFO] -   * mlcr get,dataset-aux,imagenet-aux
+[2025-03-18 11:11:30,458 module.py:561 INFO] -     * mlcr download-and-extract,_extract,_wget,_url.https://armi.in/files/caffe_ilsvrc12.tar.gz
+[2025-03-18 11:11:30,501 module.py:561 INFO] -       * mlcr download,file,_wget,_url.https://armi.in/files/caffe_ilsvrc12.tar.gz
+[2025-03-18 11:11:30,534 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:11:30,540 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/download-file_7cac0df7
+[2025-03-18 11:11:30,541 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:30,573 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:30,588 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/download-file_7cac0df7
+[2025-03-18 11:11:30,588 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/download-file/run.sh from tmp-run.sh
+[2025-03-18 11:11:32,479 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/download-file/customize.py
+[2025-03-18 11:11:32,501 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/download-and-extract/customize.py
+[2025-03-18 11:11:32,512 module.py:561 INFO] -     * mlcr extract,file,_path./home/djoser/MLC/repos/local/cache/download-file_7cac0df7/caffe_ilsvrc12.tar.gz
+[2025-03-18 11:11:32,548 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 11:11:32,554 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/extract-file_8fc1b583
+[2025-03-18 11:11:32,554 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:32,587 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:32,602 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/extract-file_8fc1b583
+[2025-03-18 11:11:32,603 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/extract-file/run.sh from tmp-run.sh
+[2025-03-18 11:11:33,175 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/extract-file/customize.py
+[2025-03-18 11:11:33,245 module.py:561 INFO] -   * mlcr get,cuda-devices,_with-pycuda
+[2025-03-18 11:11:33,273 module.py:561 INFO] -     * mlcr get,cuda,_toolkit
+[2025-03-18 11:11:33,275 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-cuda_6d24f115/mlc-cached-state.json
+[2025-03-18 11:11:33,276 module.py:2227 INFO] - ENV[CUDA_HOME]: /usr/local/cuda-12.2
+[2025-03-18 11:11:33,276 module.py:2227 INFO] - ENV[MLC_CUDA_PATH_LIB_CUDNN_EXISTS]: no
+[2025-03-18 11:11:33,276 module.py:2227 INFO] - ENV[MLC_CUDA_VERSION]: 12.2
+[2025-03-18 11:11:33,276 module.py:2227 INFO] - ENV[MLC_CUDA_VERSION_STRING]: cu122
+[2025-03-18 11:11:33,276 module.py:2227 INFO] - ENV[MLC_NVCC_BIN_WITH_PATH]: /usr/local/cuda-12.2/bin/nvcc
+[2025-03-18 11:11:33,296 module.py:561 INFO] -     * mlcr get,python3
+[2025-03-18 11:11:33,297 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:33,298 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:33,298 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:33,525 module.py:561 INFO] -     * mlcr get,generic-python-lib,_package.pycuda
+[2025-03-18 11:11:33,543 module.py:561 INFO] -       * mlcr get,python3
+[2025-03-18 11:11:33,545 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:33,545 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:33,545 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:33,546 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:33,546 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/validate_cache.sh from tmp-run.sh
+[2025-03-18 11:11:33,673 module.py:5252 INFO] -            ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:33,697 module.py:561 INFO] -       * mlcr get,python3
+[2025-03-18 11:11:33,699 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:33,700 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:33,700 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:33,701 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-generic-python-lib_d93ed816/mlc-cached-state.json
+[2025-03-18 11:11:33,918 module.py:561 INFO] -     * mlcr get,generic-python-lib,_package.numpy
+[2025-03-18 11:11:33,936 module.py:561 INFO] -       * mlcr get,python3
+[2025-03-18 11:11:33,938 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:33,938 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:33,938 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:33,939 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:33,939 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/validate_cache.sh from tmp-run.sh
+[2025-03-18 11:11:34,069 module.py:5252 INFO] -            ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:34,106 module.py:561 INFO] -       * mlcr get,python3
+[2025-03-18 11:11:34,108 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:34,109 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:34,109 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:34,110 module.py:1276 INFO] -          ! load /home/djoser/MLC/repos/local/cache/get-generic-python-lib_8f01613a/mlc-cached-state.json
+[2025-03-18 11:11:34,116 module.py:5105 INFO] -          ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:34,116 module.py:5106 INFO] -          ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda-devices/detect.sh from tmp-run.sh
+[2025-03-18 11:11:34,463 module.py:5252 INFO] -          ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-cuda-devices/customize.py
+[2025-03-18 11:11:34,663 module.py:561 INFO] -   * mlcr reproduce,mlperf,nvidia,inference,_run_harness,_resnet50,_cuda,_offline,_tensorrt,_gpu_memory.8
+[2025-03-18 11:11:34,699 module.py:561 INFO] -     * mlcr detect,os
+[2025-03-18 11:11:34,706 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:34,706 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:34,739 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:34,759 module.py:561 INFO] -     * mlcr detect,cpu
+[2025-03-18 11:11:34,769 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 11:11:34,776 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:34,776 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:34,808 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:34,823 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:34,824 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:11:34,918 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:11:34,935 module.py:561 INFO] -     * mlcr get,sys-utils-cm
+[2025-03-18 11:11:34,956 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 11:11:34,963 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-sys-utils-cm_363fb658
+[2025-03-18 11:11:34,963 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:34,995 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:35,027 module.py:561 INFO] -     * mlcr get,mlperf,inference,nvidia,scratch,space,_version.5.0-dev
+[2025-03-18 11:11:35,058 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-mlperf-inference-nvidia-scratch-space_31a00871
+[2025-03-18 11:11:35,058 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-nvidia-scratch-space/run.sh from tmp-run.sh
+[2025-03-18 11:11:35,073 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-mlperf-inference-nvidia-scratch-space/customize.py
+[2025-03-18 11:11:35,310 module.py:561 INFO] -     * mlcr get,generic-python-lib,_mlperf_logging
+[2025-03-18 11:11:35,353 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 11:11:35,360 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_b396d924
+[2025-03-18 11:11:35,360 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:35,393 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:35,416 module.py:561 INFO] -       * mlcr detect,cpu
+[2025-03-18 11:11:35,427 module.py:561 INFO] -         * mlcr detect,os
+[2025-03-18 11:11:35,434 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_b396d924
+[2025-03-18 11:11:35,434 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:11:35,469 module.py:5252 INFO] -                ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:11:35,485 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_b396d924
+[2025-03-18 11:11:35,485 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/run.sh from tmp-run.sh
+[2025-03-18 11:11:35,580 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-cpu/customize.py
+[2025-03-18 11:11:35,602 module.py:561 INFO] -       * mlcr get,python3
+[2025-03-18 11:11:35,603 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:35,604 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:35,604 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:35,678 module.py:561 INFO] -       * mlcr get,generic-python-lib,_pip
+[2025-03-18 11:11:35,695 module.py:561 INFO] -         * mlcr get,python3
+[2025-03-18 11:11:35,697 module.py:1276 INFO] -              ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:35,697 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:35,697 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:35,698 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_b396d924
+[2025-03-18 11:11:35,698 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/validate_cache.sh from tmp-run.sh
+[2025-03-18 11:11:35,825 module.py:5252 INFO] -              ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:35,848 module.py:561 INFO] -         * mlcr get,python3
+[2025-03-18 11:11:35,850 module.py:1276 INFO] -              ! load /home/djoser/MLC/repos/local/cache/get-python3_220d2a2d/mlc-cached-state.json
+[2025-03-18 11:11:35,850 module.py:2227 INFO] - Path to Python: /home/djoser/Documents/M2_MOSIG/internship/mlc/bin/python3
+[2025-03-18 11:11:35,850 module.py:2227 INFO] - Python version: 3.12.9
+[2025-03-18 11:11:35,851 module.py:1276 INFO] -            ! load /home/djoser/MLC/repos/local/cache/get-generic-python-lib_75488f82/mlc-cached-state.json
+[2025-03-18 11:11:35,860 module.py:5105 INFO] -                ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_b396d924
+[2025-03-18 11:11:35,860 module.py:5106 INFO] -                ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:11:35,989 module.py:5252 INFO] -                ! call "detect_version" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:11:36,002 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_b396d924
+[2025-03-18 11:11:36,003 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/install.sh from tmp-run.sh
+[2025-03-18 11:12:00,553 module.py:5105 INFO] -            ! cd /home/djoser/MLC/repos/local/cache/get-generic-python-lib_b396d924
+[2025-03-18 11:12:00,553 module.py:5106 INFO] -            ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/run.sh from tmp-run.sh
+[2025-03-18 11:12:00,708 module.py:5252 INFO] -            ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/get-generic-python-lib/customize.py
+[2025-03-18 11:12:00,791 module.py:561 INFO] -     * mlcr get,dataset,original,imagenet,_full
+[2025-03-18 11:12:00,815 module.py:561 INFO] -       * mlcr detect,os
+[2025-03-18 11:12:00,823 module.py:5105 INFO] -              ! cd /home/djoser/MLC/repos/local/cache/get-dataset-imagenet-val_cd4add2e
+[2025-03-18 11:12:00,824 module.py:5106 INFO] -              ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:12:00,862 module.py:5252 INFO] -              ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py
+[2025-03-18 11:12:00,902 module.py:561 INFO] -       * mlcr download-and-extract,file,_extract,_url.https://image-net.org/data/ILSVRC/2012/ILSVRC2012_img_val.tar
+[2025-03-18 11:12:00,927 module.py:561 INFO] -         * mlcr download,file,_cmutil,_url.https://image-net.org/data/ILSVRC/2012/ILSVRC2012_img_val.tar
+[2025-03-18 11:12:00,941 module.py:561 INFO] -           * mlcr detect,os
+[2025-03-18 11:12:00,948 module.py:5105 INFO] -                  ! cd /home/djoser/MLC/repos/local/cache/get-dataset-imagenet-val_cd4add2e
+[2025-03-18 11:12:00,948 module.py:5106 INFO] -                  ! call /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/run.sh from tmp-run.sh
+[2025-03-18 11:12:00,984 module.py:5252 INFO] -                  ! call "postprocess" from /home/djoser/MLC/repos/mlcommons@mlperf-automations/script/detect-os/customize.py

@@ -1,0 +1,13 @@
+* Estimating the Environmental Footprint of Data Centers and Contribution of Artificial Intelligence by using Macro-Level Analysis
+** Introduction :
++ Pre-Neurla network ?: I think it would be better to put in the introduction a sentence that define what do you mean clearly when you talk about AI, what is the limits (a calculator, is it an AI?)
+** Related works
++ Net Carbon Impact Assessmen + "t"
++ " First Order (direct emissions), Second Order (indirect usage effects) and Rebound Effects" --> it can be interesting to describe more these important notions
+** Industrial initiative
++ DI think it will be cool to define the notion of "Scope 1-2-3" in the related work
++ I find the notion "clean energy" quiete strange, do you mean "carbon free energy"?
+** Method
++ It would be better to explain with your formulas that "e" refers to the hardware under evaluation. Or maybe I misunderstand.
++ i think it's better to replace F_em by Electricity Grid Mix of the region g (EGM_g)
++ I dont understand what is I^(u)_eno(E) explain more. and I think the (PUE − 1) is false becau PUE>=1 so you don't need the -1 (PUE=1.2 -> the equivalent of 20% of the power use for the computations are required for cooling,light...)

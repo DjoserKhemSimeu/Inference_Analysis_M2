@@ -1,0 +1,129 @@
+[2025-05-30 13:08:20,808 systems.py:197 INFO] Found unknown device in GPU connection topology: NIC0. Skipping.
+[2025-05-30 13:08:20,808 systems.py:197 INFO] Found unknown device in GPU connection topology: NIC1. Skipping.
+[2025-05-30 13:08:21,007 main.py:248 INFO] Detected system ID: KnownSystem.A100
+[2025-05-30 13:08:24,115 harness.py:304 INFO] min_query_cnt is overwritten to 32.
+[2025-05-30 13:08:24,116 generate_conf_files.py:107 INFO] Generated measurements/ entries for A100_TRT/bert-99/SingleStream
+[2025-05-30 13:08:24,116 __init__.py:46 INFO] Running command: ./build/bin/harness_bert --logfile_outdir="/work/build/logs/2025.05.30-13.08.15/A100_TRT/bert-99/SingleStream" --logfile_prefix="mlperf_log_" --performance_sample_count=10833 --gpu_batch_size=1 --tensor_path="build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy" --use_graphs=true --gpu_inference_streams=1 --gpu_copy_streams=1 --gpu_engines="./build/engines/A100/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan" --mlperf_conf_path="build/loadgen-configs/A100_TRT/bert-99/SingleStream/mlperf.conf" --user_conf_path="build/loadgen-configs/A100_TRT/bert-99/SingleStream/user.conf" --scenario SingleStream --model bert
+[2025-05-30 13:08:24,116 __init__.py:53 INFO] Overriding Environment
+benchmark : Benchmark.BERT
+buffer_manager_thread_count : 0
+coalesced_tensor : True
+data_dir : /tmp/scratch//data
+gpu_batch_size : 1
+gpu_copy_streams : 1
+gpu_inference_streams : 1
+input_dtype : int32
+input_format : linear
+log_dir : /work/build/logs/2025.05.30-13.08.15
+max_query_count : 32
+min_query_count : 32
+precision : int8
+preprocessed_data_dir : /tmp/scratch//preprocessed_data
+scenario : Scenario.SingleStream
+single_stream_expected_latency_ns : 6200000
+system : SystemConfiguration(host_cpu_conf=CPUConfiguration(layout={CPU(name='AMD EPYC 7452 32-Core Processor', architecture=<CPUArchitecture.x86_64: AliasedName(name='x86_64', aliases=(), patterns=())>, core_count=32, threads_per_core=2): 2}), host_mem_conf=MemoryConfiguration(host_memory_capacity=Memory(quantity=131.49682, byte_suffix=<ByteSuffix.GB: (1000, 3)>, _num_bytes=131496820000), comparison_tolerance=0.05), accelerator_conf=AcceleratorConfiguration(layout=defaultdict(<class 'int'>, {GPU(name='NVIDIA A100-PCIE-40GB', accelerator_type=<AcceleratorType.Discrete: AliasedName(name='Discrete', aliases=(), patterns=())>, vram=Memory(quantity=40.0, byte_suffix=<ByteSuffix.GiB: (1024, 3)>, _num_bytes=42949672960), max_power_limit=250.0, pci_id='0x20F110DE', compute_sm=80): 1})), numa_conf=None, system_id='A100')
+tensor_path : build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy
+use_graphs : True
+use_small_tile_gemm_plugin : False
+system_id : A100
+config_name : A100_bert_SingleStream
+workload_setting : WorkloadSetting(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP)
+optimization_level : plugin-enabled
+num_profiles : 1
+config_ver : custom_k_99_MaxP
+accuracy_level : 99%
+inference_server : custom
+skip_file_checks : True
+power_limit : None
+cpu_freq : None
+gpu_engine_batch_size : 1
+&&&& RUNNING BERT_HARNESS # ./build/bin/harness_bert
+I20250530 13:08:24.208074 232041 main_bert.cc:198] Found 1 GPUs
+I20250530 13:08:25.031865 232041 bert_server.cc:147] Engine Path: ./build/engines/A100/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan
+[I] [TRT] Loaded engine size: 352 MiB
+I20250530 13:08:25.221850 232041 bert_server.cc:208] Engines Creation Completed
+I20250530 13:08:25.222609 232041 bert_server.cc:213] Use CUDA graphs
+I20250530 13:08:25.223060 232041 bert_core_vs.cc:344] Engine - Device Memory requirements: 2753024
+I20250530 13:08:25.223074 232041 bert_core_vs.cc:352] Engine - Number of Optimization Profiles: 1
+I20250530 13:08:25.223099 232041 bert_core_vs.cc:372] Engine - Profile 0 maxDims 384 Bmax=1 Smax=384
+I20250530 13:08:25.277647 232041 bert_core_vs.cc:383] Setting Opt.Prof. to 0
+I20250530 13:08:25.277705 232041 bert_core_vs.cc:401] Context creation complete. Max supported batchSize: 1
+[I] [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +0, now: CPU 0, GPU 290 (MiB)
+I20250530 13:08:25.279284 232041 bert_core_vs.cc:433] Setup complete
+I20250530 13:08:25.488719 232046 bert_core_vs.cc:311] Created 96 CUDA graphs
+I20250530 13:08:25.490885 232041 main_bert.cc:219] Starting running actual test.
+Script lancé en arrière-plan avec le PID : 232048
+================================================
+MLPerf Results Summary
+================================================
+SUT name : BERT SERVER
+Scenario : SingleStream
+Mode     : PerformanceOnly
+90th percentile latency (ns) : 1835850
+Result is : INVALID
+  Min duration satisfied : NO
+  Min queries satisfied : Yes
+  Early stopping satisfied: NO
+Recommendations:
+ * Decrease the expected latency so the loadgen pre-generates more queries.
+Early Stopping Result:
+ * Only processed 32 queries.
+ * Need to process at least 64 queries for early stopping.
+
+================================================
+Additional Stats
+================================================
+QPS w/ loadgen overhead         : 621.52
+QPS w/o loadgen overhead        : 624.76
+
+Min latency (ns)                : 1372711
+Max latency (ns)                : 2177292
+Mean latency (ns)               : 1600618
+50.00 percentile latency (ns)   : 1606560
+90.00 percentile latency (ns)   : 1835850
+95.00 percentile latency (ns)   : 1877068
+97.00 percentile latency (ns)   : 2177292
+99.00 percentile latency (ns)   : 2177292
+99.90 percentile latency (ns)   : 2177292
+
+================================================
+Test Parameters Used
+================================================
+samples_per_query : 1
+target_qps : 161.29
+target_latency (ns): 0
+max_async_queries : 1
+min_duration (ms): 600000
+max_duration (ms): 0
+min_query_count : 32
+max_query_count : 32
+qsl_rng_seed : 3066443479025735752
+sample_index_rng_seed : 10688027786191513374
+schedule_rng_seed : 14962580496156340209
+accuracy_log_rng_seed : 0
+accuracy_log_probability : 0
+accuracy_log_sampling_target : 0
+print_timestamps : 0
+performance_issue_unique : 0
+performance_issue_same : 0
+performance_issue_same_index : 0
+performance_sample_count : 10833
+
+No warnings encountered during test.
+
+1 ERROR encountered. See detailed log.
+I20250530 13:08:25.713909 232041 main_bert.cc:232] Finished running actual test.
+Script lancé en arrière-plan avec le PID : 232091
+[2025-05-30 13:08:26,254 run_harness.py:166 INFO] Result: result_90.00_percentile_latency_ns: 1835850, Result is INVALID, 10-min runtime requirement met: True
+ 
+======================== Result summaries: ========================
+
+ A100_TRT-custom_k_99_MaxP-SingleStream:
+   bert-99:
+     performance: result_90.00_percentile_latency_ns: 1835850, Result is INVALID, 10-min runtime requirement met: True
+ 
+
+======================== Extra Perf Stats: ========================
+
+ A100_TRT-custom_k_99_MaxP-SingleStream:
+    FileNotFoundError: Cannot find perf logs for A100_TRT/bert-99/SingleStream at build/artifacts/closed/NVIDIA/results/A100_TRT/bert-99/SingleStream/performance/run_1. Non-NVIDIA users ignore this. NVIDIA users run `make pull_artifacts_repo`.

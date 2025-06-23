@@ -1,0 +1,16 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-22 14:16:32,928 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-22 14:16:33,189 main.py:238 INFO] Detected system ID: KnownSystem.Orin
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/work/code/main.py", line 240, in <module>
+    main(main_args, DETECTED_SYSTEM)
+  File "/work/code/main.py", line 144, in main
+    dispatch_action(main_args, config_dict, workload_setting)
+  File "/work/code/main.py", line 203, in dispatch_action
+    remote_measure = JtopMeasure(
+NameError: name 'JtopMeasure' is not defined

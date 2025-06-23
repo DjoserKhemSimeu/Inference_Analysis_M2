@@ -1,0 +1,325 @@
+* Grid5000 documentation required for the deployment of inference servers
+** Djoser SIMEU
+** Monday 24 february
++ The Hadrware page :  https://www.grid5000.fr/w/Hardware
++ The goal is to construct a deployment image to store on the g5k front end containing all thye packages required to run the TGI server on a node.(https://www.grid5000.fr/w/Environment_creation)
++ The test will be made on the drac node of the grenoble site (4 x Nvidia Tesla P100-SXM2-16GB (16 GiB)) : https://www.grid5000.fr/w/Grenoble:Hardware
+  #+begin_example
+  fgrenoble : oarsub -t exotic -t deploy -p drac -I -l host=1,walltime=3
+  frontend : kadeploy3 debian11-big
+  #+end_example
+*** Installing TGI
+**** With python venv
+#+begin_example
+apt update
+git clone --branch v3.0.2 https://github.com/huggingface/text-generation-inference
+cd text-generation-inference
+apt install curl
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+apt-get install python3-venv
+python3 -m venv .venv
+source .venv/bin/activate
+PROTOC_ZIP=protoc-21.12-linux-aarch_64.zip
+curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v21.12/$PROTOC_ZIP
+unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
+rm -f $PROTOC_ZIP
+apt-get install -y make
+apt install software-properties-common
+add-apt-repository ppa:deadsnakes/ppa
+apt update
+apt install python3.9
+update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.9 1
+python get-pip.py
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+export PATH=/usr/local/cuda-11.4/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/cuda-11.4/lib64:$LD_LIBRARY_PATH
+BUILD_EXTENSIONS=True make install
+#+end_example
+**** With nix
+#+begin_example
+sh <(curl -L https://nixos.org/nix/install) --daemon
+apt install nix-bin
+nix-env -iA cachix -f https://cachix.org/api/v1/install
+cachix use text-generation-inference
+nix-build copying path '/nix/store/n1gwpmvmcgsbnr0a8ncflhvc59db775h-myproject-1.0.0' from 'https://text-generation-inference.cachix.org
+#+end_example
+**** Docker (https://docs.docker.com/engine/install/debian/)
+#+begin_example
+/grid5000/code/bin/g5k-setup-nvidia-docker -t
+model=Qwen/Qwen2.5-0.5B
+volume=$PWD/data
+docker run --gpus all -e USE_FLASH_ATTENTION=False --shm-size 1g -p 8080:80 -v $volume:/data     ghcr.io/huggingface/text-generation-inference:3.0.2     --model-id $model --disable-custom-kernels
+#+end_example
+***** For jetson :
+#+begin_example
+model=microsoft/Phi-3-mini-4k-instruct
+volume=$PWD/data
+docker run --platform linux/amd64 --gpus all -e USE_FLASH_ATTENTION=False --shm-size 1g -p 8080:80 -v $volume:/data     ghcr.io/huggingface/text-generation-inference:3.0.2     --model-id $model --disable-custom-kernels
+#+end_example
+*****  Script for Benchmark
+#+begin_example
+docker ps
+docker exec -it <ContainerName> /bin/bash
+(docker shell)
+apt update
+
+# install some stuff that's required for later commands
+export DEBIAN_FRONTEND=noninteractive && TZ=Etc/UTC apt-get -y install tzdata
+apt install -y git curl unzip libssl-dev pkg-config
+
+# install protobuf:
+PROTOC_ZIP=protoc-3.14.0-linux-x86_64.zip
+curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.14.0/$PROTOC_ZIP
+unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
+rm -f $PROTOC_ZIP
+
+# install rust:
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+source "$HOME/.cargo/env"
+
+# clone repo:
+cd /usr/src
+git clone --depth 1 --branch v3.0.2 https://github.com/huggingface/text-generation-inference
+
+# remove parts of the repo that this docker image already has, then put the rest in its proper place
+cd text-generation-inference
+rm -r proto
+rm -r server
+mv * ../
+cd ../
+rm -r text-generation-inference
+
+# build the benchmark binary:
+make install-benchmark
+text-generation-benchmark --tokenizer-name microsoft/Phi-3-mini-4k-instruct --sequence-length 1024 --decode-length 256
+# different batch size
+text-generation-benchmark --tokenizer-name microsoft/Phi-3-mini-4k-instruct --sequence-length 1024 --decode-length 256 --batch-size 32 --batch-size 64 -- batch-size 128
+# use more gpus
+## server side : 2 gpus
+docker run --gpus 2 -e USE_FLASH_ATTENTION=False --shm-size 1g -p 8080:80 -v $volume:/data     ghcr.io/huggingface/text-generation-inference:3.0.2     --model-id $model --disable-custom-kernels --num-shard 1
+# Look at the state of the GPUs
+watch -n 0.1 nvidia-smi
+#+end_example
+***** TGI : Documentation
++ --model_id <MODEL_ID> : The name of the model to load. Can be a MODEL_ID as listed on <https://hf.co/models> like `gpt2` or `OpenAssistant/oasst-sft-1-pythia-12b`[default: bigscience/bloom-560m]
++ --validation-workers <VALIDATION_WORKERS> : The number of tokenizer workers used for payload validation and truncation inside the router
++ --sharded <SHARDED> : Whether to shard the model across multiple GPUs By default text-generation-inference will use all available GPUs to run the model. Setting it to `false` deactivates `num_shard`
++ --num-shard <NUM_SHARD> : The number of shards to use if you don't want to use all GPUs on a given machine. You can use `CUDA_VISIBLE_DEVICES=0,1 text-generation-launcher... --num_shard 2` and `CUDA_VISIBLE_DEVICES=2,3 text-generation-launcher... --num_shard 2` to launch 2 copies with 2 shard each on a given machine with 4 GPUs for instance
++ --quantize <QUANTIZE> : Quantization method to use for the model. It is not necessary to specify this option for pre-quantized models, since the quantization method is read from the model configuration.
+  + awq : 4 bit quantization. Requires a specific AWQ quantized model: <https://hf.co/models?search=awq>. Should replace GPTQ models wherever possible because of the better latency
+  + compressed-tensors : Compressed tensors, which can be a mixture of different quantization methods
+  + eetq : 8 bit quantization, doesn't require specific model. Should be a drop-in replacement to bitsandbytes with much better performance. Kernels are from <https://github.com/NetEase-FuXi/EETQ.git>
+  + exl2 : Variable bit quantization. Requires a specific EXL2 quantized model: <https://hf.co/models?search=exl2>. Requires exllama2 kernels and does not support tensor parallelism (num_shard > 1)
+  + gptq : 4 bit quantization. Requires a specific GTPQ quantized model: <https://hf.co/models?search=gptq>. text-generation-inference will use exllama (faster) kernels wherever possible, and use triton kernel (wider support) when it's not. AWQ has faster kernels
+  + marlin : 4 bit quantization. Requires a specific Marlin quantized model: <https://hf.co/models?search=marlin>
+  + bitsandbytes : Bitsandbytes 8bit. Can be applied on any model, will cut the memory requirement in half, but it is known that the model will be much slower to run than the native f16
+  + bitsandbytes-nf4 : Bitsandbytes 4bit. Can be applied on any model, will cut the memory requirement by 4x, but it is known that the model will be much slower to run than the native f16
+  + bitsandbytes-fp4 : Bitsandbytes 4bit. nf4 should be preferred in most cases but maybe this one has better perplexity performance for you model
+  + fp8 : [FP8](https://developer.nvidia.com/blog/nvidia-arm-and-intel-publish-fp8-specification-for-standardization-as-an-interchange-format-for-ai/) (e4m3) works on H100 and above This dtype has native ops should be the fastest if available. This is currently not the fastest because of local unpacking + padding to satisfy matrix multiplication limitations
++ --dtype <DTYPE> : The dtype to be forced upon the model. This option cannot be used with `--quantize`
++ --kv-cache-dtype <KV_CACHE_DTYPE> : Specify the dtype for the key-value cache. When this option is not provided, the dtype of the model is used (typically `float16` or `bfloat16`). Currently the only supported value are `fp8_e4m3fn` and `fp8_e5m2` on CUDA
++  --max-concurrent-requests <MAX_CONCURRENT_REQUESTS> : The maximum amount of concurrent requests for this particular deployment. Having a low limit will refuse clients requests instead of having them wait for too long and is usually good to handle backpressure correctly [default: 128]
++ --max-best-of <MAX_BEST_OF> : This is the maximum allowed value for clients to set `best_of`. Best of makes `n` generations at the same time, and return the best in terms of overall log probability over the entire generated sequence
++ --max-input-tokens <MAX_INPUT_TOKENS> : This is the maximum allowed input length (expressed in number of tokens) for users. The larger this value, the longer prompt users can send which can impact the overall memory required to handle the load. Please note that some models have a finite range of sequence they can handle. Default to min(max_allocatable, max_position_embeddings) - 1
++ --max-total-tokens <MAX_TOTAL_TOKENS> : This is the most important value to set as it defines the "memory budget" of running clients requests.
++ --max-batch-prefill-tokens <MAX_BATCH_PREFILL_TOKENS> : Limits the number of tokens for the prefill operation. Since this operation take the most memory and is compute bound, it is interesting to limit the number of requests that can be sent. Default to `max_input_tokens + 50` to give a bit of room
++ --max-batch-total-tokens <MAX_BATCH_TOTAL_TOKENS> : **IMPORTANT** This is one critical control to allow maximum usage of the available hardware. This represents the total amount of potential tokens within a batch. When using padding (not recommended) this would be equivalent of `batch_size` * `max_total_tokens`.
++ --cuda-graphs <CUDA_GRAPHS> : Specify the batch sizes to compute cuda graphs for. Use "0" to disable. Default = "1,2,4,8,16,32"
++ --tokenizer-config-path <TOKENIZER_CONFIG_PATH> : The path to the tokenizer config file. This path is used to load the tokenizer configuration which may include a `chat_template`. If not provided, the default config will be used from the model hub
++  -e, --env : Display a lot of information about your runtime environment
+** On which nodes it works ?
+*** Rennes :
+**** TODO :: abacus21 : 3 x Nvidia A100-PCIE-40GB (40 GiB) Compute capability: 8.0
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A100-PCIE-40GB          On  | 00000000:21:00.0 Off |                    0 |
+| N/A   32C    P0              34W / 250W |      0MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A100-PCIE-40GB          On  | 00000000:81:00.0 Off |                    0 |
+| N/A   31C    P0              33W / 250W |      0MiB / 40960MiB |      0%      Default |
+|                                         |                      |             Disabled |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+#+end_example
+**** TODO :: abacus17 : 2 x Nvidia Quadro RTX 6000 (23 GiB) Compute capability: 7.5
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Quadro RTX 6000                On  | 00000000:21:00.0 Off |                    0 |
+| N/A   30C    P8              22W / 250W |      0MiB / 23040MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  Quadro RTX 6000                On  | 00000000:81:00.0 Off |                    0 |
+| N/A   29C    P8              23W / 250W |      0MiB / 23040MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|  No running processes found                                                           |
++---------------------------------------------------------------------------------------+
+#+end_example
+**** TODO :: grue : 4 x Nvidia Tesla T4 (15 GiB) Compute capability: 7.5
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Tesla T4                       On  | 00000000:41:00.0 Off |                    0 |
+| N/A   36C    P0              27W /  70W |  11188MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  Tesla T4                       On  | 00000000:61:00.0 Off |                    0 |
+| N/A   36C    P0              27W /  70W |   2308MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   2  Tesla T4                       On  | 00000000:81:00.0 Off |                    0 |
+| N/A   37C    P0              26W /  70W |   2308MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   3  Tesla T4                       On  | 00000000:C1:00.0 Off |                    0 |
+| N/A   38C    P0              28W /  70W |   1970MiB / 15360MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
++---------------------------------------------------------------------------------------+
+#+end_example
+[[file:images/bench_T4.png]]
+**** TODO :: abacus22 : 	3 x Nvidia A40 (45 GiB) Compute capability: 8.6
+#+begin_example
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 535.183.06             Driver Version: 535.183.06   CUDA Version: 12.2     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  NVIDIA A40                     On  | 00000000:27:00.0 Off |                    0 |
+|  0%   48C    P0              90W / 300W |  20092MiB / 46068MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   1  NVIDIA A40                     On  | 00000000:A3:00.0 Off |                    0 |
+|  0%   47C    P0              93W / 300W |   2666MiB / 46068MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+|   2  NVIDIA A40                     On  | 00000000:C3:00.0 Off |                    0 |
+|  0%   46C    P0              88W / 300W |   2212MiB / 46068MiB |      0%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A     11336      C   /opt/conda/bin/python                     20084MiB |
+|    1   N/A  N/A     11336      C   /opt/conda/bin/python                      2658MiB |
+|    2   N/A  N/A     11336      C   /opt/conda/bin/python                      2204MiB |
++---------------------------------------------------------------------------------------+
+#+end_example
+[[file:images/bench_A40.png]]
+* MLPerf
+** TODO :: JETSON
+#+begin_example
+apt update
+apt install curl
+curl -L -o public_sources.tbz2 https://developer.nvidia.com/downloads/embedded/l4t/r35_release_v3.1/sources/public_sources.tbz2/
+tar -xjf public_sources.tbz2
+cd Linux_for_Tegra/source/public
+tar -xjf kernel_src.tbz2
+apt-get install make build-essential bc libncurses-dev bison flex libssl-dev libelf-dev
+vi kernel/kernel-5.10/arch/arm64/configs/tegra_defconfig
+# to add "CONFIG_ARM64_64K_PAGES=y" at the end
+mkdir kernel_out
+./nvbuild.sh -o $PWD/kernel_out
+#+end_example
+* Jetson hello AI : https://github.com/dusty-nv/jetson-inference
+#+begin_example
+git clone --recursive --depth=1 https://github.com/dusty-nv/jetson-inference
+cd jetson-inference
+./docker/run.sh
+# inside the container
+cd build/aarch64/bin
+./detectnet "images/object_*.jpg" images/test/object_%i.jpg
+#+end_example
+** In local node without docker :
+#+begin_example
+apt-get update
+apt-get install git cmake libpython3-dev python3-numpy
+git clone --recursive https://github.com/dusty-nv/jetson-inference
+cd jetson-inference
+mkdir build
+cd build
+cmake ../
+make -j$(nproc)
+make install
+ldconfig
+cd aarch64/build/bin
+./detectnet "images/object_*.jpg" images/test/object_%i.jpg
+#+end_example
+** Collect results
+#+begin_example
+# G5k front end
+scp -r estats-9.toulouse.grid5000.fr:/tmp/jetson-inference/data/images/test .
+# Local
+scp -r toulouse.g5k:/home/dsimeu/test .
+#+end_example
+* Jetson flashing
+#+begin_example
+  ===== INSTALLATION FAILED =====
+      - Drivers for Jetson: Installed
+      - File System and OS: Failed
+      - Flash Jetson AGX Xavier: DependencyFailure
+      - DateTime Target Setup: DependencyFailure
+      - CUDA Toolkit for L4T: DependencyFailure
+      - cuDNN on Target: DependencyFailure
+      - TensorRT on Target: DependencyFailure
+      - OpenCV on Target: DependencyFailure
+      - VisionWorks on Target: DependencyFailure
+      - VPI on Target: DependencyFailure
+      - NVIDIA Container Runtime with Docker integration (Beta): DependencyFailure
+      - Multimedia API: DependencyFailure
+      - Nsight Systems: DependencyFailure
+
+  ===== Installation failed - Total 13 components =====
+  ===== 1 succeeded, 1 failed, 0 up-to-date, 11 skipped =====
+
+sdkmanager --cli --action install --login-type devzone --product Jetson --target-os Linux --version 4.6.6 --show-all-versions --target JETSON_AGX_XAVIER_TARGETS --flash --license accept
+
+lsusb dans le container docker:
+Bus 001 Device 097: ID 0955:7019 NVidia Corp.
+
+
+#+end_example

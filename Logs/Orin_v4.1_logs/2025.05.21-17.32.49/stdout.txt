@@ -1,0 +1,30 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-21 17:32:50,632 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-21 17:32:50,909 main.py:232 INFO] Detected system ID: KnownSystem.Orin
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/work/code/main.py", line 234, in <module>
+    main(main_args, DETECTED_SYSTEM)
+  File "/work/code/main.py", line 103, in main
+    load_config_fn(benchmarks, scenarios)
+  File "/work/code/main.py", line 53, in populate_config_registry
+    ConfigRegistry.load_configs(benchmark, scenario)
+  File "/work/configs/configuration.py", line 123, in load_configs
+    importlib.import_module(f"{base_module}.custom")
+  File "/usr/lib/python3.10/importlib/__init__.py", line 126, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+  File "<frozen importlib._bootstrap>", line 1050, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1027, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1006, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 688, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+  File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+  File "/work/configs/bert/SingleStream/custom.py", line 8, in <module>
+    class ORIN(SingleStreamGPUBaseConfig):
+  File "/work/configs/configuration.py", line 207, in _do_register
+    raise KeyError("Config for {} is already registered.".format("/".join(map(str, keyspace))))
+KeyError: 'Config for Benchmark.BERT/Scenario.SingleStream/KnownSystem.Orin/WorkloadSetting(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP) is already registered.'

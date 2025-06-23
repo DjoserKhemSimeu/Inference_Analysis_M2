@@ -1,0 +1,155 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-26 17:36:32,844 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-26 17:36:33,108 main.py:269 INFO] Detected system ID: KnownSystem.Orin
+[2025-05-26 17:36:37,801 harness.py:304 INFO] min_query_cnt is overwritten to 128.
+[2025-05-26 17:36:37,803 generate_conf_files.py:107 INFO] Generated measurements/ entries for Orin_TRT/bert-99/SingleStream
+[2025-05-26 17:36:37,803 harness.py:114 INFO] setting vboost to gpu default
+[2025-05-26 17:36:37,803 __init__.py:46 INFO] Running command: sudo nvidia-smi boost-slider --vboost 0
+Warning: GPU 0 is not supporting this feature: Not Supported
+[2025-05-26 17:36:37,840 __init__.py:46 INFO] Running command: ./build/bin/harness_bert --logfile_outdir="/work/build/logs/2025.05.26-17.36.31/Orin_TRT/bert-99/SingleStream" --logfile_prefix="mlperf_log_" --performance_sample_count=10833 --gpu_batch_size=1 --tensor_path="build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy" --use_graphs=true --gpu_inference_streams=1 --gpu_copy_streams=1 --gpu_engines="./build/engines/Orin/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan" --mlperf_conf_path="build/loadgen-configs/Orin_TRT/bert-99/SingleStream/mlperf.conf" --user_conf_path="build/loadgen-configs/Orin_TRT/bert-99/SingleStream/user.conf" --scenario SingleStream --model bert
+[2025-05-26 17:36:37,840 __init__.py:53 INFO] Overriding Environment
+benchmark : Benchmark.BERT
+buffer_manager_thread_count : 0
+coalesced_tensor : True
+data_dir : /media/nvidia/00640565-37a8-4b58-a27b-fbd90cd43fec/scratch//data
+gpu_batch_size : 1
+gpu_copy_streams : 1
+gpu_inference_streams : 1
+input_dtype : int32
+input_format : linear
+log_dir : /work/build/logs/2025.05.26-17.36.31
+max_query_count : 128
+min_query_count : 128
+precision : int8
+preprocessed_data_dir : /media/nvidia/00640565-37a8-4b58-a27b-fbd90cd43fec/scratch//preprocessed_data
+scenario : Scenario.SingleStream
+single_stream_expected_latency_ns : 6200000
+system : SystemConfiguration(host_cpu_conf=CPUConfiguration(layout={CPU(name='Cortex-A78AE', architecture=<CPUArchitecture.aarch64: AliasedName(name='aarch64', aliases=(), patterns=())>, core_count=4, threads_per_core=1): 1}), host_mem_conf=MemoryConfiguration(host_memory_capacity=Memory(quantity=64.34952, byte_suffix=<ByteSuffix.GB: (1000, 3)>, _num_bytes=64349520000), comparison_tolerance=0.05), accelerator_conf=AcceleratorConfiguration(layout=defaultdict(<class 'int'>, {GPU(name='NVIDIA Jetson AGX Orin Developer Kit', accelerator_type=<AcceleratorType.Integrated: AliasedName(name='Integrated', aliases=(), patterns=())>, vram=None, max_power_limit=None, pci_id=None, compute_sm=87): 1})), numa_conf=None, system_id='Orin')
+tensor_path : build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy
+use_graphs : True
+use_small_tile_gemm_plugin : False
+system_id : Orin
+config_name : Orin_bert_SingleStream
+workload_setting : WorkloadSetting(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP)
+optimization_level : plugin-enabled
+num_profiles : 1
+config_ver : custom_k_99_MaxP
+accuracy_level : 99%
+inference_server : custom
+skip_file_checks : True
+soc_gpu_freq : None
+soc_dla_freq : None
+soc_cpu_freq : None
+soc_emc_freq : None
+soc_pva_freq : None
+orin_num_cores : None
+orin_skip_maxq_reset : None
+gpu_engine_batch_size : 1
+&&&& RUNNING BERT_HARNESS # ./build/bin/harness_bert
+I0526 17:36:37.899636 22004 main_bert.cc:178] Found 1 GPUs
+I0526 17:36:38.051366 22004 bert_server.cc:147] Engine Path: ./build/engines/Orin/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan
+[I] [TRT] Loaded engine size: 352 MiB
+[W] [TRT] Using an engine plan file across different models of devices is not recommended and is likely to affect performance or even cause errors.
+I0526 17:36:38.310997 22004 bert_server.cc:208] Engines Creation Completed
+I0526 17:36:38.312234 22004 bert_server.cc:213] Use CUDA graphs
+I0526 17:36:38.312811 22004 bert_core_vs.cc:344] Engine - Device Memory requirements: 2753024
+I0526 17:36:38.312825 22004 bert_core_vs.cc:352] Engine - Number of Optimization Profiles: 1
+I0526 17:36:38.312865 22004 bert_core_vs.cc:372] Engine - Profile 0 maxDims 384 Bmax=1 Smax=384
+I0526 17:36:38.404247 22004 bert_core_vs.cc:383] Setting Opt.Prof. to 0
+I0526 17:36:38.404310 22004 bert_core_vs.cc:401] Context creation complete. Max supported batchSize: 1
+[I] [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +0, now: CPU 0, GPU 290 (MiB)
+I0526 17:36:38.404747 22004 bert_core_vs.cc:433] Setup complete
+I0526 17:36:38.722378 22009 bert_core_vs.cc:311] Created 96 CUDA graphs
+I0526 17:36:38.760277 22004 main_bert.cc:199] Starting running actual test.
+###################Début de la mesure jtop###########################
+
+
+================================================
+MLPerf Results Summary
+================================================
+SUT name : BERT SERVER
+Scenario : SingleStream
+Mode     : PerformanceOnly
+Query count : 128
+Sample count : 128
+90th percentile latency (ns) : 6868032
+Result is : INVALID
+  Min duration satisfied : NO
+  Min queries satisfied : Yes
+  Early stopping satisfied: Yes
+Recommendations:
+ * Decrease the expected latency so the loadgen pre-generates more queries.
+Early Stopping Result:
+ * Processed at least 64 queries (128).
+ * Would discard 4 highest latency queries.
+ * Early stopping 90th percentile estimate: 8742368
+ * Not enough queries processed for 99th percentile
+ early stopping estimate (would need to process at
+ least 662 total queries).
+
+================================================
+Additional Stats
+================================================
+QPS w/ loadgen overhead         : 177.42
+QPS w/o loadgen overhead        : 177.86
+
+Min latency (ns)                : 4177344
+Max latency (ns)                : 18821824
+Mean latency (ns)               : 5622272
+50.00 percentile latency (ns)   : 4964032
+90.00 percentile latency (ns)   : 6868032
+95.00 percentile latency (ns)   : 7848256
+97.00 percentile latency (ns)   : 10090720
+99.00 percentile latency (ns)   : 16953696
+99.90 percentile latency (ns)   : 18821824
+
+================================================
+Test Parameters Used
+================================================
+samples_per_query : 1
+target_qps : 161.29
+target_latency (ns): 0
+max_async_queries : 1
+min_duration (ms): 600000
+max_duration (ms): 0
+min_query_count : 128
+max_query_count : 128
+qsl_rng_seed : 3066443479025735752
+sample_index_rng_seed : 10688027786191513374
+schedule_rng_seed : 14962580496156340209
+accuracy_log_rng_seed : 0
+accuracy_log_probability : 0
+accuracy_log_sampling_target : 0
+print_timestamps : 0
+performance_issue_unique : 0
+performance_issue_same : 0
+performance_issue_same_index : 0
+performance_sample_count : 10833
+
+No warnings encountered during test.
+
+1 ERROR encountered. See detailed log.
+SSH connection is not active. Reconnecting...
+    PID TTY          TIME CMD
+    PID TTY          TIME CMD
+
+
+###################Fin de la mesure jtop###########################
+I0526 17:36:42.862987 22004 main_bert.cc:210] Finished running actual test.
+[2025-05-26 17:36:43,240 harness.py:114 INFO] setting vboost to gpu default
+[2025-05-26 17:36:43,240 __init__.py:46 INFO] Running command: sudo nvidia-smi boost-slider --vboost 0
+Warning: GPU 0 is not supporting this feature: Not Supported
+[2025-05-26 17:36:43,286 run_harness.py:166 INFO] Result: result_90.00_percentile_latency_ns: 6868032, Result is INVALID, 10-min runtime requirement met: True
+ 
+======================== Result summaries: ========================
+
+ Orin_TRT-custom_k_99_MaxP-SingleStream:
+   bert-99:
+     performance: result_90.00_percentile_latency_ns: 6868032, Result is INVALID, 10-min runtime requirement met: True
+ 
+
+======================== Extra Perf Stats: ========================
+
+ Orin_TRT-custom_k_99_MaxP-SingleStream:
+    FileNotFoundError: Cannot find perf logs for Orin_TRT/bert-99/SingleStream at build/artifacts/closed/NVIDIA/results/Orin_TRT/bert-99/SingleStream/performance/run_1. Non-NVIDIA users ignore this. NVIDIA users run `make pull_artifacts_repo`.

@@ -1,0 +1,57 @@
+================================================
+MLPerf Results Summary
+================================================
+SUT name : BERT SERVER
+Scenario : SingleStream
+Mode     : PerformanceOnly
+Queries count : 32
+Samples count : 32
+90th percentile latency (ns) : 23290262
+Result is : INVALID
+  Min duration satisfied : NO
+  Min queries satisfied : Yes
+Recommendations:
+ * Decrease the expected latency so the loadgen pre-generates more queries.
+
+================================================
+Additional Stats
+================================================
+QPS w/ loadgen overhead         : 48.35
+QPS w/o loadgen overhead        : 48.38
+
+Min latency (ns)                : 16539198
+Max latency (ns)                : 29442995
+Mean latency (ns)               : 20669295
+50.00 percentile latency (ns)   : 20074114
+90.00 percentile latency (ns)   : 23290262
+95.00 percentile latency (ns)   : 25086410
+97.00 percentile latency (ns)   : 29442995
+99.00 percentile latency (ns)   : 29442995
+99.90 percentile latency (ns)   : 29442995
+
+================================================
+Test Parameters Used
+================================================
+samples_per_query : 1
+target_qps : 3.22581
+target_latency (ns): 0
+max_async_queries : 1
+min_duration (ms): 600000
+max_duration (ms): 0
+min_query_count : 32
+max_query_count : 32
+qsl_rng_seed : 1624344308455410291
+sample_index_rng_seed : 517984244576520566
+schedule_rng_seed : 10051496985653635065
+accuracy_log_rng_seed : 0
+accuracy_log_probability : 0
+accuracy_log_sampling_target : 0
+print_timestamps : 0
+performance_issue_unique : 0
+performance_issue_same : 0
+performance_issue_same_index : 0
+performance_sample_count : 10833
+
+No warnings encountered during test.
+
+2 ERRORS encountered. See detailed log.

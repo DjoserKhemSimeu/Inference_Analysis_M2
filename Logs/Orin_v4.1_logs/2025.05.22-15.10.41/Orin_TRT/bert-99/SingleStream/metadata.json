@@ -1,0 +1,18 @@
+{
+    "benchmark_full": "bert-99",
+    "benchmark_short": "bert",
+    "config_name": "Orin_TRT-custom_k_99_MaxP-SingleStream",
+    "detected_system": "SystemConfiguration(host_cpu_conf=CPUConfiguration(layout={CPU(name=\"Cortex-A78AE\", architecture=CPUArchitecture.aarch64, core_count=4, threads_per_core=1): 1}), host_mem_conf=MemoryConfiguration(host_memory_capacity=Memory(quantity=64.349524, byte_suffix=ByteSuffix.GB), comparison_tolerance=0.05), accelerator_conf=AcceleratorConfiguration(layout={GPU(name=\"NVIDIA Jetson AGX Orin Developer Kit\", accelerator_type=AcceleratorType.Integrated, vram=None, max_power_limit=None, pci_id=None, compute_sm=87): 1}), numa_conf=None, system_id=\"Orin\")",
+    "early_stopping_met": false,
+    "effective_min_duration_ms": 600000,
+    "effective_min_query_count": 16,
+    "result_90.00_percentile_latency_ns": 16890816,
+    "result_validity": "INVALID",
+    "satisfies_query_constraint": false,
+    "scenario": "SingleStream",
+    "scenario_key": "result_90.00_percentile_latency_ns",
+    "summary_string": "result_90.00_percentile_latency_ns: 16890816, Result is INVALID, 10-min runtime requirement met: True",
+    "system_name": "Orin_TRT",
+    "tensorrt_version": "10.1.0",
+    "test_mode": "PerformanceOnly"
+}

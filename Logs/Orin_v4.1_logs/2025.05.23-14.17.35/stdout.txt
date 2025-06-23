@@ -1,0 +1,6 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-23 14:17:36,464 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-23 14:17:36,713 main.py:269 INFO] Detected system ID: KnownSystem.Orin
+[2025-05-23 14:17:36,729 transport.py:1944 INFO] Connected (version 2.0, client OpenSSH_8.9p1)
+[2025-05-23 14:17:36,834 transport.py:1944 INFO] Authentication (password) successful!

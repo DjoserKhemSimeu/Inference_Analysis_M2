@@ -1,0 +1,27 @@
+* Denis Questions
+** 1 :  variation du mix énergétique en France, j'ai les données : 1kWh correspond à 45 g de CO2, est-ce le bon ordre de grandeur ? Quel est le mix moyen dans le monde ? en Europe ?
+#+begin_center
+[[file:images_questions/question_1.png]]
+#+end_center
++ Source : https://base-empreinte.ademe.fr/donnees/jeu-donnees
++ Selon la base de donnée Base Empreinte de l'ademe, sur l'année 2023, la production de 1kWH d'élécricité correspond à une emission de CO2 de l'ordre de 58g. Je n'ai pas réussis a trouver des données plus récente que 2023 mais selon moi il s'agit d'un bon point de depart.
+** 2 : A-t-on une donnée sur la répartition moyenne énergétique en France (j'ai des vieilles données de greenIT qui donne 20% d'électrité dans le mix, dont 80% vient du nucléaire, est-ce encore bon ?
+#+begin_center
+[[file:images_questions/question_2.png]]
+#+end_center
++ Source : https://www.statistiques.developpement-durable.gouv.fr/chiffres-cles-de-lenergie-edition-2024
++ selon l'étude de ministère de la transition écologique, en 2023, en France l'éléctricité représente 27% du mix energetique global. Au sein de ces 27%, 72% de la production éléctrique vient du nucléaire.
+#+begin_center
+[[file:images_questions/impact_nrj.png]]
+#+end_center
+** 3 : A-t-on (par exemple sur "my world in data") des figures sur l'évolution de la conso mondiale en C02 ? mes données s'arrêtent en 2020...
+#+begin_center
+[[file:images_questions/question_3_1.png]]
+#+end_center
++ Source : https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-du-climat/fr/6-repartition-geographique-et-evolution-des
+#+begin_center
+[[file:images_questions/question_3.png]]
+#+end_center
++ Source : https://www.statistiques.developpement-durable.gouv.fr/edition-numerique/chiffres-cles-du-climat/fr/5-panorama-mondial-des-emissions-de
+** 4 : Plus compliqué, il existait une étude du shift project sur l'équivalent carbone d'une heure de streaming vidéo (par exemple, en France), Le Shift avait produit un chiffre faux en se trompant dans le calcul sur un paramètre (ordre de grandeur) ils ont corrigé, a-t-on des chiffres récents ? Idem, il traine un équivalent pour les emails et plus récemment pour une requête utilisant ChatGPT... Avez-vous des données (tableau, figure) là dessus ?
++ https://theshiftproject.org/wp-content/uploads/2020/06/2020-06_Did-TSP-overestimate-the-carbon-footprint-of-online-video_EN.pdf

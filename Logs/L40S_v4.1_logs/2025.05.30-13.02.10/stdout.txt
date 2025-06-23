@@ -1,0 +1,127 @@
+[2025-05-30 13:02:55,663 main.py:248 INFO] Detected system ID: KnownSystem.L40S
+[2025-05-30 13:02:57,584 harness.py:304 INFO] min_query_cnt is overwritten to 16.
+[2025-05-30 13:02:57,585 generate_conf_files.py:107 INFO] Generated measurements/ entries for L40S_TRT/bert-99/SingleStream
+[2025-05-30 13:02:57,585 __init__.py:46 INFO] Running command: ./build/bin/harness_bert --logfile_outdir="/work/build/logs/2025.05.30-13.02.10/L40S_TRT/bert-99/SingleStream" --logfile_prefix="mlperf_log_" --performance_sample_count=10833 --gpu_batch_size=1 --tensor_path="build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy" --use_graphs=true --gpu_inference_streams=1 --gpu_copy_streams=1 --gpu_engines="./build/engines/L40S/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan" --mlperf_conf_path="build/loadgen-configs/L40S_TRT/bert-99/SingleStream/mlperf.conf" --user_conf_path="build/loadgen-configs/L40S_TRT/bert-99/SingleStream/user.conf" --scenario SingleStream --model bert
+[2025-05-30 13:02:57,585 __init__.py:53 INFO] Overriding Environment
+benchmark : Benchmark.BERT
+buffer_manager_thread_count : 0
+coalesced_tensor : True
+data_dir : /tmp/scratch//data
+gpu_batch_size : 1
+gpu_copy_streams : 1
+gpu_inference_streams : 1
+input_dtype : int32
+input_format : linear
+log_dir : /work/build/logs/2025.05.30-13.02.10
+max_query_count : 16
+min_query_count : 16
+precision : int8
+preprocessed_data_dir : /tmp/scratch//preprocessed_data
+scenario : Scenario.SingleStream
+single_stream_expected_latency_ns : 6200000
+system : SystemConfiguration(host_cpu_conf=CPUConfiguration(layout={CPU(name='Intel(R) Xeon(R) Gold 6442Y', architecture=<CPUArchitecture.x86_64: AliasedName(name='x86_64', aliases=(), patterns=())>, core_count=24, threads_per_core=2): 2}), host_mem_conf=MemoryConfiguration(host_memory_capacity=Memory(quantity=263.859676, byte_suffix=<ByteSuffix.GB: (1000, 3)>, _num_bytes=263859676000), comparison_tolerance=0.05), accelerator_conf=AcceleratorConfiguration(layout=defaultdict(<class 'int'>, {GPU(name='NVIDIA L40S', accelerator_type=<AcceleratorType.Discrete: AliasedName(name='Discrete', aliases=(), patterns=())>, vram=Memory(quantity=44.98828125, byte_suffix=<ByteSuffix.GiB: (1024, 3)>, _num_bytes=48305799168), max_power_limit=350.0, pci_id='0x26B910DE', compute_sm=89): 1})), numa_conf=None, system_id='L40S')
+tensor_path : build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy
+use_graphs : True
+use_small_tile_gemm_plugin : False
+system_id : L40S
+config_name : L40S_bert_SingleStream
+workload_setting : WorkloadSetting(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP)
+optimization_level : plugin-enabled
+num_profiles : 1
+config_ver : custom_k_99_MaxP
+accuracy_level : 99%
+inference_server : custom
+skip_file_checks : True
+power_limit : None
+cpu_freq : None
+gpu_engine_batch_size : 1
+&&&& RUNNING BERT_HARNESS # ./build/bin/harness_bert
+I20250530 13:02:57.629727 22722 main_bert.cc:198] Found 1 GPUs
+I20250530 13:02:57.780267 22722 bert_server.cc:147] Engine Path: ./build/engines/L40S/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan
+[I] [TRT] Loaded engine size: 352 MiB
+I20250530 13:02:58.007079 22722 bert_server.cc:208] Engines Creation Completed
+I20250530 13:02:58.007820 22722 bert_server.cc:213] Use CUDA graphs
+I20250530 13:02:58.007997 22722 bert_core_vs.cc:344] Engine - Device Memory requirements: 2753024
+I20250530 13:02:58.008003 22722 bert_core_vs.cc:352] Engine - Number of Optimization Profiles: 1
+I20250530 13:02:58.008018 22722 bert_core_vs.cc:372] Engine - Profile 0 maxDims 384 Bmax=1 Smax=384
+I20250530 13:02:58.062151 22722 bert_core_vs.cc:383] Setting Opt.Prof. to 0
+I20250530 13:02:58.062182 22722 bert_core_vs.cc:401] Context creation complete. Max supported batchSize: 1
+[I] [TRT] [MemUsageChange] TensorRT-managed allocation in IExecutionContext creation: CPU +0, GPU +0, now: CPU 0, GPU 290 (MiB)
+I20250530 13:02:58.062902 22722 bert_core_vs.cc:433] Setup complete
+I20250530 13:02:58.194485 22727 bert_core_vs.cc:311] Created 96 CUDA graphs
+I20250530 13:02:58.196012 22722 main_bert.cc:219] Starting running actual test.
+Script lancé en arrière-plan avec le PID : 22729
+================================================
+MLPerf Results Summary
+================================================
+SUT name : BERT SERVER
+Scenario : SingleStream
+Mode     : PerformanceOnly
+90th percentile latency (ns) : 1489726
+Result is : INVALID
+  Min duration satisfied : NO
+  Min queries satisfied : Yes
+  Early stopping satisfied: NO
+Recommendations:
+ * Decrease the expected latency so the loadgen pre-generates more queries.
+Early Stopping Result:
+ * Only processed 16 queries.
+ * Need to process at least 64 queries for early stopping.
+
+================================================
+Additional Stats
+================================================
+QPS w/ loadgen overhead         : 688.82
+QPS w/o loadgen overhead        : 727.94
+
+Min latency (ns)                : 1120511
+Max latency (ns)                : 1519838
+Mean latency (ns)               : 1373736
+50.00 percentile latency (ns)   : 1387474
+90.00 percentile latency (ns)   : 1489726
+95.00 percentile latency (ns)   : 1519838
+97.00 percentile latency (ns)   : 1519838
+99.00 percentile latency (ns)   : 1519838
+99.90 percentile latency (ns)   : 1519838
+
+================================================
+Test Parameters Used
+================================================
+samples_per_query : 1
+target_qps : 161.29
+target_latency (ns): 0
+max_async_queries : 1
+min_duration (ms): 600000
+max_duration (ms): 0
+min_query_count : 16
+max_query_count : 16
+qsl_rng_seed : 3066443479025735752
+sample_index_rng_seed : 10688027786191513374
+schedule_rng_seed : 14962580496156340209
+accuracy_log_rng_seed : 0
+accuracy_log_probability : 0
+accuracy_log_sampling_target : 0
+print_timestamps : 0
+performance_issue_unique : 0
+performance_issue_same : 0
+performance_issue_same_index : 0
+performance_sample_count : 10833
+
+No warnings encountered during test.
+
+1 ERROR encountered. See detailed log.
+I20250530 13:02:58.379119 22722 main_bert.cc:232] Finished running actual test.
+Script lancé en arrière-plan avec le PID : 22781
+[2025-05-30 13:02:58,501 run_harness.py:166 INFO] Result: result_90.00_percentile_latency_ns: 1489726, Result is INVALID, 10-min runtime requirement met: True
+ 
+======================== Result summaries: ========================
+
+ L40S_TRT-custom_k_99_MaxP-SingleStream:
+   bert-99:
+     performance: result_90.00_percentile_latency_ns: 1489726, Result is INVALID, 10-min runtime requirement met: True
+ 
+
+======================== Extra Perf Stats: ========================
+
+ L40S_TRT-custom_k_99_MaxP-SingleStream:
+    FileNotFoundError: Cannot find perf logs for L40S_TRT/bert-99/SingleStream at build/artifacts/closed/NVIDIA/results/L40S_TRT/bert-99/SingleStream/performance/run_1. Non-NVIDIA users ignore this. NVIDIA users run `make pull_artifacts_repo`.

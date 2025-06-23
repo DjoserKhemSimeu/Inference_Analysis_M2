@@ -1,0 +1,14 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-21 17:19:16,107 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-21 17:19:16,395 main.py:232 INFO] Detected system ID: KnownSystem.Orin
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/work/code/main.py", line 234, in <module>
+    main(main_args, DETECTED_SYSTEM)
+  File "/work/code/main.py", line 100, in main
+    raise RuntimeError(f"'{scenario_name}' is not a valid scenario name.")
+RuntimeError: 'offline--test_run' is not a valid scenario name.

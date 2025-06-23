@@ -1,0 +1,7 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-21 16:29:51,228 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-21 16:29:51,508 main.py:230 INFO] Detected system did not match any known systems. Exiting. SystemConfiguration(host_cpu_conf=CPUConfiguration(layout={CPU(name='Cortex-A78AE', architecture=<CPUArchitecture.aarch64: AliasedName(name='aarch64', aliases=(), patterns=())>, core_count=4, threads_per_core=1): 1}), host_mem_conf=MemoryConfiguration(host_memory_capacity=Memory(quantity=64.34951600000001, byte_suffix=<ByteSuffix.GB: (1000, 3)>, _num_bytes=64349516000), comparison_tolerance=0.05), accelerator_conf=AcceleratorConfiguration(layout=defaultdict(<class 'int'>, {GPU(name='Orin (nvgpu)', accelerator_type=<AcceleratorType.Discrete: AliasedName(name='Discrete', aliases=(), patterns=())>, vram=None, max_power_limit=None, pci_id='[N/A]', compute_sm=87): 1})), numa_conf=None, system_id=None)
+ 
+======================== Result summaries: ========================
+

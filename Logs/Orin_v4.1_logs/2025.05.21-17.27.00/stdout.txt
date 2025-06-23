@@ -1,0 +1,91 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-21 17:27:01,342 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-21 17:27:01,620 main.py:232 INFO] Detected system ID: KnownSystem.Orin
+[2025-05-21 17:27:06,198 harness.py:302 INFO] min_duration is overwritten to 60000.
+[2025-05-21 17:27:06,198 harness.py:304 INFO] min_query_cnt is overwritten to 1.
+[2025-05-21 17:27:06,199 generate_conf_files.py:107 INFO] Generated measurements/ entries for Orin_TRT/bert-99/SingleStream
+[2025-05-21 17:27:06,200 harness.py:114 INFO] setting vboost to gpu default
+[2025-05-21 17:27:06,200 __init__.py:46 INFO] Running command: sudo nvidia-smi boost-slider --vboost 0
+Warning: GPU 0 is not supporting this feature: Not Supported
+[2025-05-21 17:27:06,243 __init__.py:46 INFO] Running command: ./build/bin/harness_bert --logfile_outdir="/work/build/logs/2025.05.21-17.27.00/Orin_TRT/bert-99/SingleStream" --logfile_prefix="mlperf_log_" --performance_sample_count=10833 --gpu_batch_size=1 --tensor_path="build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy" --use_graphs=false --gpu_inference_streams=1 --gpu_copy_streams=1 --gpu_engines="./build/engines/Orin/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan" --mlperf_conf_path="build/loadgen-configs/Orin_TRT/bert-99/SingleStream/mlperf.conf" --user_conf_path="build/loadgen-configs/Orin_TRT/bert-99/SingleStream/user.conf" --scenario SingleStream --model bert
+[2025-05-21 17:27:06,243 __init__.py:53 INFO] Overriding Environment
+benchmark : Benchmark.BERT
+buffer_manager_thread_count : 0
+coalesced_tensor : True
+data_dir : /data
+gpu_batch_size : 1
+gpu_copy_streams : 1
+gpu_inference_streams : 1
+input_dtype : int32
+input_format : linear
+log_dir : /work/build/logs/2025.05.21-17.27.00
+precision : int8
+preprocessed_data_dir : /preprocessed_data
+scenario : Scenario.SingleStream
+single_stream_expected_latency_ns : 6200000
+system : SystemConfiguration(host_cpu_conf=CPUConfiguration(layout={CPU(name='Cortex-A78AE', architecture=<CPUArchitecture.aarch64: AliasedName(name='aarch64', aliases=(), patterns=())>, core_count=4, threads_per_core=1): 1}), host_mem_conf=MemoryConfiguration(host_memory_capacity=Memory(quantity=64.34951600000001, byte_suffix=<ByteSuffix.GB: (1000, 3)>, _num_bytes=64349516000), comparison_tolerance=0.05), accelerator_conf=AcceleratorConfiguration(layout=defaultdict(<class 'int'>, {GPU(name='NVIDIA Jetson AGX Orin Developer Kit', accelerator_type=<AcceleratorType.Integrated: AliasedName(name='Integrated', aliases=(), patterns=())>, vram=None, max_power_limit=None, pci_id=None, compute_sm=87): 1})), numa_conf=None, system_id='Orin')
+tensor_path : build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy
+test_run : True
+use_graphs : False
+use_small_tile_gemm_plugin : False
+system_id : Orin
+config_name : Orin_bert_SingleStream
+workload_setting : WorkloadSetting(HarnessType.Custom, AccuracyTarget.k_99, PowerSetting.MaxP)
+optimization_level : plugin-enabled
+num_profiles : 1
+config_ver : custom_k_99_MaxP
+accuracy_level : 99%
+inference_server : custom
+skip_file_checks : True
+soc_gpu_freq : None
+soc_dla_freq : None
+soc_cpu_freq : None
+soc_emc_freq : None
+soc_pva_freq : None
+orin_num_cores : None
+orin_skip_maxq_reset : None
+gpu_engine_batch_size : 1
+&&&& RUNNING BERT_HARNESS # ./build/bin/harness_bert
+I0521 17:27:06.308547  2242 main_bert.cc:163] Found 1 GPUs
+F0521 17:27:06.309417  2242 numpy.hpp:52] Check failed: m_FStream Unable to parse: build/preprocessed_data/squad_tokenized/input_ids.npy
+*** Check failure stack trace: ***
+    @     0xffff8c0dd41c  google::LogMessage::Fail()
+    @     0xffff8c0e46d0  google::LogMessage::SendToLog()
+    @     0xffff8c0dd0f4  google::LogMessage::Flush()
+    @     0xffff8c0deebc  google::LogMessageFatal::~LogMessageFatal()
+    @     0xaaaabfee2420  npy::NpyFile::NpyFile()
+    @     0xaaaabfee45d0  qsl::SampleLibrary::SampleLibrary()
+    @     0xaaaabfee5580  std::__shared_count<>::__shared_count<>()
+    @     0xaaaabfec6854  main
+    @     0xffff8bc473fc  (unknown)
+    @     0xffff8bc474cc  __libc_start_main
+    @     0xaaaabfec7570  _start
+Aborted (core dumped)
+[2025-05-21 17:27:06,469 harness.py:114 INFO] setting vboost to gpu default
+[2025-05-21 17:27:06,469 __init__.py:46 INFO] Running command: sudo nvidia-smi boost-slider --vboost 0
+Warning: GPU 0 is not supporting this feature: Not Supported
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/work/code/main.py", line 234, in <module>
+    main(main_args, DETECTED_SYSTEM)
+  File "/work/code/main.py", line 144, in main
+    dispatch_action(main_args, config_dict, workload_setting)
+  File "/work/code/main.py", line 204, in dispatch_action
+    handler.run()
+  File "/work/code/actionhandler/base.py", line 82, in run
+    self.handle_failure()
+  File "/work/code/actionhandler/run_harness.py", line 196, in handle_failure
+    raise RuntimeError("Run harness failed!")
+RuntimeError: Run harness failed!
+Traceback (most recent call last):
+  File "/work/code/actionhandler/run_harness.py", line 161, in handle
+    result_data = self.harness.run_harness(flag_dict=self.harness_flag_dict, skip_generate_measurements=True)
+  File "/work/code/common/harness.py", line 341, in run_harness
+    output = run_command(self._construct_terminal_command(argstr),
+  File "/work/code/common/__init__.py", line 67, in run_command
+    raise subprocess.CalledProcessError(ret, cmd)
+subprocess.CalledProcessError: Command './build/bin/harness_bert --logfile_outdir="/work/build/logs/2025.05.21-17.27.00/Orin_TRT/bert-99/SingleStream" --logfile_prefix="mlperf_log_" --performance_sample_count=10833 --gpu_batch_size=1 --tensor_path="build/preprocessed_data/squad_tokenized/input_ids.npy,build/preprocessed_data/squad_tokenized/segment_ids.npy,build/preprocessed_data/squad_tokenized/input_mask.npy" --use_graphs=false --gpu_inference_streams=1 --gpu_copy_streams=1 --gpu_engines="./build/engines/Orin/bert/SingleStream/bert-SingleStream-gpu-int8_S_384_B_1_P_1_vs.custom_k_99_MaxP.plan" --mlperf_conf_path="build/loadgen-configs/Orin_TRT/bert-99/SingleStream/mlperf.conf" --user_conf_path="build/loadgen-configs/Orin_TRT/bert-99/SingleStream/user.conf" --scenario SingleStream --model bert' returned non-zero exit status 134.

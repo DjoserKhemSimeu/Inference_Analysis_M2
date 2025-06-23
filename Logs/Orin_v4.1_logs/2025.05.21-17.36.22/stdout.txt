@@ -1,0 +1,22 @@
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cuda module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.driver module instead.
+<frozen importlib._bootstrap_external>:1184: FutureWarning: The cuda.cudart module is deprecated and will be removed in a future release, please switch to use the cuda.bindings.runtime module instead.
+[2025-05-21 17:36:23,876 systems.py:174 WARNING] nvidia-smi command exists but failed to execute - Ignoring NUMA detection.
+[2025-05-21 17:36:24,155 main.py:232 INFO] Detected system ID: KnownSystem.Orin
+Traceback (most recent call last):
+  File "/usr/lib/python3.10/runpy.py", line 196, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/usr/lib/python3.10/runpy.py", line 86, in _run_code
+    exec(code, run_globals)
+  File "/work/code/main.py", line 234, in <module>
+    main(main_args, DETECTED_SYSTEM)
+  File "/work/code/main.py", line 103, in main
+    load_config_fn(benchmarks, scenarios)
+  File "/work/code/main.py", line 53, in populate_config_registry
+    ConfigRegistry.load_configs(benchmark, scenario)
+  File "/work/configs/configuration.py", line 121, in load_configs
+    if importlib.util.find_spec(f"{base_module}.custom") is not None:
+  File "/usr/lib/python3.10/importlib/util.py", line 94, in find_spec
+    parent = __import__(parent_name, fromlist=['__path__'])
+  File "/work/configs/bert/SingleStream/__init__.py", line 578, in <module>
+    class Orin_Triton(Orin):
+NameError: name 'Orin' is not defined. Did you mean: 'print'?

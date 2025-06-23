@@ -1,0 +1,18 @@
+{
+    "benchmark_full": "bert-99",
+    "benchmark_short": "bert",
+    "config_name": "L40S_TRT-custom_k_99_MaxP-SingleStream",
+    "detected_system": "SystemConfiguration(host_cpu_conf=CPUConfiguration(layout={CPU(name=\"Intel(R) Xeon(R) Gold 6442Y\", architecture=CPUArchitecture.x86_64, core_count=24, threads_per_core=2): 2}), host_mem_conf=MemoryConfiguration(host_memory_capacity=Memory(quantity=263.859676, byte_suffix=ByteSuffix.GB), comparison_tolerance=0.05), accelerator_conf=AcceleratorConfiguration(layout={GPU(name=\"NVIDIA L40S\", accelerator_type=AcceleratorType.Discrete, vram=Memory(quantity=44.98828125, byte_suffix=ByteSuffix.GiB), max_power_limit=350.0, pci_id=\"0x26B910DE\", compute_sm=89): 1}), numa_conf=None, system_id=\"L40S\")",
+    "early_stopping_met": true,
+    "effective_min_duration_ms": 600000,
+    "effective_min_query_count": 256,
+    "result_90.00_percentile_latency_ns": 1372690,
+    "result_validity": "INVALID",
+    "satisfies_query_constraint": false,
+    "scenario": "SingleStream",
+    "scenario_key": "result_90.00_percentile_latency_ns",
+    "summary_string": "result_90.00_percentile_latency_ns: 1372690, Result is INVALID, 10-min runtime requirement met: True",
+    "system_name": "L40S_TRT",
+    "tensorrt_version": "10.2.0",
+    "test_mode": "PerformanceOnly"
+}

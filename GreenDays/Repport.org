@@ -1,0 +1,88 @@
+* Rapport GreenDays 2025 Rennes
+** Day 1 :
+*** Ouverture :
+**** Personal notes :
++ Eunice Newton Foote : first person to recognize the negative impact of GHG emmisons, but was not recognized at this time
++ Strong diveregence between the environmental impact research domain an the global economic perspectives (illustrated by the speech of Macron during the AI summit : "plug baby plug")
+*** Bilan carbon GD :
+**** Personal notes :
++ The objectives by doing a carbon analysis of the conference multiples : sensibilze participants, compare events,...
++ the research lab 1 point 5 provide tools to construct carbon analysis of diverse type of events
++ Mobility : 4.8 tCo2
++ Hotels : 1.6 tCo2
++ Food : 7.1 tCo2
++ total : 30 kgCO2/day/person
++ what to conclude : Hybrid conf ?
+*** Maenda Kithoko David : Keynotes Une perspective congolaise sur les infrastructures et l'extractivisme:
+**** Personal notes :
++ 1885 Berlin Conference : Congo -> Belgium
++ 2nd biggest forest of the world
++ lot of caoutchouc
++ congolese people are exploited to extract rare materials (uranium gold cooper ... materials mainly used for building Informatic's hardware)-> conflict
++ Artisanal = child exploitation
++ 6 million of dead
++ 4 million of intern exiles
++ 1252 rapped woman
++ proximity effect : french people consider with more importance the conflict close to them
++ Supression of the act between EU and Rwanda for the saling of rare materials (used to product chips)
++ conclusion : our comsuptrion of IT object (connected watch ...) feed the conflict?
+*** Morand Clément : L'Éfficacité Réduit-elle les Impacts Environnementaux des Entraînements de Modèles d'Apprentissage Machine ? Une perspective temporelle :
+**** Personal notes :
++ AI computing represent between 10 and 15% of the Google datacenters activities
++ the increase of the performance of GPUs (more efficient) is countered by :
+  + the increase computing required by AI systems
+  + the frequent replacement of old hardwares
++ the Rebound effect growth in the AI sector
+*** Douwes Constance : Unraveling the Energy Footprint of Deep Audio Models Development
+**** Personal notes :
++ Grid5000 = 1 M jobs / y
++ Multispeech project = 260kwh/day ~ 50 household ~ 600 MWh/y
++ The goal of the project is to implement in OAR a tool to measure the energy consumption of users projects
++ Responsabilize the users
+*** Da Silva Barros Tiago : Small is Sufficient: Reducing the AI Energy Consumption Through Model Selection.
+**** Personal notes :
++ Bigger is better vs Small is sufficient
++ Hugging face platform to collect data about the most used models
++ Big variability regarding the application domain
+*** Ligozat Anne-Laure et Bugeau Aurélie : Méthodes d'évalution de l'empreinte de l'IA.
+**** Personal notes :
++ de Vries, 2023 : The growing energy footprint of AI (Denis)
++ 3167 sevrers for ChatGPT inference
+*** Beurrier Julien : Prédiction du PUE et SPUE d'un petit Data Center.
+*** Pegon Emeline : Construire un cadre méthodologique pour mesurer et piloter la sobriété numérique. Cas du Référentiel par Catégorie de Produit services audiovisuels au sein du programme AltImpact
+*** Reymond Hugo : Capteurs sans batterie et variabilité des caractéristiques des (super)condensateurs.
+**** Personal notes :
++ Infinite autonomy? Olding?
++ Continous computing = impossible
++ intermittent computing : Charging phase / computing phase
++ @Checkpoint : VM -> NVM
+** Day 2 :
+*** Solnon Christine : La RO peut-elle nous permettre de répondre aux besoins de chacun tout en restant dans les limites planétaires ?
+**** Personal notes :
++ 9 planet boundaries + 12 social boundaries
++ 6 overloaded
++ OR point of view : boundaries = constraints and well being = objectives
++ IT = 4.4% france GHG emissions
++ DICE model by William Nordhaus : favorise economic growth an introduce the notion of carbon taxes to paid backstop technologies (technosolotionisme)
+  + FAIR : growth of GHG emissions induce an economic degrowth
++ 1 model = 1 point of view
++ Nordhaus model with carbon taxes consider that there is a quadratic evolution oft the PIB in function of the temperature
++ Jevson 's pardox : at the same time the system bacome mor energy efficient, the global energy consumption increase (due to increase of the demand)
++ Moore 's law : # transistorsw times 2 evry two years
++ Law of Wirth : Software is getting slower more rapidly than hardware is becomming faster.
+*** Eysseric Pauline : Formation continue à la sobriété numérique - Retours d'expérience
+*** Pelcat Maxime : Electronique soutenable pour un numérique écoresponsable - travaux de recherche du projet ESOS
+*** Blanchard Arnaud : Minimisation des ressources matérielles, comment ne pas polluer avec l'argent économisé ?
+*** Tual Aurore : Feedbacks on simplified life-cycle analysis for digital products in Thales CDI
+*** Oury Sarah : BOAMPS : un datamodel open source de partage de la consommation énergetique d'un systeme d'IA
+*** Khalifé Hicham : New Generation Mobile Networks: How to break the energy curve?
+*** Bouchet Olivier : Projet Européen SUSTAIN 6G: Prochaine Génération réseau mobile intégrant le développment durable
+*** Luxey-Bitri Adrien : La sobriété numérique d'après l'hébergeur militant Deuxfleurs
+*** Berthoud Françoise et Lefèvre Laurent : Beaucoup de verrous, peu de leviers ! Sobriété numérique : le cas est grave !
+*** Lange Benoit : ENeRgy sustaInability COding, a practical use case
+*** Fret Gaëlle : Facteurs logiciels d'obsolescence des smartphones
+*** Castellan Simon : Botascopia : questionner les rapports humain, nature et technologie au travers de l'identification des plantes
+*** Rustenholz Louis : Prédiction de bornes paramétriques de consommation énergétique : point de vue et perspectives de l'interprétation abstraite
+*** Boëzennec Robin : Improving Supercomputer Usage with Aging Awareness
+*** Lambert Simon : Revisiter la consolidation de machines virtuelles pour réduire la consommation de ressources et d'énergie dans des infrastructures Cloud de production
+*** Lannurien Vincent : HeROcarmin: Heterogeneous Resources Orchestration for carbon minimization
