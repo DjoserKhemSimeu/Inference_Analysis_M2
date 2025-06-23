@@ -12,6 +12,9 @@ The work was conducted as part of a Master's thesis at LIG (Laboratoire d’Info
 
 ```
 .
+├──inference_results_v1.1   # Modifications of the mlperf inference benchmark v1.1
+├──inference_results_v4.1   # Modifications of the mlperf inference benchmark v4.1
+├──my_flash_l4t             # Kamelon setup files to flash jetson devices 
 ├── Data/                   # Power and latency measurement results per GPU
 │   ├── data_*             # Raw and mean metrics from MLPerf Inference runs
 │
