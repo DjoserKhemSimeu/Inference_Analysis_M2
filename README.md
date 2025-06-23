@@ -67,23 +67,6 @@ Where:
 
 ---
 
-## 📦 Setup
-
-```bash
-# clone the repository
-git clone https://github.com/DjoserKhemSimeu/Inference_Analysis_M2.git
-cd Inference_Analysis_M2
-
-# optionally create a virtualenv
-python3 -m venv venv
-source venv/bin/activate
-
-# install dependencies
-pip install -r requirements.txt
-```
-
----
-
 ## 👤 Author
 
 Research project by **Djoser Simeu**, supervised by **Danilo Carastan Dos Santos**, **Laurent Lefèvre**, and **Denis Trystram** at LIG Grenoble.
