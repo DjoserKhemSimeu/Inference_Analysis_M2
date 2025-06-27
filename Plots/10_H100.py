@@ -6,8 +6,8 @@ import seaborn as sns
 from scipy.interpolate import interp1d
 
 # Chemins vers les fichiers CSV
-file_paths = glob.glob('data_H100_v4.1/FULL/consommation_energie_single_H100_QC_*_*.csv')
-ci_paths = glob.glob('data_H100_v4.1/CI/consommation_energie_single_H100_QC_*_*_ci.csv')
+file_paths = glob.glob('../Data/data_H100_v4.1/FULL/consommation_energie_single_H100_QC_*_*.csv')
+ci_paths = glob.glob('../Data/data_H100_v4.1/CI/consommation_energie_single_H100_QC_*_*_ci.csv')
 def extract_condition_num(path):
     # Si les fichiers sont comme '..._QC_16_1.csv' → on prend l'avant-dernier morceau
     return int(path.split('_')[-2])

@@ -5,11 +5,11 @@ import seaborn as sns
 from matplotlib import colors as mcolors
 
 # Charger les données
-data = pd.read_csv('g5k_edge.csv', delimiter=';')
-df = pd.read_csv('mem_density.csv', delimiter=';')
+data = pd.read_csv('../Doc/g5k_edge.csv', delimiter=';')
+df = pd.read_csv('../Doc/mem_density.csv', delimiter=';')
 mem_data = df.set_index('name')['gCO2/GB'].to_dict()
 mem_data_2 = df.set_index('name')['density'].to_dict()
-xls = pd.ExcelFile('Environmental-Footprint-ICs.xlsx')
+xls = pd.ExcelFile('../Doc/Environmental-Footprint-ICs.xlsx')
 df_gwp = xls.parse('GWP', header=3)
 df_gwp = df_gwp.iloc[:, 1:]
 

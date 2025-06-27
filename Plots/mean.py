@@ -4,7 +4,7 @@ import pandas as pd
 from glob import glob
 
 # === Paramètres ===
-base_dir = "data_orin"
+base_dir = "../Data/data_orin"
 phases = ["FULL", "CI"]
 qcs = [16, 32, 64, 128, 256]
 runs = list(range(1, 11))  # 1 à 10

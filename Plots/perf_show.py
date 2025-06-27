@@ -37,19 +37,19 @@ gpus_v11 = ['A100_v1', 'A40', 'T4', '2080Ti', 'QRTX8000','QRTX6000', 'Xavier']
 gpus_v41 = ['H100', 'L40S', 'Orin', 'A100_v4']
 
 gpu_folder_map_v11 = {
-    'A100_v1': 'data_A100_v1.1',
-    'A40': 'data_A40_v1.1',
-    'T4': 'data_T4_v1.1',
-    '2080Ti': 'data_2080Ti_v1.1',
-    'QRTX8000': 'data_QRTX8000_v1.1',
-    'QRTX6000': 'data_QRTX6000_v1.1',
-    'Xavier': 'data_xavier_v1.1'
+    'A100_v1': '../Data/data_A100_v1.1',
+    'A40': '../Data/data_A40_v1.1',
+    'T4': '../Data/data_T4_v1.1',
+    '2080Ti': '../Data/data_2080Ti_v1.1',
+    'QRTX8000': '../Data/data_QRTX8000_v1.1',
+    'QRTX6000': '../Data/data_QRTX6000_v1.1',
+    'Xavier': '../Data/data_xavier_v1.1'
 }
 gpu_folder_map_v41 = {
-    'H100': 'data_H100_v4.1',
-    'L40S': 'data_L40S_v4.1',
-    'Orin': 'data_orin_v4.1',
-    'A100_v4': 'data_A100_v4.1'
+    'H100': '../Data/data_H100_v4.1',
+    'L40S': '../Data/data_L40S_v4.1',
+    'Orin': '../Data/data_orin_v4.1',
+    'A100_v4': '../Data/data_A100_v4.1'
 }
 
 def compute_impact_energy_all_powers(file_path, gpu_name, impact_conception):
@@ -89,7 +89,7 @@ def gather_impacts_expanded(gpus, folder_map, impact_conception, version_label):
     return pd.DataFrame(results)
 
 # Chargement latence
-latency_df = pd.read_csv('mlperf_summary.csv')
+latency_df = pd.read_csv('../Doc/mlperf_summary.csv')
 latency_df['Version'] = latency_df['Run ID (log path)'].apply(
     lambda x: 'v1.1' if 'v1.1' in x else 'v4.1' if 'v4.1' in x else 'unknown'
 )
@@ -129,7 +129,7 @@ numeric_columns = [
 temp = df_final.groupby(['QC', 'GPU'])[numeric_columns].mean().reset_index()
 print(temp)
 # Sauvegarde du DataFrame dans un fichier CSV
-temp.to_csv('gwp+latency_results.csv', index=False)
+temp.to_csv('../Doc/gwp+latency_results.csv', index=False)
 # --- Fonction pour tracer les lignes médianes GPU ---
 def plot_median_lines(ax, df_plot, value_col):
     gpus = df_plot['GPU'].unique()
@@ -146,7 +146,7 @@ def plot_median_lines(ax, df_plot, value_col):
     ax.set_xticklabels(qc_order)
 
 # Sauvegarde des graphiques GWP (ligne du haut)
-with PdfPages('images/gwp_graphs.pdf') as pdf:
+with PdfPages('../images/gwp_graphs.pdf') as pdf:
     fig_gwp, axs_gwp = plt.subplots(1, 2, figsize=(14, 5), sharex=True)
 
     # GWP v1.1
@@ -174,7 +174,7 @@ with PdfPages('images/gwp_graphs.pdf') as pdf:
     plt.close(fig_gwp)
 
 # Sauvegarde des graphiques latence (ligne du bas)
-with PdfPages('images/latency_graphs.pdf') as pdf:
+with PdfPages('../images/latency_graphs.pdf') as pdf:
     fig_latency, axs_latency = plt.subplots(1, 2, figsize=(14, 5), sharex=True)
 
     # Latence v1.1

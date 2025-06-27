@@ -7,8 +7,8 @@ from scipy.interpolate import interp1d
 import os
 
 # Chemins vers les fichiers CSV
-file_paths = glob.glob('data_A40_v1.1/FULL/consommation_energie_single_A40_QC_*_*.csv')
-ci_paths = glob.glob('data_A40_v1.1/CI/consommation_energie_single_A40_QC_*_*_ci.csv')
+file_paths = glob.glob('../Data/data_A40_v1.1/FULL/consommation_energie_single_A40_QC_*_*.csv')
+ci_paths = glob.glob('../Data/data_A40_v1.1/CI/consommation_energie_single_A40_QC_*_*_ci.csv')
 
 def extract_condition_num(path):
     return int(path.split('_')[-2])

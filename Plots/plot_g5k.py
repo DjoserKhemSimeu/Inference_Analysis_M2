@@ -4,7 +4,7 @@ import numpy as np
 from adjustText import adjust_text
 
 
-data = pd.read_csv('g5k_edge.csv', delimiter=';')
+data = pd.read_csv('../Doc/g5k_edge.csv', delimiter=';')
 
 names = data['names']
 die_area = data['Die_area']

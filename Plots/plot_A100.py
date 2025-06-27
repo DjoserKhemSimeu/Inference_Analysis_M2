@@ -11,12 +11,12 @@ sns.set(style="whitegrid")
 # Chemins vers les fichiers
 paths = {
     'v1.1': {
-        'FULL': glob.glob('data_A100_v1.1/FULL/consommation_energie_single_A100_QC_*_*.csv'),
-        'CI': glob.glob('data_A100_v1.1/CI/consommation_energie_single_A100_QC_*_*_ci.csv')
+        'FULL': glob.glob('../Data/data_A100_v1.1/FULL/consommation_energie_single_A100_QC_*_*.csv'),
+        'CI': glob.glob('../Data/data_A100_v1.1/CI/consommation_energie_single_A100_QC_*_*_ci.csv')
     },
     'v4.1': {
-        'FULL': glob.glob('data_A100_v4.1/FULL/consommation_energie_single_A100_QC_*_*.csv'),
-        'CI': glob.glob('data_A100_v4.1/CI/consommation_energie_single_A100_QC_*_*_ci.csv')
+        'FULL': glob.glob('../Data/data_A100_v4.1/FULL/consommation_energie_single_A100_QC_*_*.csv'),
+        'CI': glob.glob('../Data/data_A100_v4.1/CI/consommation_energie_single_A100_QC_*_*_ci.csv')
     }
 }
 

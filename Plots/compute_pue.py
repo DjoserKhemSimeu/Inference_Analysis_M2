@@ -62,4 +62,4 @@ df_pue = pd.DataFrame.from_dict(pue_results, orient="index")
 df_pue.index.name = "QC_condition"
 df_pue = df_pue.sort_index()
 print(df_pue)
-df_pue.to_csv("pue_resume_par_QC.csv")
+df_pue.to_csv("../Doc/pue_resume_par_QC.csv")

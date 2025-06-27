@@ -8,15 +8,15 @@ matplotlib.use('Agg')
 
 # Dossiers à analyser
 gpu_dirs = [
-    "data_2080Ti_v1.1_2",
-    "data_A100_v1.1",
-    "data_A40_v1.1",
-    "data_T4_v1.1",
-    "data_A100_v4.1",
-    "data_H100_v4.1",
-    "data_L40S_v4.1",
-    "data_xavier_v1.1",
-    "data_orin_v4.1"
+    "../Data/data_2080Ti_v1.1_2",
+    "../Data/data_A100_v1.1",
+    "../Data/data_A40_v1.1",
+    "../Data/data_T4_v1.1",
+    "../Data/data_A100_v4.1",
+    "../Data/data_H100_v4.1",
+    "../Data/data_L40S_v4.1",
+    "../Data/data_xavier_v1.1",
+    "../Data/data_orin_v4.1"
 ]
 
 # Conditions d'intérêt

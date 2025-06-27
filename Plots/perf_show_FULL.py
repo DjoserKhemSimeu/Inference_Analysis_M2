@@ -36,12 +36,12 @@ gpus_v41 = ['H100', 'L40S', 'Orin', 'A100']
 
 # Mapping GPU to folder
 gpu_folder_map_v11 = {
-    'A100': 'data_A100_v1.1',
-    'A40': 'data_A40_v1.1',
-    'T4': 'data_T4_v1.1',
-    '2080Ti': 'data_2080Ti_v1.1',
-    'QRTX8000': 'data_QRTX8000_v1.1',
-    'Xavier': 'data_xavier'
+    'A100': '../Data/data_A100_v1.1',
+    'A40': '../Data/data_A40_v1.1',
+    'T4': '../Data/data_T4_v1.1',
+    '2080Ti': '../Data/data_2080Ti_v1.1',
+    'QRTX8000': '../Data/data_QRTX8000_v1.1',
+    'Xavier': '../Data/data_xavier'
 }
 
 gpu_folder_map_v41 = {
