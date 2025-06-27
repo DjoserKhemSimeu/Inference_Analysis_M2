@@ -18,12 +18,12 @@ was required in 2020 to train a network with the same performancevAlexNet achiev
 ***** TODO :: How do they compute FLOPs for transformer models
 + "From the FLOPS and power consumption we calculate the efficiency, dividing FLOPS by Watts."
  #+begin_center
-  [[file:images/Energy_Efficiency_comp.png]]
+  [[file:../images/Energy_Efficiency_comp.png]]
   #+end_center
 + "For NLP, the trends are similar, but the best models are growing much faster, as we see in Fig. 14, while the regular models may even decrease. "
   #+begin_center
-[[file:images/NLP_Task_Joules.png]]
-[[file:images/NLP_Task_GLUE.png]]
+[[file:../images/NLP_Task_Joules.png]]
+[[file:../images/NLP_Task_GLUE.png]]
 #+end_center
 ** 2° paper : Estimating the environmental impact of Generative-AI services using an LCA-based methodology (https://www.sciencedirect.com/science/article/pii/S2212827124001173)
 *** Authors : Adrien Berthelot, Eddy Caron, Mathilde Jay, Laurent Lefevre
@@ -40,7 +40,7 @@ was required in 2020 to train a network with the same performancevAlexNet achiev
 *** Observations :
 + "AI as a service"
   #+begin_center
-  [[file:images/AIaaS.png]]
+  [[file:../images/AIaaS.png]]
   #+end_center
 + "The impact is observed through 3 criteria, selected for their availability, quality, and relevance, considering the main impact categories known for digital services [2]."
  + Abiotic Depletion Potential (ADP) for minerals and metals :" It represents the decrease in available resources that have limited reserves."
@@ -55,7 +55,7 @@ was required in 2020 to train a network with the same performancevAlexNet achiev
 + Nowday, a lot of models use Reinforcement Learining based on Human Feedback (RLHF) to improve the model with the feedback of the user. Can we incorporate that in our study?
 *** Results :
 #+begin_center
-[[file:images/Results_StableD.png]]
+[[file:../images/Results_StableD.png]]
 #+end_center
 **** TODO :: The paper says that they used the Sirius cluster from Grid5000 for the "part of" training and inference process.
 + Did the study reproduces exactly the computation context of FU1 and FU2? If not, what is the appriximation done to observe the results table 2 and figure 2?
@@ -70,11 +70,11 @@ Large language models
 + BigScience Large Open-science Open-access Multilingual Language Model (BLOOM)
 + Model architechture and trainning process :
   #+begin_center
-  [[file:images/Bloom_param.png]]
+  [[file:../images/Bloom_param.png]]
   #+end_center
 + LCA Methodology
   #+begin_center
-[[file:images/Bloom_LCA.png]]
+[[file:../images/Bloom_LCA.png]]
 #+end_center
 + "For instance, methane has a 100-year GWP 25 times that of CO2– this means that it is equal to 25 CO2eq. "
 + Data used in the paper : https://github.com/bigscience-workshop/carbon-footprint/
@@ -89,11 +89,11 @@ Large language models
   + 14.6 tonnes of CO2eq
 **** Results :
 #+begin_center
-[[file:images/Bloom_Results.png]]
+[[file:../images/Bloom_Results.png]]
 #+end_center
 + Comparison with other LLMs :
   #+begin_center
-  [[file:images/LLM_Comp.png]]
+  [[file:../images/LLM_Comp.png]]
   #+end_center
   + "A few recent LLM papers reported the carbon footprint of model training, including notable models such as OPT175B [37], GPT-3 [28] and Gopher [29]."
 ** 4° paper : Green My LLM: Studying the key factors affecting the energy consumption of code assistants (https://arxiv.org/pdf/2411.11892)
@@ -134,7 +134,7 @@ One server run on :
 *** Results :
 + Energy consumption :
   #+begin_center
-  [[file:images/Copilot_energy.png]]
+  [[file:../images/Copilot_energy.png]]
   #+end_center
   + Using LLMs with fewer parameters reduces energy consumption and latency :
     + "For instance, switching from StarCoder2-15B to StarCoder2-7B reduces energy consumption by 15.6% and latency by 10.0%."
@@ -142,7 +142,7 @@ One server run on :
     + "Downsizing the number of GPUs can be a viable option for saving energy if the number of concurrent developers is low enough."
 + Latency :
   #+begin_center
-  [[file:images/Copilot_latency.png]]
+  [[file:../images/Copilot_latency.png]]
   #+end_center
   + Using more GPUs can decrease the latency
   + The maximum number of concurrent requests affect a lot the latency (128 → 1000 ~ 597%)
@@ -151,7 +151,7 @@ One server run on :
     +" For example, while StarCoder (15.5B) and StarCoder2-15B exhibit a similar number of parameters and power consumption, using the latter over the former increases the latency by 149% on average."
 + Cross picture :
   #+begin_center
-  [[file:images/Copilot_cross_pic.png]]
+  [[file:../images/Copilot_cross_pic.png]]
   #+end_center
   + energy consumption per devlopper decrease when we add more users
   + latency increase a lot when adsding more users
@@ -164,7 +164,7 @@ One server run on :
 + Performance : minimize the latency
 + Frugality : minimize the energy
 #+begin_center
-[[file:images/Copilot_obj_scenario.png]]
+[[file:../images/Copilot_obj_scenario.png]]
 #+end_center
 + We can observe differents results for each scenario and objective:
 ****** Objective observations :
@@ -191,7 +191,7 @@ Edge computing, AI for edge / AI on edge, Edge Intelligence
 + "Nowadays, it is gradually becoming possible that AI chips with computational acceleration such as Field Programmable Gate Arrays (FPGAs), Graphics Processing Units (GPUs), Tensor Processing Units (TPUs) and Neural Processing Units (NPUs) are integrated with intelligent mobile devices."
 + Edge Inteligence road-map :
   #+begin_center
-  [[file:images/EI_Road_map.png]]
+  [[file:../images/EI_Road_map.png]]
   #+end_center
   + "In this paper, we define an edge site as a microdata center with applications deployed, attached to a Small-cell Base Station (SBS). "
 + Quality of Experience (QoE) : Performance, Cost, Privacy (Security), Efficiency and Reliability.
@@ -251,7 +251,7 @@ Optimizations of the computations required by DNNs at the hardware level :
 *** Problematic : How to carry out the model training and inference on resource-scarce devices ?
 Model adaptation methods :
 #+begin_center
-[[file:images/EI_adapt.png]]
+[[file:../images/EI_adapt.png]]
 #+end_center
 + "Thakker et al. study a compressed RNN cell implementation called Hybrid Matrix Decomposition (HMD) for model inference [57]."
 ** Thursday 6 february
@@ -303,7 +303,7 @@ DNNs, edge computing devices, Nvidia Jetson
 *** Citations :
 + "NVIDIA Jetson AGX Xavier kit has a 512-core Volta GPU, an 8-core ARM CPU and 32𝐺𝐵 of LPDDR4x memory, that operates within 65𝑊 of power"
  #+begin_center
- [[file:images/Jetson_hard_table.png]]
+ [[file:../images/Jetson_hard_table.png]]
  #+end_center
 + Nvidia Jetson microarchitecture ~ workstation/server GPU microarchitecture (with fewer cores)
 + "Jetson devices are available as accelerator modules with CPU, GPU and memory"
@@ -314,7 +314,7 @@ DNNs, edge computing devices, Nvidia Jetson
 + support a wide variety of storage media (eMMC, Micro SD card, NVME Solid State Drive (SSD), Hard Disk Drive (HDD)...) not the same costs/perfs.
 *** DNN Trainning :
 #+begin_center
-[[file:images/Edge_DNN_Training.png]]
+[[file:../images/Edge_DNN_Training.png]]
 #+end_center
 + In each iteration (epoch) :
   + fetch a "mini-batch" from disk memory
@@ -324,7 +324,7 @@ DNNs, edge computing devices, Nvidia Jetson
 *** Method :
 + "The default power mode is the highest rated for all devices: MAXN for the AGX and Nano, and 15𝑊 for NX"
   #+begin_center
-  [[file:images/Table_pm.png]]
+  [[file:../images/Table_pm.png]]
   #+end_center
 + "The fan speed is set to maximum to avoid resource throttling due to overheating. "
 *** Perdformance Metrics :
@@ -337,7 +337,7 @@ DNNs, edge computing devices, Nvidia Jetson
 +  The scripts and logs for these are available at https://github.com/dream-lab/edge-train-bench/tree/sigmetrics-2023
 + Number of Fetch/Pre-process Workers : With 𝑤 > 1, multiple workers perform the fetch and pre-process in parallel to get batches ready for a separate GPU compute process.
   #+begin_center
-  [[file:images/Jetson_workers.png]]
+  [[file:../images/Jetson_workers.png]]
   #+end_center
 *** Reunion preparation 21/02 14h30
 + synthèse du travail d'analyse
@@ -368,20 +368,20 @@ AI, NVIDIA, Environemental impact, Rebound effect.
 + ”Models that have advanced the state of the art, had a large influence in the field’s history, or had a large impact within the world”
   + https://epochai.org/data/notable-ai-models-documentation
 #+begin_center
-[[file:images/GreenAI_Nvidia_evo.png]]
+[[file:../images/GreenAI_Nvidia_evo.png]]
 #+end_center
 + Die area has increased linearly while memory size has grown exponentially
 + Exponential growth in the memory size does not necessarily mean a proportional increase in memory IC area as Moore’s Law has allowed to exponentially miniaturize ICs.
 #+begin_center
-[[file:images/GreenAI_Nvidia_nrj.png]]
+[[file:../images/GreenAI_Nvidia_nrj.png]]
 #+end_center
 + Even if the energy consumption per operation has decreased over time, the total energy consumption of a card has slightly increased over time (rebbound effect)
 #+begin_center
-[[file:images/GreenAI_Nvidia_manu.png]]
+[[file:../images/GreenAI_Nvidia_manu.png]]
 #+end_center
 + Overall, all the important characteristics of graphics cards produced by NVIDIA for workstation have increased, leading to an increase in the environmental impacts incurred by the production of these cards over time.
 #+begin_center
-[[file:images/GreenAI_ML.png]]
+[[file:../images/GreenAI_ML.png]]
 #+end_center
 + Hardware quantity has increased exponentially.(y-logscale)
 **** IDEA :: Data on AI : https://epoch.ai/data
@@ -425,7 +425,7 @@ StarEncoder (encoder only model) : Personally Identifiable Information (PII) det
   + FlashAttention : Tri Dao, Daniel Y. Fu, Stefano Ermon, Atri Rudra, and Christopher Ré. FlashAttention: Fast and memoryefficient exact attention with IO-awareness. In Advances in Neural Information Processing Systems, 2022.
     + "to speed up the attention computation and reduce its memory footprint, allowing us to scale to a 8K context length."
   + "To make FlashAttention work with MQA during training, we simply expand the key and value before calling the attention kernel."
-[[file:images/StarsCoder_archi.png]]
+[[file:../images/StarsCoder_archi.png]]
 ****** TODO :: Understanding validating :
 + Hidden size = size of query, key, value and embedings vectors
 + Intermediate size = number of hidden layer in the FFN
@@ -464,15 +464,15 @@ StarEncoder (encoder only model) : Personally Identifiable Information (PII) det
 + HumanEval/MBPP : widely-used benchmarks for Code LLMs consisting of hundreds of Python programming problems that use test cases to validate the code produced by a Code LLM
 + Code LLMs generate code by sampling from their output distribution.
 + pass@k : the total fraction of benchmark problems solved, where a problem is considered solved if any one of k code samples passes every test case.
-[[file:images/StarCoder_eval_1.png]]
+[[file:../images/StarCoder_eval_1.png]]
 + DS-1000 benchmark : a suite of 1,000 realistic and practical data science workflows across seven libraries and evaluates generations in execution against test cases.
   + 2 eval modes : completion vs insertion
-[[file:images/StarCoder_eval_2.png]]
+[[file:../images/StarCoder_eval_2.png]]
 + "model performance on HumanEval and MBPP benchmarks does not always correlate with performance on the more realistic DS-1000 benchmarks."
 + ODEX benchmark : 505 open-domain and 440 closed-domain Python coding queries, in four natural languages — English, Spanish, Japanese, and Russian — with test-case-based execution evaluation.
   + closed-domain : using only built-in Python functions
   + open-domain : using functions from imported libraries
-[[file:images/StarCoder_eval_3.png]]
+[[file:../images/StarCoder_eval_3.png]]
 ** 9° paper : MLCA: a tool for Machine Learning Life Cycle Assessment (https://hal.science/hal-04643414v1/file/ICT4S_Paper.pdf)
 *** Date : 10 Jul 2024
 *** Authors :
@@ -502,8 +502,8 @@ GWP = Global Warming Potential
 + MLCA : ”What are the impacts of running program X on the hardware Y during Z hours?”
 + "An analysis of different phases of the life cycle of hardware Y is required to evaluate the different impacts each considered part of the life cycle has."
 #+begin_center
-[[file:images/MLCA_Table.png]]
-[[file:images/MLCA_gpu_impact.png]]
+[[file:../images/MLCA_Table.png]]
+[[file:../images/MLCA_gpu_impact.png]]
 #+end_center
 + docs : https://github.com/blubrom/MLCA/blob/main/docs/docs/Explanations/manufacture-components.md
 ** Tuesday 11 february :
@@ -534,7 +534,7 @@ I failed to use the tool via the GitHub repository. But maybe it enough to compa
   + Efficiency : In our context we can consider efficiency with a QoE approach where the cost refer to the environemental impact + latencty.
 **** Hypothesis :
 + by knowing that the die area of the Esge device that we want to study is less important than the ones used for large scale deployment we can expect that the manufacturing impact of edge devices have a less important impact.
-[[file:images/Inf_Formula.png]]
+[[file:../images/Inf_Formula.png]]
 + With this impact formula for the inference process, we can that :
   + The imapct of the hardware is mesured by Cie and Fe
   + Fe : The impact of the GPU used is ponderated by the allocation time of the hardware
@@ -558,7 +558,7 @@ I failed to use the tool via the GitHub repository. But maybe it enough to compa
   + Bandwidth : 136.5GB/s
   + Performance : 1.410 GFLOPS
 Computational intensity of 1 inference : 6.6e4/57.74 ~ 1143.0.5 FLOPS/Byte
-[[file:images/Roofline_model.png]]
+[[file:../images/Roofline_model.png]]
 + We can see that in both settings, the inference computation will be limited by the peak performance of the GPU used
 + The limitation is really hard for Jetson (~ perf divided by 10 000)
 + Time : FLOPs/FLOPS
@@ -583,11 +583,11 @@ Ian Schneider, Hui Xu, Stephan Benecke, David Patterson, Keguo Huang, Parthasara
 LCA, AI accelerator, Tensor Processing Units (TPUs)
 *** SOTA :
 *** Observations :
-[[file:images/TPU_ctg.png]]
+[[file:../images/TPU_ctg.png]]
 + Google’s AI-focused application-specific integrated circuits (ASICs) : offer substantial improvements in training and inference speeds for large-scale machine learning models.
-[[file:images/TPU_Results.png]]
+[[file:../images/TPU_Results.png]]
 + compute carbon intensity (CCI) : the CO2e per utilized floating-point operation (FLOP), or CO2e/FLOP
-[[file:images/TPU_Results_2.png]]
+[[file:../images/TPU_Results_2.png]]
 + "Trillium (TPU v6e), launched to customers in December 2024, offers a 3x improvement on CCI versus v4i."
   + This study don't take into account the ADP
   + They not devolloped their methods to measure the manufacturing impact
@@ -604,29 +604,29 @@ Large language models (LLMs), post-training quantization (PTQ), accuracy-preserv
 + "However, to speed up the inference, we need to quantize both weights and activations into INT8 (i.e., W8A8) to utilize the integer kernels (e.g., INT8 GEMM), which are supported by a wide range of hardware (e.g., NVIDIA GPUs, Intel CPUs, Qualcomm DSPs, etc.)."
 + "Previous work has shown that quantizing the weights of LLMs with INT8 or even with INT4 does not degrade accuracy"(uniform/flat distribution)
 *** Observations :
- [[file:images/SmoothQuant_intro.png]]
+ [[file:../images/SmoothQuant_intro.png]]
 **** Quantization :
 + maps a high-precision value into discrete levels.
-  [[file:images/Quant_formula.png]]
+  [[file:../images/Quant_formula.png]]
 + Static quantization : "We can calculate ∆ offline with the activations of some calibration samples"
 + Dynamic quantization : "We can also use the runtime statistics of activations to get ∆"
 + "LLMs are notoriously difficult to quantize due to the outliers in the activations" + "The scale of outliers in activations is ∼ 100× larger than most of the activation values."
-  [[file:images/Quant_window.png]]
-  [[file:images/Quant_transformer.png]]
+  [[file:../images/Quant_window.png]]
+  [[file:../images/Quant_transformer.png]]
 ** 2° survey : A Survey on Transformer Compression (https://arxiv.org/pdf/2402.05964)
 *** Quantization :
-[[file:images/Trans_quant.png]]
+[[file:../images/Trans_quant.png]]
 *** Knowledge Distillation :
-[[file:images/Trans_KD.png]]
+[[file:../images/Trans_KD.png]]
 **** TODO :: Papers to read :
 + TinyBERT : X. Jiao et al. Tinybert: Distilling bert for natural language understanding. arXiv preprint arXiv:1909.10351, 2019.
 *** Efficient architecture :
-[[file:images/Trans_arch.png]]
+[[file:../images/Trans_arch.png]]
 *** TODO :: For next time :
 + Deeply define the part of the mind map on PBQ, Case Study, and the Estimation to define what we can do from these estimations
 ** Article : AI energy score (https://huggingface.github.io/AIEnergyScore/):
-[[file:images/HF_mem.png]]
-[[file:images/HF_EGM.png]]
+[[file:../images/HF_mem.png]]
+[[file:../images/HF_EGM.png]]
 + ADEME : https://base-empreinte.ademe.fr/
 + "However, results on alternative hardware should be interpreted cautiously, as thez will not align  directly with the GPU-specific metrics established in this study."
 + "Data center overhead is captured by the Power Usage Effectiveness (PUE) metric, which can vary by location and Hyperscaler. PUE values are often published online by major Hyperscalers (Google Cloud, AWS, Microsoft Azure) and can be referenced for specific data center locations. For example, a PUE of 1.2 would indicate that 20% of energy consumption is used for non-IT functions, such as cooling and infrastructure."
@@ -639,8 +639,8 @@ Large language models (LLMs), post-training quantization (PTQ), accuracy-preserv
 + It is measured in megajoules per kilowatt-hour (MJ/kWh).
 + A higher PE value means more energy is needed for generation, often implying a higher environmental footprint.
 ** Grid5000 : GPU distribution among sites :
-[[file:images/G5k_GPU.png]]
-[[file:images/G5k_edge.png]]
+[[file:../images/G5k_GPU.png]]
+[[file:../images/G5k_edge.png]]
 + Manufacturing impact :
   #+begin_example
   (norm(Die_area/transistro_size)+norm(MemGB))/2
@@ -676,12 +676,12 @@ Goal : compare environnemental impact of different hardware depending of their e
 *** Text Generation Inference (TGI) : https://www.adyen.com/knowledge-hub/llm-inference-at-scale-with-tgi
 + toolkit for deploying and serving Large Language Models (LLMs)
 + API Documentation : https://huggingface.github.io/text-generation-inference
-[[file:images/TGI_arch.png]]
+[[file:../images/TGI_arch.png]]
 + Prefill : tokenization of the prompt on CPU -> GPU
 + Decode : autoregressive nature of the LLM (genrate output one token at time)-> De-tokenized on CPU
 + "The separation of the Prefill and Decode stages is essential due to the distinct computational characteristics of each stage."
 + "The engine handles everything related to the models and batching requests, while the server focuses on forwarding user requests. In TGI, these components are named accordingly: the server is referred to as the router"
-[[file:images/TGI_arch_2.png]]
+[[file:../images/TGI_arch_2.png]]
 ** Review meeting friday 21 february :
 *** Enviornmental impacts :
 + The metrics choosed by the StableDiffusion study was choosed by the author, we can consider others metrics.
@@ -708,8 +708,8 @@ environmental impacts of integrated circuit (IC), energy consumption, carbon foo
 + Roadmaps provide targets rather than actual data from on-site measurements.
 + Scientific literature is an important source of data as several peer-reviewed studies have been carried out over the last 20 years.
 + Databases from LCA tools provide specific data and usually benefit from regular updates.
-[[file:images/IC_node.png]]
-[[file:images/IC_Found.png]]
+[[file:../images/IC_node.png]]
+[[file:../images/IC_Found.png]]
 ** Observation of the difference in the impact of the memory type
 + DRAM = Dynamic random access memory
 *** High Bandwith Memory (HBM):
@@ -717,12 +717,12 @@ environmental impacts of integrated circuit (IC), energy consumption, carbon foo
 + higher bandwidth than  DDR or GDDR5 while using less power.
 + Stacking DRAM dies and an optional base die which can include buffer circuitry and test logic.
 + Within the stack the dies are vertically interconnected by through-silicon vias (TSVs) and microbumps.
-  [[file:images/HBM_Table.png]]
-  [[file:images/HBM_arch.png]]
+  [[file:../images/HBM_Table.png]]
+  [[file:../images/HBM_arch.png]]
 + HBM2 : 256 GB/s memory bandwidth per package (2016), 8‑Hi stacks, 8 GB per stack possible.
 + HBM2e : 307 GB/s memory bandwidth per stack, 12‑Hi stacks, up to 24 GB per stack possible.
 + DIE area approximation (DDR4 = https://www.techinsights.com/blog/techinsights-memory-technology-update-iedm18)
-  [[file:images/DD_Table.png]]
+  [[file:../images/DD_Table.png]]
   + Bit density HBM2e = HBM2 = 0.137 Gb/mm² (Gb = Gigabits != GB)
 *** Graphics Double Data Rate Synchronous Dynamic RAM
 + GDDR5 bit density : Based on DDR3 SDRAM Memory : memory density ~ DDR4 = 0.137Gb/mm²
@@ -821,10 +821,10 @@ Machine Learning , ML inference, Benchmarking
 + Control condition : quasi-instantaneous answer : network latency ~ 1s
 + Treatment condition : dynamic delay depending on the answer complexity : network latency + dynamic delay frel
 #+begin_center
-[[file:images/delay_bot.png]]
+[[file:../images/delay_bot.png]]
 #+end_center
 #+begin_center
-[[file:images/res_bot.png]]
+[[file:../images/res_bot.png]]
 #+end_center
 * Retour Laurent:
 - Mettre jour données giec "impossible" (sortir le dernier rapport)
